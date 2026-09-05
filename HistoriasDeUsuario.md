@@ -19,6 +19,16 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - [HU-10 — Como usuario autenticado, quiero enviar mensajes privados a otro miembro con quien tengo una conexión establecida](#hu-10)
 - [HU-11 — Como usuario autenticado, quiero crear o unirme a espacios de proyectos para colaborar con otros miembros](#hu-11)
 - [HU-12 — Como usuario autenticado, quiero explorar y postularme a oportunidades de investigación, proyectos y voluntariado](#hu-12)
+- [HU-13 — Como usuario autenticado, quiero descargar un documento PDF con la información de mi perfil profesional estructurada como una hoja de vida](#hu-13)
+- [HU-14 — Como visitante, quiero seleccionar mis preferencias en las categorías de publicaciones y proyectos  durante el registro](#hu-14)
+- [HU-15 — Como usuario autenticado, quiero publicar un evento con su fecha, categoría, lugar, título y descripción](#hu-15)
+- [HU-16 — Como usuario autenticado, quiero visualizar un apartado con los eventos publicados en la plataforma](#hu-16)
+- [HU-17 — Como administrador, quiero gestionar las cuentas de los usuarios registrados en UniLink](#hu-17)
+- [HU-18 — Como administrador, quiero gestionar las publicaciones realizadas por los usuarios](#hu-18)
+- [HU-19 — Como administrador, quiero gestionar los eventos publicados por los usuarios](#hu-19)
+- [HU-20 — Como administrador, quiero gestionar las categorías disponibles para publicaciones, proyectos y eventos](#hu-20)
+
+
 
 ---
 
@@ -239,6 +249,151 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que selecciono una oportunidad, entonces puedo ver su detalle y postularme directamente.
 - Dado que ya estoy postulado a una oportunidad, entonces el sistema no permite una nueva postulación y muestra el estado actual.
 - Dado que me postulo exitosamente, entonces el sistema notifica al responsable de la oportunidad.
+
+**Prioridad:** Media
+
+---
+## HU-13
+
+> **Como** usuario autenticado,
+> **quiero** descargar un documento PDF con la información de mi perfil profesional estructurada como una hoja de vida,
+> **para** compartir mi perfil profesional con otras personas o publicarlo en mis redes sociales para encontrar oportunidades laborales.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que tengo información registrada en mi perfil profesional, cuando solicito descargar mi hoja de vida, entonces el sistema genera un documento PDF con la información disponible.
+- Dado que solicito la generación de mi hoja de vida, entonces el documento presenta la información organizada en una estructura de hoja de vida profesional.
+- Dado que mi perfil contiene información como datos personales, biografía, habilidades, experiencia, proyectos y logros, entonces el documento incluye dicha información.
+- Dado que no tengo información registrada en alguna sección de mi perfil, entonces el sistema omite dicha sección del documento.
+- Dado que el documento es generado correctamente, entonces el sistema permite descargarlo en formato PDF.
+
+**Prioridad:** Media
+
+---
+## HU-14
+
+> **Como** visitante,
+> **quiero** seleccionar mis preferencias en las categorías de publicaciones y proyectos  durante el registro,
+> **para** recibir y visualizar contenido relacionado con mis intereses.
+
+**Caso de uso relacionado:**
+
+**Criterios de aceptación:**
+
+- Dado que me estoy registrando en UniLink, entonces el sistema me permite seleccionar las categorías de publicaciones y proyectos de mi interés.
+- Dado que selecciono una o varias categorías de publicaciones y proyectos, entonces el sistema guarda mis preferencias asociadas a mi perfil.
+- Dado que he configurado mis preferencias, entonces el sistema utiliza las categorías seleccionadas para mostrarme contenido relacionado con mis intereses.
+- Dado que no selecciono ninguna categoría, entonces el sistema permite completar el registro sin guardar preferencias específicas.
+
+**Prioridad:** Media
+
+---
+## HU-15
+
+> **Como** usuario autenticado,
+> **quiero** publicar un evento con su fecha, categoría, lugar, título y descripción,
+> **para** informar a los usuarios sobre eventos académicos o de cualquier índole y permitirles conocerlos y asistir.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que soy un usuario autenticado, entonces puedo acceder a la opción para publicar un evento.
+- Dado que estoy creando un evento, entonces el sistema me permite ingresar la fecha, categoría, lugar, título y descripción.
+- Dado que ingreso todos los datos requeridos correctamente, entonces el sistema valida y publica el evento.
+- Dado que el evento es publicado correctamente, entonces los demás usuarios pueden visualizar su información para conocerlo y asistir.
+- Dado que no ingreso alguno de los datos requeridos, entonces el sistema me indica la información pendiente y no permite publicar el evento.
+
+**Prioridad:** Media
+
+---
+## HU-16
+
+> **Como** usuario autenticado,
+> **quiero** visualizar un apartado con los eventos publicados en la plataforma,
+> **para** conocer los eventos disponibles, identificar aquellos que sean de mi interés y poder asistir.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que soy un usuario autenticado, entonces puedo acceder al apartado de eventos.
+- Dado que accedo al apartado de eventos, entonces el sistema muestra los eventos publicados con información como título, fecha, categoría, lugar y descripción.
+- Dado que visualizo un evento, entonces puedo consultar su información para determinar si es de mi interés.
+- Dado que no existen eventos publicados, entonces el sistema me informa que no hay eventos disponibles.
+
+**Prioridad:** Media
+
+---
+## HU-17
+
+> **Como** administrador,
+> **quiero** gestionar las cuentas de los usuarios registrados en UniLink,
+> **para** mantener el control sobre los miembros que hacen parte de la plataforma.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que soy administrador, entonces puedo visualizar la lista de usuarios registrados en la plataforma.
+- Dado que visualizo un usuario, entonces puedo consultar la información básica de su cuenta y su estado.
+- Dado que un usuario incumple las condiciones de uso de la plataforma, entonces puedo suspender o desactivar su cuenta.
+- Dado que una cuenta se encuentra suspendida o desactivada, entonces el usuario no puede acceder a las funcionalidades de la plataforma.
+
+**Prioridad:** Alta
+
+---
+## HU-18
+
+> **Como** administrador,
+> **quiero** gestionar las publicaciones realizadas por los usuarios,
+> **para** mantener un contenido adecuado dentro de la plataforma.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+- Dado que soy administrador, entonces puedo visualizar las publicaciones realizadas por los usuarios.
+- Dado que una publicación incumple las políticas de uso de la plataforma, entonces puedo retirarla.
+- Dado que retiro una publicación, entonces esta deja de estar disponible para los demás usuarios.
+- Dado que una publicación es retirada, entonces el sistema registra la acción realizada por el administrador.
+
+**Prioridad:** Alta
+
+---
+## HU-19
+
+> **Como** administrador,
+> **quiero** gestionar los eventos publicados por los usuarios,
+> **para** garantizar que la información disponible sobre los eventos sea apropiada para la comunidad.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que soy administrador, entonces puedo visualizar los eventos publicados en la plataforma.
+- Dado que un evento incumple las políticas de uso de la plataforma, entonces puedo retirarlo.
+- Dado que retiro un evento, entonces este deja de estar disponible para los usuarios.
+- Dado que un evento es retirado, entonces el sistema registra la acción realizada por el administrador.
+
+**Prioridad:** Media
+
+---
+## HU-20
+
+> **Como** administrador,
+> **quiero** gestionar las categorías disponibles para publicaciones, proyectos, eventos y oportunidades,
+> **para** mantener organizada la clasificación del contenido de la plataforma.
+
+**Caso de uso relacionado:** 
+
+**Criterios de aceptación:**
+
+- Dado que soy administrador, entonces puedo visualizar las categorías disponibles en la plataforma.
+- Dado que necesito una nueva categoría, entonces puedo crearla indicando su nombre y tipo de contenido al que pertenece.
+- Dado que una categoría ya no es necesaria, entonces puedo desactivarla para evitar que sea utilizada en nuevo contenido.
+- Dado que desactivo una categoría, entonces el contenido que ya la utiliza conserva su información.
 
 **Prioridad:** Media
 
