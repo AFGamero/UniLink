@@ -27,7 +27,9 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - [HU-18 — Como administrador, quiero gestionar las publicaciones realizadas por los usuarios](#hu-18)
 - [HU-19 — Como administrador, quiero gestionar los eventos publicados por los usuarios](#hu-19)
 - [HU-20 — Como administrador, quiero gestionar las categorías disponibles para publicaciones, proyectos y eventos](#hu-20)
-
+- [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia antes de ofrecer un servicio en la plataforma](#hu-21)
+- [HU-22 — Como usuario autenticado, quiero publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros](#hu-22)
+- [HU-23 — Como egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus, quiero registrarme en UniLink como oferente de servicios](#hu-23)
 
 
 ---
@@ -394,6 +396,67 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que necesito una nueva categoría, entonces puedo crearla indicando su nombre y tipo de contenido al que pertenece.
 - Dado que una categoría ya no es necesaria, entonces puedo desactivarla para evitar que sea utilizada en nuevo contenido.
 - Dado que desactivo una categoría, entonces el contenido que ya la utiliza conserva su información.
+
+**Prioridad:** Media
+
+---
+## HU-21
+
+> **Como** usuario autenticado,
+> **quiero** verificar mis certificaciones, credenciales o experiencia antes de ofrecer un servicio en la plataforma,
+> **para** que quienes contraten confíen en que tengo la capacidad real de prestarlo.
+
+**Caso de uso relacionado:**
+
+**Criterios de aceptación:**
+
+- Dado que soy un usuario autenticado que va a ofrecer un servicio, cuando adjunto un documento o evidencia de certificación (constancia, diploma, portafolio), entonces el sistema la asocia a mi perfil como "pendiente de verificación".
+- Dado que envío una credencial para verificación, entonces un administrador o un proceso de validación revisa el documento antes de que quede marcado como verificado.
+- Dado que una credencial es verificada exitosamente, entonces mi perfil y mis servicios publicados muestran una insignia de "verificado" visible para otros usuarios.
+- Dado que una credencial es rechazada, entonces el sistema me notifica el motivo y me permite volver a enviarla corregida.
+- Dado que intento publicar un servicio que requiere verificación y no tengo ninguna credencial aprobada, entonces el sistema me permite publicarlo igualmente pero sin la insignia de verificado.
+- Dado que un usuario visualiza mi perfil o servicio, entonces puede distinguir claramente cuáles credenciales están verificadas y cuáles no.
+
+**Prioridad:** Alta
+
+---
+
+## HU-22
+
+> **Como** usuario autenticado,
+> **quiero** publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros,
+> **para** ofrecer tanto habilidades profesionales como prácticas (por ejemplo monitorías, plomería, electrónica o eventos) sin generar confusión con quien lo contrata.
+
+**Caso de uso relacionado:**
+
+**Criterios de aceptación:**
+
+- Dado que quiero publicar un servicio, cuando completo el formulario, entonces el sistema me permite elegir una categoría existente (académica o no académica) o solicitar una nueva.
+- Dado que estoy creando un servicio, entonces el sistema me exige describir explícitamente el alcance (qué incluye) y los límites (qué no incluye) de lo que ofrezco.
+- Dado que publico un servicio sin definir su alcance o límites, entonces el sistema no permite publicarlo hasta que complete esos campos.
+- Dado que el servicio es publicado correctamente, entonces queda visible para otros usuarios en la categoría correspondiente, junto con las credenciales verificadas asociadas (si existen).
+- Dado que un usuario busca servicios, entonces puede filtrar por categoría académica o no académica.
+- Dado que dos servicios de distintos oferentes tienen alcances que se solapan, entonces cada uno se muestra con su propia descripción de límites, sin que el sistema los combine o modifique.
+
+**Prioridad:** Alta
+
+---
+
+## HU-23
+
+> **Como** egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus,
+> **quiero** registrarme en UniLink como oferente de servicios,
+> **para** participar en la red de confianza de la plataforma aunque no sea estudiante activo.
+
+**Caso de uso relacionado:**
+
+**Criterios de aceptación:**
+
+- Dado que soy egresado o personal tercerizado, cuando me registro, entonces el sistema me permite seleccionar mi tipo de vínculo con la universidad (egresado, tercerizado) en lugar de un programa académico activo.
+- Dado que no cuento con un correo institucional activo, entonces el sistema me permite verificar mi identidad por un medio alternativo (por ejemplo, documento de identidad o carta de vinculación laboral).
+- Dado que mi verificación alternativa es aprobada, entonces mi cuenta queda activa con los mismos permisos para ofrecer servicios que un usuario con correo institucional.
+- Dado que mi verificación alternativa es rechazada, entonces el sistema me informa el motivo y me permite volver a intentarlo con otro documento.
+- Dado que un usuario visualiza mi perfil, entonces puede identificar claramente mi condición de egresado o tercerizado, diferenciándome de un estudiante activo.
 
 **Prioridad:** Media
 
