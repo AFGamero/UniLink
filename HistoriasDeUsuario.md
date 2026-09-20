@@ -30,6 +30,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia antes de ofrecer un servicio en la plataforma](#hu-21)
 - [HU-22 — Como usuario autenticado, quiero publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros](#hu-22)
 - [HU-23 — Como egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus, quiero registrarme en UniLink como oferente de servicios](#hu-23)
+- [HU-24 — Como usuario nuevo, quiero recibir sugerencias de conexión (compañeros de facultad o grupos) durante mi primer ingreso, para no tener mi feed vacío y asegurar que veo contenido relevante desde el inicio.](#hu-24)
+- [HU-25 — Como usuario autenticado, quiero visualizar un panel con el estado de mis postulaciones (ej. "Enviada", "En revisión", "Rechazada"), para hacer seguimiento a las oportunidades a las que he aplicado.](#hu-25)
+- [HU-26 — Como usuario autenticado, quiero confirmar mi asistencia a un evento (RSVP), ver quién más asistirá y agregarlo a mi calendario personal, para interactuar con la comunidad y programar mi participación.](#hu-26)
+- [HU-27 — Como creador o administrador de un proyecto, quiero asignar roles granulares (como visualizador, editor o administrador) a los miembros de mi equipo, para controlar los permisos y las acciones que cada integrante puede realizar dentro del espacio colaborativo.](#hu-27)
 
 
 ---
@@ -461,3 +465,77 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Prioridad:** Media
 
 ---
+
+## HU-24
+
+> **Como** usuario nuevo,
+> **quiero** recibir sugerencias de conexión (compañeros de facultad o grupos) durante mi primer ingreso,
+> **para** no tener mi feed vacío y asegurar que veo contenido relevante desde el inicio.
+
+**Caso de uso relacionado:** [CU-13](CasosDeUso.md#cu-13--sugerir-conexiones-iniciales-onboarding)
+
+**Criterios de aceptación:**
+
+- Dado que es mi primer inicio de sesión tras el registro, entonces el sistema me muestra un paso adicional de *onboarding* sugiriendo conexiones.
+- Dado que el sistema me sugiere perfiles, entonces estas sugerencias se basan en compañeros de mi misma facultad o grupos relacionados.
+- Dado que selecciono a varios usuarios sugeridos, cuando finalizo el *onboarding*, entonces el sistema envía las solicitudes de conexión de forma automática y me redirige a mi feed.
+- Dado que decido omitir este paso, entonces el sistema me redirige al inicio sin enviar solicitudes previas.
+
+**Prioridad:** Alta
+
+---
+
+## HU-25
+
+> **Como** usuario autenticado,
+> **quiero** visualizar un panel con el estado de mis postulaciones (ej. "Enviada", "En revisión", "Rechazada"),
+> **para** hacer seguimiento a las oportunidades a las que he aplicado.
+
+**Caso de uso relacionado:** [CU-14](./CasosDeUso.md#cu-14--gestionar-estado-de-postulaciones)
+
+**Criterios de aceptación:**
+
+- Dado que he aplicado a oportunidades en la plataforma, cuando accedo al panel de postulaciones, entonces veo una lista de todas mis solicitudes.
+- Dado que visualizo una postulación, entonces el sistema me indica claramente si su estado es "Enviada", "En revisión" o "Rechazada".
+- Dado que el estado de mi postulación cambia, entonces el sistema actualiza el panel para reflejar el estado más reciente.
+- Dado que no he realizado ninguna postulación, entonces el sistema me muestra un mensaje amigable invitándome a explorar oportunidades.
+
+**Prioridad:** Media
+
+---
+
+## HU-26
+
+> **Como** usuario autenticado,
+> **quiero** confirmar mi asistencia a un evento (RSVP), ver quién más asistirá y agregarlo a mi calendario personal,
+> **para** interactuar con la comunidad y programar mi participación.
+
+**Caso de uso relacionado:** [CU-15](./CasosDeUso.md#cu-15--confirmar-asistencia-a-eventos-rsvp)
+
+**Criterios de aceptación:**
+
+- Dado que visualizo la información de un evento, entonces el sistema me muestra un botón para confirmar mi asistencia de forma explícita.
+- Dado que confirmo mi asistencia, entonces el sistema me permite visualizar la lista de otros miembros que también asistirán.
+- Dado que he confirmado mi asistencia, entonces el sistema me ofrece una opción para exportar o añadir el evento a mi calendario personal.
+- Dado que decido cancelar mi asistencia, entonces el sistema me permite revertir la acción y oculta mi perfil de la lista de asistentes.
+
+**Prioridad:** Media
+
+---
+
+## HU-27
+
+> **Como** creador o administrador de un proyecto,
+> **quiero** asignar roles granulares (como visualizador, editor o administrador) a los miembros de mi equipo,
+> **para** controlar los permisos y las acciones que cada integrante puede realizar dentro del espacio colaborativo.
+
+**Caso de uso relacionado:** [CU-16](./CasosDeUso.md#cu-16--administrar-roles-en-espacios-de-proyectos)
+
+**Criterios de aceptación:**
+
+- Dado que soy el administrador del proyecto, cuando accedo a la sección de miembros, entonces el sistema me permite visualizar el rol actual de cada integrante.
+- Dado que selecciono a un miembro, entonces puedo cambiar su nivel de acceso escogiendo entre los roles de visualizador, editor o administrador.
+- Dado que asigno un rol granular a un miembro, entonces el sistema aplica restricciones o permisos de edición inmediatamente basados en ese rol.
+- Dado que intento dejar el proyecto sin ningún administrador asignado, entonces el sistema me muestra un error y me impide realizar el cambio.
+
+**Prioridad:** Media
