@@ -7,18 +7,24 @@ Este documento describe los 12 casos de uso que delimitan el alcance funcional d
 
 ## Índice
 
-- [CU-01 — Registrar cuenta](#cu-01--registrar-cuenta)
-- [CU-02 — Iniciar sesión](#cu-02--iniciar-sesión)
-- [CU-03 — Administrar cuenta](#cu-03--administrar-cuenta)
-- [CU-04 — Crear/editar perfil profesional](#cu-04--creareditar-perfil-profesional)
-- [CU-05 — Buscar y visualizar perfiles](#cu-05--buscar-y-visualizar-perfiles)
-- [CU-06 — Enviar solicitud de conexión](#cu-06--enviar-solicitud-de-conexión)
-- [CU-07 — Responder solicitud de conexión](#cu-07--responder-solicitud-de-conexión)
-- [CU-08 — Publicar contenido](#cu-08--publicar-contenido)
-- [CU-09 — Visualizar publicaciones](#cu-09--visualizar-publicaciones)
-- [CU-10 — Enviar mensaje privado](#cu-10--enviar-mensaje-privado)
-- [CU-11 — Gestionar espacio de proyectos](#cu-11--gestionar-espacio-de-proyectos)
-- [CU-12 — Explorar oportunidades](#cu-12--explorar-oportunidades)
+- [Casos de Uso — UniLink](#casos-de-uso--unilink)
+  - [Índice](#índice)
+  - [CU-01 — Registrar cuenta](#cu-01--registrar-cuenta)
+  - [CU-02 — Iniciar sesión](#cu-02--iniciar-sesión)
+  - [CU-03 — Administrar cuenta](#cu-03--administrar-cuenta)
+  - [CU-04 — Crear/editar perfil profesional](#cu-04--creareditar-perfil-profesional)
+  - [CU-05 — Buscar y visualizar perfiles](#cu-05--buscar-y-visualizar-perfiles)
+  - [CU-06 — Enviar solicitud de conexión](#cu-06--enviar-solicitud-de-conexión)
+  - [CU-07 — Responder solicitud de conexión](#cu-07--responder-solicitud-de-conexión)
+  - [CU-08 — Publicar contenido](#cu-08--publicar-contenido)
+  - [CU-09 — Visualizar publicaciones](#cu-09--visualizar-publicaciones)
+  - [CU-10 — Enviar mensaje privado](#cu-10--enviar-mensaje-privado)
+  - [CU-11 — Gestionar espacio de proyectos](#cu-11--gestionar-espacio-de-proyectos)
+  - [CU-12 — Explorar oportunidades](#cu-12--explorar-oportunidades)
+  - [CU-13 — Sugerir conexiones iniciales (Onboarding)](#cu-13--sugerir-conexiones-iniciales-onboarding)
+  - [CU-14 — Gestionar estado de postulaciones](#cu-14--gestionar-estado-de-postulaciones)
+  - [CU-15 — Confirmar asistencia a eventos (RSVP)](#cu-15--confirmar-asistencia-a-eventos-rsvp)
+  - [CU-16 — Administrar roles en espacios de proyectos](#cu-16--administrar-roles-en-espacios-de-proyectos)
 
 ---
 
@@ -329,3 +335,104 @@ Este documento describe los 12 casos de uso que delimitan el alcance funcional d
 **Prioridad:** Media
 
 ---
+
+## CU-13 — Sugerir conexiones iniciales (Onboarding)
+
+**Actor(es):** Usuario autenticado (nuevo)
+
+**Descripción:** Permite presentar sugerencias de conexiones inmediatas (como compañeros de facultad o grupos) durante el primer ingreso del usuario a la plataforma, con el fin de prevenir el "feed vacío" (cold start) y asegurar que visualice contenido relevante.
+
+**Precondiciones:** El usuario ha completado su registro y accede a la plataforma por primera vez.
+
+**Flujo principal:**
+
+1. El sistema detecta que es el primer inicio de sesión del usuario.
+2. El sistema analiza el programa académico y facultad del usuario para generar sugerencias de conexión.
+3. El sistema muestra una pantalla de *onboarding* con una lista de perfiles sugeridos y grupos relevantes.
+4. El usuario selecciona a los compañeros o grupos con los que desea conectar de forma inmediata.
+5. El sistema envía las solicitudes de conexión automáticamente y redirige al usuario a su panel principal.
+
+**Flujos alternativos / excepciones:**
+
+- 4a. El usuario decide omitir el paso de sugerencias: el sistema lo redirige al panel principal y le mostrará el feed en blanco hasta que realice conexiones futuras.
+
+**Postcondiciones:** El usuario inicia su experiencia en la plataforma con conexiones o solicitudes previas, alimentando su feed principal.
+
+**Prioridad:** Media
+
+---
+
+## CU-14 — Gestionar estado de postulaciones
+
+**Actor(es):** Usuario autenticado
+
+**Descripción:** Permite al usuario acceder a un panel específico para ver y hacer seguimiento al estado de sus postulaciones a oportunidades (ej. "Enviada", "En revisión", "Rechazada").
+
+**Precondiciones:** El usuario debe estar autenticado en la plataforma y haber realizado al menos una postulación previa (CU-12).
+
+**Flujo principal:**
+
+1. El usuario accede al panel de gestión de postulaciones.
+2. El sistema recupera y muestra el listado de oportunidades a las que el usuario se ha postulado.
+3. El sistema muestra el estado actual de cada postulación de forma clara ("Enviada", "En revisión", "Rechazada").
+4. El usuario selecciona una postulación para visualizar el historial de cambios de estado o retroalimentación.
+
+**Flujos alternativos / excepciones:**
+
+- 2a. El usuario no tiene postulaciones activas ni pasadas: el sistema muestra un mensaje indicando que no hay postulaciones y sugiere explorar nuevas oportunidades.
+
+**Postcondiciones:** El usuario se mantiene informado sobre el avance y resolución de sus postulaciones.
+
+**Prioridad:** Alta
+
+---
+
+## CU-15 — Confirmar asistencia a eventos (RSVP)
+
+**Actor(es):** Usuario autenticado
+
+**Descripción:** Permite al usuario confirmar su asistencia (RSVP) a un evento publicado, visualizar qué otros miembros asistirán y agregar el evento a su calendario personal.
+
+**Precondiciones:** El usuario debe estar autenticado y visualizar la página de detalle de un evento.
+
+**Flujo principal:**
+
+1. El usuario visualiza un evento de su interés.
+2. Selecciona la opción para confirmar asistencia ("Asistiré").
+3. El sistema registra al usuario en la lista de asistentes del evento.
+4. El sistema habilita la visualización de los demás asistentes confirmados para este usuario.
+5. El sistema ofrece la opción de exportar o agregar el evento a un calendario personal.
+
+**Flujos alternativos / excepciones:**
+
+- 2a. El usuario cambia de opinión y retira su confirmación: el sistema lo elimina de la lista de asistentes y actualiza la vista.
+
+**Postcondiciones:** El usuario queda registrado como asistente, aportando métricas al creador del evento y facilitando la interacción con otros asistentes.
+
+**Prioridad:** Alta
+
+---
+
+## CU-16 — Administrar roles en espacios de proyectos
+
+**Actor(es):** Usuario autenticado (Administrador del proyecto)
+
+**Descripción:** Permite gestionar los niveles de acceso de los miembros dentro de un espacio de proyecto mediante roles granulares (visualizador, editor, administrador) o flujos de control de versiones.
+
+**Precondiciones:** El usuario debe tener el rol de administrador o creador dentro de un espacio de proyecto existente.
+
+**Flujo principal:**
+
+1. El administrador accede a la configuración de miembros del proyecto.
+2. Selecciona a un miembro actual del proyecto.
+3. Modifica su nivel de acceso asignando un rol específico (visualizador, editor, administrador).
+4. El sistema valida y aplica los nuevos permisos granulares al usuario seleccionado.
+5. El sistema notifica al miembro sobre el cambio en su rol.
+
+**Flujos alternativos / excepciones:**
+
+- 3a. El administrador intenta removerse a sí mismo como administrador sin asignar a otro en su reemplazo: el sistema bloquea la acción para evitar que el proyecto quede sin gestión.
+
+**Postcondiciones:** Los permisos del proyecto quedan actualizados, limitando o expandiendo las acciones del miembro afectado según su nuevo rol.
+
+**Prioridad:** Media
