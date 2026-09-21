@@ -3,7 +3,7 @@
 _MVP — Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
-Este documento presenta las historias de usuario derivadas de los [Casos de Uso de UniLink](./Casos_de_Uso_UniLink.md), en formato "Como / quiero / para", con criterios de aceptación en formato Given/When/Then (Dado/Cuando/Entonces) y prioridad heredada del caso de uso correspondiente.
+Este documento presenta las historias de usuario derivadas de los [Casos de Uso de UniLink](./CasosDeUso.md), en formato "Como / quiero / para", con criterios de aceptación en formato Given/When/Then (Dado/Cuando/Entonces) y prioridad heredada del caso de uso correspondiente.
 
 ## Índice
 
@@ -44,7 +44,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** registrarme en UniLink con mis datos personales y académicos,
 > **para** poder unirme a la red profesional universitaria.
 
-**Caso de uso relacionado:** [CU-01](./Casos_de_Uso_UniLink.md#cu-01)
+**Caso de uso relacionado:** [CU-01](./CasosDeUso.md#cu-01--registrar-cuenta)
 
 **Criterios de aceptación:**
 
@@ -65,7 +65,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** iniciar sesión con mi correo y contraseña,
 > **para** acceder a mis funcionalidades y datos personales en la plataforma.
 
-**Caso de uso relacionado:** [CU-02](./Casos_de_Uso_UniLink.md#cu-02)
+**Caso de uso relacionado:** [CU-02](./CasosDeUso.md#cu-02--iniciar-sesión)
 
 **Criterios de aceptación:**
 
@@ -84,7 +84,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** gestionar la información de mi cuenta (datos personales, seguridad y preferencias),
 > **para** mantener actualizada y segura mi información.
 
-**Caso de uso relacionado:** [CU-03](./Casos_de_Uso_UniLink.md#cu-03)
+**Caso de uso relacionado:** [CU-03](./CasosDeUso.md#cu-03--administrar-cuenta)
 
 **Criterios de aceptación:**
 
@@ -103,7 +103,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** crear y editar mi perfil profesional (biografía, habilidades, intereses, experiencia, proyectos y logros),
 > **para** mostrar mi identidad profesional al resto de la comunidad universitaria.
 
-**Caso de uso relacionado:** [CU-04](./Casos_de_Uso_UniLink.md#cu-04)
+**Caso de uso relacionado:** [CU-04](./CasosDeUso.md#cu-04--creareditar-perfil-profesional)
 
 **Criterios de aceptación:**
 
@@ -121,7 +121,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** buscar y visualizar perfiles de otros miembros por nombre, habilidades, intereses o programa académico,
 > **para** descubrir personas afines dentro de la comunidad universitaria.
 
-**Caso de uso relacionado:** [CU-05](./Casos_de_Uso_UniLink.md#cu-05)
+**Caso de uso relacionado:** [CU-05](./CasosDeUso.md#cu-05--buscar-y-visualizar-perfiles)
 
 **Criterios de aceptación:**
 
@@ -139,7 +139,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** enviar una solicitud de conexión a otro miembro de la plataforma,
 > **para** establecer una conexión profesional con esa persona.
 
-**Caso de uso relacionado:** [CU-06](./Casos_de_Uso_UniLink.md#cu-06)
+**Caso de uso relacionado:** [CU-06](./CasosDeUso.md#cu-06--enviar-solicitud-de-conexión)
 
 **Criterios de aceptación:**
 
@@ -157,7 +157,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** aceptar o rechazar las solicitudes de conexión que recibo,
 > **para** decidir con quién establezco una conexión profesional.
 
-**Caso de uso relacionado:** [CU-07](./Casos_de_Uso_UniLink.md#cu-07)
+**Caso de uso relacionado:** [CU-07](./CasosDeUso.md#cu-07--responder-solicitud-de-conexión)
 
 **Criterios de aceptación:**
 
@@ -175,7 +175,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** publicar contenido académico o profesional (proyectos, logros, oportunidades o artículos),
 > **para** compartir información relevante con mi red de conexiones.
 
-**Caso de uso relacionado:** [CU-08](./Casos_de_Uso_UniLink.md#cu-08)
+**Caso de uso relacionado:** [CU-08](./CasosDeUso.md#cu-08--publicar-contenido)
 
 **Criterios de aceptación:**
 
@@ -193,7 +193,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** visualizar las publicaciones de otros miembros filtradas por categoría o relevancia,
 > **para** mantenerme informado del contenido académico y profesional de mi red.
 
-**Caso de uso relacionado:** [CU-09](./Casos_de_Uso_UniLink.md#cu-09)
+**Caso de uso relacionado:** [CU-09](./CasosDeUso.md#cu-09--visualizar-publicaciones)
 
 **Criterios de aceptación:**
 
@@ -211,7 +211,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** enviar mensajes privados a otro miembro con quien tengo una conexión establecida,
 > **para** comunicarme directamente con mis contactos dentro de la plataforma.
 
-**Caso de uso relacionado:** [CU-10](./Casos_de_Uso_UniLink.md#cu-10)
+**Caso de uso relacionado:** [CU-10](./CasosDeUso.md#cu-10--enviar-mensaje-privado)
 
 **Criterios de aceptación:**
 
@@ -229,7 +229,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** crear o unirme a espacios de proyectos para colaborar con otros miembros,
 > **para** trabajar en conjunto en iniciativas académicas o profesionales.
 
-**Caso de uso relacionado:** [CU-11](./Casos_de_Uso_UniLink.md#cu-11)
+**Caso de uso relacionado:** [CU-11](./CasosDeUso.md#cu-11--gestionar-espacio-de-proyectos)
 
 **Criterios de aceptación:**
 
@@ -247,7 +247,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** explorar y postularme a oportunidades de investigación, proyectos y voluntariado,
 > **para** acceder a experiencias académicas y profesionales relevantes para mi formación.
 
-**Caso de uso relacionado:** [CU-12](./Casos_de_Uso_UniLink.md#cu-12)
+**Caso de uso relacionado:** [CU-12](./CasosDeUso.md#cu-12--explorar-oportunidades)
 
 **Criterios de aceptación:**
 
