@@ -25,7 +25,7 @@ Evitar que un usuario nuevo llegue a una plataforma vacía: en su primer ingreso
 
 **No incluye:**
 
-- Sugerencias de espacios de proyectos: se agregan cuando exista FS-PRY-01 (Sprint 8).
+- Sugerencias de espacios de proyectos: las agrega [FS-PRY-01](../proyectos/FS-PRY-01-espacios-proyectos.md) (RF-10) en el Sprint 8.
 - Contenido del feed para quien omite el paso: lo resuelve FS-CNT-01 (Sprint 4).
 - Sugerencias periódicas después del onboarding (la página "Personas que podrían interesarte" de [FS-PRF-02](../perfil/FS-PRF-02-busqueda-perfiles.md) cubre ese caso).
 

@@ -30,7 +30,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | ADM | Administración | [`administracion/`](./administracion/) |
 | OPO | Oportunidades | [`oportunidades/`](./oportunidades/) |
 | EVT | Eventos | [`eventos/`](./eventos/) |
-| PRY | Proyectos | `proyectos/` |
+| PRY | Proyectos | [`proyectos/`](./proyectos/) |
 | SRV | Servicios | `servicios/` |
 
 ## Índice y trazabilidad
@@ -57,8 +57,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-OPO-02](./oportunidades/FS-OPO-02-postulaciones.md) | Postulaciones | CU-12, CU-14 | HU-12, HU-25 | 6 | Borrador |
 | [FS-EVT-01](./eventos/FS-EVT-01-publicacion-listado-eventos.md) | Publicación y listado de eventos | CU-20, CU-21 | HU-15, HU-16 | 7 | Borrador |
 | [FS-EVT-02](./eventos/FS-EVT-02-confirmacion-asistencia.md) | Confirmación de asistencia (RSVP) | CU-15 | HU-26 | 7 | Borrador |
-| FS-PRY-01 | Espacios de proyectos | CU-11 | HU-11 | 8 | Pendiente |
-| FS-PRY-02 | Roles en proyectos | CU-16 | HU-27 | 8 | Pendiente |
+| [FS-PRY-01](./proyectos/FS-PRY-01-espacios-proyectos.md) | Espacios de proyectos | CU-11 | HU-11 | 8 | Borrador |
+| [FS-PRY-02](./proyectos/FS-PRY-02-roles-proyectos.md) | Roles en proyectos | CU-16 | HU-27 | 8 | Borrador |
 | FS-SRV-01 | Verificación de credenciales | CU-27 | HU-21 | 9 | Pendiente |
 | FS-SRV-02 | Publicación y solicitud de servicios | CU-28, CU-30 | HU-22, HU-31 | 9 | Pendiente |
 | FS-SRV-03 | Registro de oferentes externos | CU-29 | HU-23 | 9 | Pendiente |

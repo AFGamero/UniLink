@@ -13,7 +13,7 @@ El MVP se construye en **9 sprints de 2 semanas**. El orden respeta las dependen
 | [5](./sprint-05/README.md) | Los usuarios conversan en privado y el administrador modera la plataforma | FS-MSG-01, FS-ADM-02, FS-ADM-03 | Alta |
 | [6](./sprint-06/README.md) | Los responsables publican oportunidades y los usuarios se postulan | FS-OPO-01, FS-OPO-02 | Alta |
 | [7](./sprint-07/README.md) | La comunidad publica eventos y confirma asistencia | FS-EVT-01, FS-EVT-02 | Alta |
-| 8 | Los usuarios colaboran en espacios de proyectos con permisos | FS-PRY-01, FS-PRY-02 | Media |
+| [8](./sprint-08/README.md) | Los usuarios colaboran en espacios de proyectos con permisos | FS-PRY-01, FS-PRY-02 | Media |
 | 9 | Los usuarios ofrecen y solicitan servicios con credenciales verificadas | FS-SRV-01, FS-SRV-02, FS-SRV-03 | Alta ⚠️ |
 
 ⚠️ **Sprint 9 pendiente de decisión:** el módulo de servicios amplía el alcance más allá de una red profesional universitaria. El equipo debe confirmar si entra en el MVP o pasa a una segunda fase.

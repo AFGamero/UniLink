@@ -78,7 +78,12 @@ Reunir en un solo lugar la actividad que involucra al usuario, para que no tenga
 | `evento.recordatorio` | "Mañana es \"{evento}\" a las {hora}." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
 | `evento.actualizado` | "Cambió {fecha / lugar / enlace} de \"{evento}\"." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
 | `evento.cancelado` | "Se canceló \"{evento}\": {motivo}." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
-| `proyecto.*` | Por definir en FS-PRY-01 y FS-PRY-02 | — | — | 8 |
+| `proyecto.solicitud_recibida` | "{actor} quiere unirse a \"{proyecto}\"." | Miembros > Solicitudes | Sí, "Actividad en mis proyectos" | 8 |
+| `proyecto.solicitud_respondida` | "Tu solicitud para unirte a \"{proyecto}\" fue {aprobada / rechazada}." | Espacio del proyecto | Sí, "Actividad en mis proyectos" | 8 |
+| `proyecto.invitacion` | "{actor} te invitó a unirte a \"{proyecto}\"." | Resumen del proyecto | Sí, "Actividad en mis proyectos" | 8 |
+| `proyecto.tarea_asignada` | "{actor} te asignó la tarea \"{tarea}\" en \"{proyecto}\"." | Tareas del proyecto | No | 8 |
+| `proyecto.rol_cambiado` | "Ahora eres {rol} en \"{proyecto}\"." | Miembros del proyecto | No | 8 |
+| `proyecto.miembro_retirado` | "Ya no eres miembro de \"{proyecto}\"." | Resumen del proyecto | Sí, "Actividad en mis proyectos" | 8 |
 
 ## 7. Estados
 
