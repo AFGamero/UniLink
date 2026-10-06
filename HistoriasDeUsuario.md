@@ -8,32 +8,36 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## Índice
 
 - [HU-01 — Como visitante, quiero registrarme en UniLink con mis datos personales y académicos](#hu-01)
-- [HU-02 — Como usuario registrado (estudiante, profesor o personal administrativo), quiero iniciar sesión con mi correo y contraseña](#hu-02)
-- [HU-03 — Como usuario autenticado, quiero gestionar la información de mi cuenta (datos personales, seguridad y preferencias)](#hu-03)
+- [HU-02 — Como usuario registrado (estudiante, profesor, personal administrativo, egresado o tercerizado), quiero iniciar sesión con mi correo y contraseña](#hu-02)
+- [HU-03 — Como usuario autenticado, quiero gestionar la información de mi cuenta (datos personales, seguridad, privacidad y preferencias)](#hu-03)
 - [HU-04 — Como usuario autenticado, quiero crear y editar mi perfil profesional (biografía, habilidades, intereses, experiencia, proyectos y logros)](#hu-04)
 - [HU-05 — Como usuario autenticado, quiero buscar y visualizar perfiles de otros miembros por nombre, habilidades, intereses o programa académico](#hu-05)
 - [HU-06 — Como usuario autenticado, quiero enviar una solicitud de conexión a otro miembro de la plataforma](#hu-06)
 - [HU-07 — Como usuario autenticado, quiero aceptar o rechazar las solicitudes de conexión que recibo](#hu-07)
 - [HU-08 — Como usuario autenticado, quiero publicar contenido académico o profesional (proyectos, logros, oportunidades o artículos)](#hu-08)
-- [HU-09 — Como usuario autenticado, quiero visualizar las publicaciones de otros miembros filtradas por categoría o relevancia](#hu-09)
+- [HU-09 — Como usuario autenticado, quiero visualizar las publicaciones de mi red y de mis categorías de interés, filtradas por categoría o relevancia](#hu-09)
 - [HU-10 — Como usuario autenticado, quiero enviar mensajes privados a otro miembro con quien tengo una conexión establecida](#hu-10)
 - [HU-11 — Como usuario autenticado, quiero crear o unirme a espacios de proyectos para colaborar con otros miembros](#hu-11)
 - [HU-12 — Como usuario autenticado, quiero explorar y postularme a oportunidades de investigación, proyectos y voluntariado](#hu-12)
 - [HU-13 — Como usuario autenticado, quiero descargar un documento PDF con la información de mi perfil profesional estructurada como una hoja de vida](#hu-13)
-- [HU-14 — Como visitante, quiero seleccionar mis preferencias en las categorías de publicaciones y proyectos  durante el registro](#hu-14)
+- [HU-14 — Como visitante, quiero seleccionar mis preferencias en las categorías de publicaciones y proyectos durante el registro](#hu-14)
 - [HU-15 — Como usuario autenticado, quiero publicar un evento con su fecha, categoría, lugar, título y descripción](#hu-15)
 - [HU-16 — Como usuario autenticado, quiero visualizar un apartado con los eventos publicados en la plataforma](#hu-16)
 - [HU-17 — Como administrador, quiero gestionar las cuentas de los usuarios registrados en UniLink](#hu-17)
 - [HU-18 — Como administrador, quiero gestionar las publicaciones realizadas por los usuarios](#hu-18)
 - [HU-19 — Como administrador, quiero gestionar los eventos publicados por los usuarios](#hu-19)
-- [HU-20 — Como administrador, quiero gestionar las categorías disponibles para publicaciones, proyectos y eventos](#hu-20)
-- [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia antes de ofrecer un servicio en la plataforma](#hu-21)
+- [HU-20 — Como administrador, quiero gestionar las categorías disponibles para publicaciones, proyectos, eventos, oportunidades y servicios](#hu-20)
+- [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia asociadas a los servicios que ofrezco](#hu-21)
 - [HU-22 — Como usuario autenticado, quiero publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros](#hu-22)
 - [HU-23 — Como egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus, quiero registrarme en UniLink como oferente de servicios](#hu-23)
-- [HU-24 — Como usuario nuevo, quiero recibir sugerencias de conexión (compañeros de facultad o grupos) durante mi primer ingreso, para no tener mi feed vacío y asegurar que veo contenido relevante desde el inicio.](#hu-24)
-- [HU-25 — Como usuario autenticado, quiero visualizar un panel con el estado de mis postulaciones (ej. "Enviada", "En revisión", "Rechazada"), para hacer seguimiento a las oportunidades a las que he aplicado.](#hu-25)
-- [HU-26 — Como usuario autenticado, quiero confirmar mi asistencia a un evento (RSVP), ver quién más asistirá y agregarlo a mi calendario personal, para interactuar con la comunidad y programar mi participación.](#hu-26)
-- [HU-27 — Como creador o administrador de un proyecto, quiero asignar roles granulares (como visualizador, editor o administrador) a los miembros de mi equipo, para controlar los permisos y las acciones que cada integrante puede realizar dentro del espacio colaborativo.](#hu-27)
+- [HU-24 — Como usuario nuevo, quiero recibir sugerencias de conexión (compañeros de facultad o espacios de proyectos) durante mi primer ingreso](#hu-24)
+- [HU-25 — Como usuario autenticado, quiero visualizar un panel con el estado de mis postulaciones](#hu-25)
+- [HU-26 — Como usuario autenticado, quiero confirmar mi asistencia a un evento (RSVP), ver quién más asistirá y agregarlo a mi calendario personal](#hu-26)
+- [HU-27 — Como creador o administrador de un proyecto, quiero asignar roles granulares (visualizador, editor o administrador) a los miembros de mi equipo](#hu-27)
+- [HU-28 — Como usuario registrado, quiero recuperar mi contraseña si la olvido](#hu-28)
+- [HU-29 — Como responsable de una oportunidad, quiero publicarla y gestionar el estado de las postulaciones que recibo](#hu-29)
+- [HU-30 — Como usuario autenticado, quiero consultar mis notificaciones en un solo lugar](#hu-30)
+- [HU-31 — Como usuario autenticado, quiero solicitar un servicio publicado y contactar a su oferente](#hu-31)
 
 
 ---
@@ -49,10 +53,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que soy un visitante, cuando completo el formulario de registro con nombre, correo institucional, contraseña y programa académico, entonces el sistema valida el formato de los datos.
-- Dado que ingreso un correo que no es de dominio institucional, entonces el sistema muestra un error y no permite continuar.
+- Dado que ingreso un correo que no es de dominio institucional, entonces el sistema muestra un error, no permite continuar y me ofrece registrarme como egresado o tercerizado si es mi caso ([HU-23](#hu-23)).
 - Dado que ingreso un correo ya registrado, entonces el sistema me notifica y sugiere iniciar sesión o recuperar mi contraseña.
-- Dado que envío el formulario correctamente, entonces recibo un enlace de verificación en mi correo institucional.
-- Dado que confirmo mi correo mediante el enlace, entonces mi cuenta queda activa y soy redirigido a completar mi perfil.
+- Dado que envío el formulario correctamente, entonces recibo en mi correo institucional un enlace de verificación válido por 24 horas.
+- Dado que confirmo mi correo mediante el enlace, entonces mi cuenta queda activa y soy redirigido a completar mi perfil y luego al paso de sugerencias de conexión.
 - Dado que el enlace de verificación expira sin ser usado, entonces puedo solicitar uno nuevo.
 
 **Prioridad:** Alta
@@ -61,7 +65,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 ## HU-02
 
-> **Como** usuario registrado (estudiante, profesor o personal administrativo),
+> **Como** usuario registrado (estudiante, profesor, personal administrativo, egresado o tercerizado),
 > **quiero** iniciar sesión con mi correo y contraseña,
 > **para** acceder a mis funcionalidades y datos personales en la plataforma.
 
@@ -70,9 +74,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que ingreso credenciales correctas, entonces el sistema me otorga acceso y me redirige al panel principal.
-- Dado que ingreso credenciales incorrectas, entonces el sistema muestra un error indicando los intentos restantes.
+- Dado que ingreso credenciales incorrectas, entonces el sistema muestra un error indicando los intentos restantes (máximo 5 consecutivos).
 - Dado que mi cuenta no ha sido verificada, entonces el sistema me solicita completar la verificación antes de continuar.
-- Dado que excedo el número máximo de intentos, entonces el sistema bloquea temporalmente el acceso y me sugiere recuperar mi contraseña.
+- Dado que excedo el número máximo de intentos, entonces el sistema bloquea el acceso durante 15 minutos y me sugiere recuperar mi contraseña.
+- Dado que mi cuenta está suspendida o desactivada, entonces el sistema me impide el acceso e informa el estado de mi cuenta.
 
 **Prioridad:** Alta
 
@@ -81,7 +86,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## HU-03
 
 > **Como** usuario autenticado,
-> **quiero** gestionar la información de mi cuenta (datos personales, seguridad y preferencias),
+> **quiero** gestionar la información de mi cuenta (datos personales, seguridad, privacidad y preferencias),
 > **para** mantener actualizada y segura mi información.
 
 **Caso de uso relacionado:** [CU-03](./CasosDeUso.md#cu-03--administrar-cuenta)
@@ -91,6 +96,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que modifico un dato de mi cuenta (nombre, correo, contraseña, foto de perfil o preferencias de notificación), entonces el sistema valida y guarda los cambios.
 - Dado que ingreso datos con un formato inválido, entonces el sistema muestra un error y no guarda los cambios.
 - Dado que intento cambiar mi correo a uno ya registrado por otra cuenta, entonces el sistema rechaza el cambio.
+- Dado que cambio la privacidad de mi perfil a "solo mis conexiones", entonces los usuarios no conectados solo ven mi nombre, foto y programa académico.
 - Dado que la actualización es exitosa, entonces el sistema me confirma el cambio realizado.
 
 **Prioridad:** Media
@@ -108,7 +114,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que completo los campos de mi perfil, entonces el sistema valida la información y la guarda.
-- Dado que dejo campos obligatorios vacíos, entonces el sistema me indica los campos pendientes y no guarda hasta completarlos.
+- Dado que dejo vacío algún campo obligatorio (nombre, programa académico o tipo de vínculo, y al menos una habilidad), entonces el sistema me indica los campos pendientes y no guarda hasta completarlos.
 - Dado que guardo mi perfil correctamente, entonces queda visible para otros usuarios según mi configuración de privacidad.
 
 **Prioridad:** Alta
@@ -127,7 +133,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que ingreso un término de búsqueda o aplico filtros, entonces el sistema muestra los perfiles coincidentes con una vista previa.
 - Dado que no existen perfiles coincidentes, entonces el sistema me informa que no hay resultados y sugiere ajustar los filtros.
-- Dado que selecciono un perfil de los resultados, entonces puedo visualizar su detalle completo.
+- Dado que selecciono un perfil de los resultados, entonces puedo visualizar su detalle completo, salvo que sea visible solo para conexiones y no esté conectado con su dueño.
 
 **Prioridad:** Alta
 
@@ -173,7 +179,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 > **Como** usuario autenticado,
 > **quiero** publicar contenido académico o profesional (proyectos, logros, oportunidades o artículos),
-> **para** compartir información relevante con mi red de conexiones.
+> **para** compartir información relevante con mi red de conexiones y con la comunidad interesada.
 
 **Caso de uso relacionado:** [CU-08](./CasosDeUso.md#cu-08--publicar-contenido)
 
@@ -181,7 +187,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que creo una publicación con título, descripción, categoría y, opcionalmente, archivos adjuntos, entonces el sistema la valida y publica.
 - Dado que la publicación no cumple las políticas de uso de la plataforma, entonces el sistema la rechaza e informa el motivo.
-- Dado que la publicación es exitosa, entonces aparece en el feed de mis conexiones.
+- Dado que la publicación es exitosa, entonces aparece en el feed de mis conexiones y de los usuarios interesados en su categoría.
 
 **Prioridad:** Media
 
@@ -190,14 +196,14 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## HU-09
 
 > **Como** usuario autenticado,
-> **quiero** visualizar las publicaciones de otros miembros filtradas por categoría o relevancia,
-> **para** mantenerme informado del contenido académico y profesional de mi red.
+> **quiero** visualizar las publicaciones de mi red y de mis categorías de interés, filtradas por categoría o relevancia,
+> **para** mantenerme informado del contenido académico y profesional que me interesa.
 
 **Caso de uso relacionado:** [CU-09](./CasosDeUso.md#cu-09--visualizar-publicaciones)
 
 **Criterios de aceptación:**
 
-- Dado que accedo al feed de publicaciones, entonces puedo navegar por ellas o aplicar filtros por categoría.
+- Dado que accedo al feed de publicaciones, entonces veo publicaciones de mis conexiones y de mis categorías de interés, y puedo aplicar filtros por categoría.
 - Dado que aplico un filtro sin resultados, entonces el sistema me informa que no hay publicaciones coincidentes.
 - Dado que visualizo una publicación, entonces puedo interactuar con ella (comentar, reaccionar, compartir).
 
@@ -217,7 +223,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que selecciono una conexión de mi red, entonces puedo abrir un chat privado con esa persona.
 - Dado que envío un mensaje, entonces el sistema lo entrega y notifica al destinatario.
-- Dado que intento escribir a un usuario con el que no tengo conexión, entonces el sistema no me permite iniciar el chat.
+- Dado que intento escribir a un usuario con el que no tengo conexión ni una solicitud de servicio activa ([HU-31](#hu-31)), entonces el sistema no me permite iniciar el chat.
 
 **Prioridad:** Alta
 
@@ -233,9 +239,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 **Criterios de aceptación:**
 
-- Dado que creo un proyecto, entonces puedo definir nombre, descripción, roles requeridos, tareas y objetivos.
-- Dado que solicito unirme a un proyecto existente, entonces el sistema gestiona mi incorporación según la disponibilidad de cupos.
+- Dado que creo un proyecto, entonces puedo definir nombre, descripción, perfiles requeridos, número máximo de integrantes, tareas y objetivos, y quedo como administrador del proyecto.
+- Dado que solicito unirme a un proyecto existente, entonces los administradores del proyecto reciben mi solicitud y la aprueban o rechazan.
 - Dado que el proyecto ya alcanzó el número máximo de integrantes, entonces el sistema no permite mi solicitud e informa el motivo.
+- Dado que soy miembro de un proyecto, entonces puedo abandonarlo, salvo que sea su único administrador.
 
 **Prioridad:** Media
 
@@ -252,9 +259,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que accedo a la sección de oportunidades, entonces puedo explorarlas filtrando por categoría.
-- Dado que selecciono una oportunidad, entonces puedo ver su detalle y postularme directamente.
+- Dado que selecciono una oportunidad abierta, entonces puedo ver su detalle y postularme directamente.
 - Dado que ya estoy postulado a una oportunidad, entonces el sistema no permite una nueva postulación y muestra el estado actual.
-- Dado que me postulo exitosamente, entonces el sistema notifica al responsable de la oportunidad.
+- Dado que la oportunidad está cerrada, entonces el sistema no permite postularme e informa el motivo.
+- Dado que me postulo exitosamente, entonces mi postulación queda en estado "Enviada" y el sistema notifica al responsable de la oportunidad.
 
 **Prioridad:** Media
 
@@ -265,7 +273,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** descargar un documento PDF con la información de mi perfil profesional estructurada como una hoja de vida,
 > **para** compartir mi perfil profesional con otras personas o publicarlo en mis redes sociales para encontrar oportunidades laborales.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-19](./CasosDeUso.md#cu-19--generar-hoja-de-vida-en-pdf)
 
 **Criterios de aceptación:**
 
@@ -281,10 +289,10 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## HU-14
 
 > **Como** visitante,
-> **quiero** seleccionar mis preferencias en las categorías de publicaciones y proyectos  durante el registro,
+> **quiero** seleccionar mis preferencias en las categorías de publicaciones y proyectos durante el registro,
 > **para** recibir y visualizar contenido relacionado con mis intereses.
 
-**Caso de uso relacionado:**
+**Caso de uso relacionado:** [CU-18](./CasosDeUso.md#cu-18--seleccionar-preferencias-de-contenido)
 
 **Criterios de aceptación:**
 
@@ -292,6 +300,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que selecciono una o varias categorías de publicaciones y proyectos, entonces el sistema guarda mis preferencias asociadas a mi perfil.
 - Dado que he configurado mis preferencias, entonces el sistema utiliza las categorías seleccionadas para mostrarme contenido relacionado con mis intereses.
 - Dado que no selecciono ninguna categoría, entonces el sistema permite completar el registro sin guardar preferencias específicas.
+- Dado que ya estoy registrado, entonces puedo modificar mis preferencias desde la configuración de mi cuenta.
 
 **Prioridad:** Media
 
@@ -302,7 +311,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** publicar un evento con su fecha, categoría, lugar, título y descripción,
 > **para** informar a los usuarios sobre eventos académicos o de cualquier índole y permitirles conocerlos y asistir.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-20](./CasosDeUso.md#cu-20--publicar-evento)
 
 **Criterios de aceptación:**
 
@@ -310,7 +319,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que estoy creando un evento, entonces el sistema me permite ingresar la fecha, categoría, lugar, título y descripción.
 - Dado que ingreso todos los datos requeridos correctamente, entonces el sistema valida y publica el evento.
 - Dado que el evento es publicado correctamente, entonces los demás usuarios pueden visualizar su información para conocerlo y asistir.
-- Dado que no ingreso alguno de los datos requeridos, entonces el sistema me indica la información pendiente y no permite publicar el evento.
+- Dado que no ingreso alguno de los datos requeridos o la fecha ya pasó, entonces el sistema me indica la información pendiente y no permite publicar el evento.
 
 **Prioridad:** Media
 
@@ -321,12 +330,12 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** visualizar un apartado con los eventos publicados en la plataforma,
 > **para** conocer los eventos disponibles, identificar aquellos que sean de mi interés y poder asistir.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-21](./CasosDeUso.md#cu-21--visualizar-eventos)
 
 **Criterios de aceptación:**
 
 - Dado que soy un usuario autenticado, entonces puedo acceder al apartado de eventos.
-- Dado que accedo al apartado de eventos, entonces el sistema muestra los eventos publicados con información como título, fecha, categoría, lugar y descripción.
+- Dado que accedo al apartado de eventos, entonces el sistema muestra los próximos eventos ordenados por fecha, con título, fecha, categoría, lugar y descripción.
 - Dado que visualizo un evento, entonces puedo consultar su información para determinar si es de mi interés.
 - Dado que no existen eventos publicados, entonces el sistema me informa que no hay eventos disponibles.
 
@@ -339,14 +348,15 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** gestionar las cuentas de los usuarios registrados en UniLink,
 > **para** mantener el control sobre los miembros que hacen parte de la plataforma.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-24](./CasosDeUso.md#cu-24--administrar-cuentas-de-usuario)
 
 **Criterios de aceptación:**
 
 - Dado que soy administrador, entonces puedo visualizar la lista de usuarios registrados en la plataforma.
 - Dado que visualizo un usuario, entonces puedo consultar la información básica de su cuenta y su estado.
-- Dado que un usuario incumple las condiciones de uso de la plataforma, entonces puedo suspender o desactivar su cuenta.
+- Dado que un usuario incumple las condiciones de uso de la plataforma, entonces puedo suspender o desactivar su cuenta indicando el motivo.
 - Dado que una cuenta se encuentra suspendida o desactivada, entonces el usuario no puede acceder a las funcionalidades de la plataforma.
+- Dado que una cuenta está suspendida, entonces puedo reactivarla.
 
 **Prioridad:** Alta
 
@@ -357,12 +367,12 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** gestionar las publicaciones realizadas por los usuarios,
 > **para** mantener un contenido adecuado dentro de la plataforma.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-25](./CasosDeUso.md#cu-25--moderar-contenido-publicaciones-y-eventos)
 
 **Criterios de aceptación:**
-- Dado que soy administrador, entonces puedo visualizar las publicaciones realizadas por los usuarios.
+- Dado que soy administrador, entonces puedo visualizar las publicaciones realizadas por los usuarios, incluidas las reportadas.
 - Dado que una publicación incumple las políticas de uso de la plataforma, entonces puedo retirarla.
-- Dado que retiro una publicación, entonces esta deja de estar disponible para los demás usuarios.
+- Dado que retiro una publicación, entonces esta deja de estar disponible para los demás usuarios y su autor es notificado con el motivo.
 - Dado que una publicación es retirada, entonces el sistema registra la acción realizada por el administrador.
 
 **Prioridad:** Alta
@@ -374,30 +384,31 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** gestionar los eventos publicados por los usuarios,
 > **para** garantizar que la información disponible sobre los eventos sea apropiada para la comunidad.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-25](./CasosDeUso.md#cu-25--moderar-contenido-publicaciones-y-eventos)
 
 **Criterios de aceptación:**
 
-- Dado que soy administrador, entonces puedo visualizar los eventos publicados en la plataforma.
+- Dado que soy administrador, entonces puedo visualizar los eventos publicados en la plataforma, incluidos los reportados.
 - Dado que un evento incumple las políticas de uso de la plataforma, entonces puedo retirarlo.
-- Dado que retiro un evento, entonces este deja de estar disponible para los usuarios.
+- Dado que retiro un evento, entonces este deja de estar disponible para los usuarios y su autor es notificado con el motivo.
 - Dado que un evento es retirado, entonces el sistema registra la acción realizada por el administrador.
 
-**Prioridad:** Media
+**Prioridad:** Alta
 
 ---
 ## HU-20
 
 > **Como** administrador,
-> **quiero** gestionar las categorías disponibles para publicaciones, proyectos, eventos y oportunidades,
+> **quiero** gestionar las categorías disponibles para publicaciones, proyectos, eventos, oportunidades y servicios,
 > **para** mantener organizada la clasificación del contenido de la plataforma.
 
-**Caso de uso relacionado:** 
+**Caso de uso relacionado:** [CU-26](./CasosDeUso.md#cu-26--administrar-categorías)
 
 **Criterios de aceptación:**
 
 - Dado que soy administrador, entonces puedo visualizar las categorías disponibles en la plataforma.
 - Dado que necesito una nueva categoría, entonces puedo crearla indicando su nombre y tipo de contenido al que pertenece.
+- Dado que un usuario solicita una nueva categoría, entonces puedo aprobarla o rechazarla, y el sistema le notifica la decisión.
 - Dado que una categoría ya no es necesaria, entonces puedo desactivarla para evitar que sea utilizada en nuevo contenido.
 - Dado que desactivo una categoría, entonces el contenido que ya la utiliza conserva su información.
 
@@ -407,18 +418,18 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## HU-21
 
 > **Como** usuario autenticado,
-> **quiero** verificar mis certificaciones, credenciales o experiencia antes de ofrecer un servicio en la plataforma,
-> **para** que quienes contraten confíen en que tengo la capacidad real de prestarlo.
+> **quiero** verificar mis certificaciones, credenciales o experiencia asociadas a los servicios que ofrezco,
+> **para** que quienes contraten confíen en que tengo la capacidad real de prestarlos.
 
-**Caso de uso relacionado:**
+**Caso de uso relacionado:** [CU-27](./CasosDeUso.md#cu-27--verificar-credenciales)
 
 **Criterios de aceptación:**
 
-- Dado que soy un usuario autenticado que va a ofrecer un servicio, cuando adjunto un documento o evidencia de certificación (constancia, diploma, portafolio), entonces el sistema la asocia a mi perfil como "pendiente de verificación".
-- Dado que envío una credencial para verificación, entonces un administrador o un proceso de validación revisa el documento antes de que quede marcado como verificado.
+- Dado que soy un usuario autenticado, cuando adjunto un documento o evidencia de certificación (constancia, diploma, portafolio), entonces el sistema la asocia a mi perfil como "pendiente de verificación".
+- Dado que envío una credencial para verificación, entonces un administrador revisa el documento antes de que quede marcado como verificado.
 - Dado que una credencial es verificada exitosamente, entonces mi perfil y mis servicios publicados muestran una insignia de "verificado" visible para otros usuarios.
 - Dado que una credencial es rechazada, entonces el sistema me notifica el motivo y me permite volver a enviarla corregida.
-- Dado que intento publicar un servicio que requiere verificación y no tengo ninguna credencial aprobada, entonces el sistema me permite publicarlo igualmente pero sin la insignia de verificado.
+- Dado que publico un servicio sin tener credenciales aprobadas, entonces el sistema lo publica sin la insignia de verificado.
 - Dado que un usuario visualiza mi perfil o servicio, entonces puede distinguir claramente cuáles credenciales están verificadas y cuáles no.
 
 **Prioridad:** Alta
@@ -431,11 +442,11 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros,
 > **para** ofrecer tanto habilidades profesionales como prácticas (por ejemplo monitorías, plomería, electrónica o eventos) sin generar confusión con quien lo contrata.
 
-**Caso de uso relacionado:**
+**Caso de uso relacionado:** [CU-28](./CasosDeUso.md#cu-28--publicar-servicio)
 
 **Criterios de aceptación:**
 
-- Dado que quiero publicar un servicio, cuando completo el formulario, entonces el sistema me permite elegir una categoría existente (académica o no académica) o solicitar una nueva.
+- Dado que quiero publicar un servicio, cuando completo el formulario, entonces el sistema me permite elegir una categoría existente (académica o no académica) o solicitar una nueva al administrador.
 - Dado que estoy creando un servicio, entonces el sistema me exige describir explícitamente el alcance (qué incluye) y los límites (qué no incluye) de lo que ofrezco.
 - Dado que publico un servicio sin definir su alcance o límites, entonces el sistema no permite publicarlo hasta que complete esos campos.
 - Dado que el servicio es publicado correctamente, entonces queda visible para otros usuarios en la categoría correspondiente, junto con las credenciales verificadas asociadas (si existen).
@@ -452,12 +463,12 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 > **quiero** registrarme en UniLink como oferente de servicios,
 > **para** participar en la red de confianza de la plataforma aunque no sea estudiante activo.
 
-**Caso de uso relacionado:**
+**Caso de uso relacionado:** [CU-29](./CasosDeUso.md#cu-29--registrar-oferente-de-servicios-externo)
 
 **Criterios de aceptación:**
 
 - Dado que soy egresado o personal tercerizado, cuando me registro, entonces el sistema me permite seleccionar mi tipo de vínculo con la universidad (egresado, tercerizado) en lugar de un programa académico activo.
-- Dado que no cuento con un correo institucional activo, entonces el sistema me permite verificar mi identidad por un medio alternativo (por ejemplo, documento de identidad o carta de vinculación laboral).
+- Dado que no cuento con un correo institucional activo, entonces el sistema me permite registrarme con un correo personal y verificar mi identidad por un medio alternativo (por ejemplo, documento de identidad o carta de vinculación laboral).
 - Dado que mi verificación alternativa es aprobada, entonces mi cuenta queda activa con los mismos permisos para ofrecer servicios que un usuario con correo institucional.
 - Dado que mi verificación alternativa es rechazada, entonces el sistema me informa el motivo y me permite volver a intentarlo con otro documento.
 - Dado que un usuario visualiza mi perfil, entonces puede identificar claramente mi condición de egresado o tercerizado, diferenciándome de un estudiante activo.
@@ -469,26 +480,26 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ## HU-24
 
 > **Como** usuario nuevo,
-> **quiero** recibir sugerencias de conexión (compañeros de facultad o grupos) durante mi primer ingreso,
+> **quiero** recibir sugerencias de conexión (compañeros de facultad o espacios de proyectos) durante mi primer ingreso,
 > **para** no tener mi feed vacío y asegurar que veo contenido relevante desde el inicio.
 
-**Caso de uso relacionado:** [CU-13](CasosDeUso.md#cu-13--sugerir-conexiones-iniciales-onboarding)
+**Caso de uso relacionado:** [CU-13](./CasosDeUso.md#cu-13--sugerir-conexiones-iniciales-onboarding)
 
 **Criterios de aceptación:**
 
 - Dado que es mi primer inicio de sesión tras el registro, entonces el sistema me muestra un paso adicional de *onboarding* sugiriendo conexiones.
-- Dado que el sistema me sugiere perfiles, entonces estas sugerencias se basan en compañeros de mi misma facultad o grupos relacionados.
+- Dado que el sistema me sugiere perfiles, entonces estas sugerencias se basan en compañeros de mi misma facultad, mis preferencias de contenido o espacios de proyectos relacionados.
 - Dado que selecciono a varios usuarios sugeridos, cuando finalizo el *onboarding*, entonces el sistema envía las solicitudes de conexión de forma automática y me redirige a mi feed.
-- Dado que decido omitir este paso, entonces el sistema me redirige al inicio sin enviar solicitudes previas.
+- Dado que decido omitir este paso, entonces el sistema me redirige al feed sin enviar solicitudes y me muestra publicaciones de mis categorías de interés o de mi facultad.
 
-**Prioridad:** Alta
+**Prioridad:** Media
 
 ---
 
 ## HU-25
 
 > **Como** usuario autenticado,
-> **quiero** visualizar un panel con el estado de mis postulaciones (ej. "Enviada", "En revisión", "Rechazada"),
+> **quiero** visualizar un panel con el estado de mis postulaciones ("Enviada", "En revisión", "Aceptada" o "Rechazada"),
 > **para** hacer seguimiento a las oportunidades a las que he aplicado.
 
 **Caso de uso relacionado:** [CU-14](./CasosDeUso.md#cu-14--gestionar-estado-de-postulaciones)
@@ -496,11 +507,12 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que he aplicado a oportunidades en la plataforma, cuando accedo al panel de postulaciones, entonces veo una lista de todas mis solicitudes.
-- Dado que visualizo una postulación, entonces el sistema me indica claramente si su estado es "Enviada", "En revisión" o "Rechazada".
-- Dado que el estado de mi postulación cambia, entonces el sistema actualiza el panel para reflejar el estado más reciente.
-- Dado que no he realizado ninguna postulación, entonces el sistema me muestra un mensaje amigable invitándome a explorar oportunidades.
+- Dado que visualizo una postulación, entonces el sistema me indica si su estado es "Enviada", "En revisión", "Aceptada", "Rechazada" o "Retirada".
+- Dado que el responsable de la oportunidad cambia el estado de mi postulación, entonces el sistema me notifica y actualiza el panel con el estado más reciente.
+- Dado que una postulación está "Enviada" o "En revisión", entonces puedo retirarla.
+- Dado que no he realizado ninguna postulación, entonces el sistema me muestra un mensaje invitándome a explorar oportunidades, con un enlace a esa sección.
 
-**Prioridad:** Media
+**Prioridad:** Alta
 
 ---
 
@@ -514,12 +526,12 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 **Criterios de aceptación:**
 
-- Dado que visualizo la información de un evento, entonces el sistema me muestra un botón para confirmar mi asistencia de forma explícita.
+- Dado que visualizo la información de un evento que aún no ha ocurrido, entonces el sistema me muestra un botón para confirmar mi asistencia de forma explícita.
 - Dado que confirmo mi asistencia, entonces el sistema me permite visualizar la lista de otros miembros que también asistirán.
 - Dado que he confirmado mi asistencia, entonces el sistema me ofrece una opción para exportar o añadir el evento a mi calendario personal.
 - Dado que decido cancelar mi asistencia, entonces el sistema me permite revertir la acción y oculta mi perfil de la lista de asistentes.
 
-**Prioridad:** Media
+**Prioridad:** Alta
 
 ---
 
@@ -535,7 +547,82 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que soy el administrador del proyecto, cuando accedo a la sección de miembros, entonces el sistema me permite visualizar el rol actual de cada integrante.
 - Dado que selecciono a un miembro, entonces puedo cambiar su nivel de acceso escogiendo entre los roles de visualizador, editor o administrador.
-- Dado que asigno un rol granular a un miembro, entonces el sistema aplica restricciones o permisos de edición inmediatamente basados en ese rol.
+- Dado que asigno un rol granular a un miembro, entonces el sistema aplica restricciones o permisos de edición inmediatamente basados en ese rol y notifica al miembro.
 - Dado que intento dejar el proyecto sin ningún administrador asignado, entonces el sistema me muestra un error y me impide realizar el cambio.
+
+**Prioridad:** Media
+
+---
+
+## HU-28
+
+> **Como** usuario registrado,
+> **quiero** recuperar mi contraseña si la olvido,
+> **para** volver a acceder a mi cuenta sin perder mi información.
+
+**Caso de uso relacionado:** [CU-17](./CasosDeUso.md#cu-17--recuperar-contraseña)
+
+**Criterios de aceptación:**
+
+- Dado que olvidé mi contraseña, cuando ingreso mi correo en "¿Olvidaste tu contraseña?", entonces recibo un enlace de restablecimiento válido por 1 hora.
+- Dado que ingreso un correo que no está registrado, entonces el sistema muestra el mismo mensaje de confirmación, sin revelar si el correo existe.
+- Dado que abro un enlace vigente, cuando ingreso una nueva contraseña que cumple la política de seguridad, entonces el sistema la guarda, cierra mis sesiones abiertas y me lleva al inicio de sesión.
+- Dado que el enlace expiró o ya fue usado, entonces el sistema me informa y me permite solicitar uno nuevo.
+
+**Prioridad:** Alta
+
+---
+
+## HU-29
+
+> **Como** responsable de una oportunidad,
+> **quiero** publicarla y gestionar el estado de las postulaciones que recibo,
+> **para** seleccionar a los candidatos adecuados y mantenerlos informados.
+
+**Caso de uso relacionado:** [CU-22](./CasosDeUso.md#cu-22--publicar-oportunidades-y-gestionar-postulaciones)
+
+**Criterios de aceptación:**
+
+- Dado que soy un usuario autenticado, cuando creo una oportunidad con título, descripción, categoría, requisitos, cupos y fecha de cierre, entonces el sistema la publica en la sección de oportunidades.
+- Dado que mi oportunidad recibe postulaciones, entonces puedo ver el listado de postulantes y consultar sus perfiles.
+- Dado que reviso una postulación, cuando cambio su estado a "En revisión", "Aceptada" o "Rechazada", entonces el sistema notifica al postulante y actualiza su panel.
+- Dado que se alcanza la fecha de cierre o se completan los cupos, entonces el sistema cierra la oportunidad a nuevas postulaciones.
+
+**Prioridad:** Alta
+
+---
+
+## HU-30
+
+> **Como** usuario autenticado,
+> **quiero** consultar mis notificaciones en un solo lugar,
+> **para** enterarme de la actividad que me involucra sin tener que revisar cada sección.
+
+**Caso de uso relacionado:** [CU-23](./CasosDeUso.md#cu-23--consultar-notificaciones)
+
+**Criterios de aceptación:**
+
+- Dado que tengo notificaciones sin leer, entonces el sistema muestra un indicador con su número.
+- Dado que abro el panel de notificaciones, entonces las veo ordenadas de la más reciente a la más antigua.
+- Dado que selecciono una notificación, entonces el sistema me lleva al elemento relacionado y la marca como leída.
+- Dado que no tengo notificaciones, entonces el sistema me indica que no hay notificaciones.
+
+**Prioridad:** Media
+
+---
+
+## HU-31
+
+> **Como** usuario autenticado,
+> **quiero** solicitar un servicio publicado y contactar a su oferente,
+> **para** acordar el servicio que necesito aunque no tengamos una conexión establecida.
+
+**Caso de uso relacionado:** [CU-30](./CasosDeUso.md#cu-30--solicitar-servicio)
+
+**Criterios de aceptación:**
+
+- Dado que visualizo un servicio publicado, cuando selecciono "Solicitar servicio" y escribo un mensaje inicial, entonces el sistema notifica al oferente y abre un chat privado entre ambos.
+- Dado que el servicio es mío, entonces el sistema no me permite solicitarlo.
+- Dado que la solicitud se cierra, entonces el chat queda en modo de solo lectura, salvo que estemos conectados.
 
 **Prioridad:** Media
