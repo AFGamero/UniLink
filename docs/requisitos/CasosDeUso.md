@@ -697,7 +697,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Actor(es):** Administrador de la plataforma; Usuario autenticado (reporta contenido)
 
-**Descripción:** Permite al administrador revisar y retirar publicaciones o eventos que incumplan las políticas de uso, incluidos los reportados por los usuarios.
+**Descripción:** Permite al administrador revisar y retirar publicaciones (incluidos sus comentarios) o eventos que incumplan las políticas de uso, incluidos los reportados por los usuarios.
 
 **Precondiciones:** El administrador debe estar autenticado con rol de administrador de la plataforma.
 
