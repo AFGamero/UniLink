@@ -116,6 +116,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que completo los campos de mi perfil, entonces el sistema valida la información y la guarda.
 - Dado que dejo vacío algún campo obligatorio (nombre, programa académico o tipo de vínculo, y al menos una habilidad), entonces el sistema me indica los campos pendientes y no guarda hasta completarlos.
 - Dado que guardo mi perfil correctamente, entonces queda visible para otros usuarios según mi configuración de privacidad.
+- Dado que edito mi perfil, entonces puedo declarar en forma de etiquetas lo que puedo aportar a la comunidad ("Puedo aportar") y lo que necesito ("Necesito").
+- Dado que otro usuario visualiza mi perfil, entonces ve mis etiquetas de "Puedo aportar" y "Necesito" en una sección destacada.
 
 **Prioridad:** Alta
 
@@ -132,6 +134,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que ingreso un término de búsqueda o aplico filtros, entonces el sistema muestra los perfiles coincidentes con una vista previa.
+- Dado que busco a alguien que pueda ayudarme, cuando filtro por "Puede aportar" con una etiqueta (por ejemplo, "diseño gráfico"), entonces el sistema muestra los perfiles que declararon esa etiqueta.
 - Dado que no existen perfiles coincidentes, entonces el sistema me informa que no hay resultados y sugiere ajustar los filtros.
 - Dado que selecciono un perfil de los resultados, entonces puedo visualizar su detalle completo, salvo que sea visible solo para conexiones y no esté conectado con su dueño.
 
@@ -488,7 +491,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que es mi primer inicio de sesión tras el registro, entonces el sistema me muestra un paso adicional de *onboarding* sugiriendo conexiones.
-- Dado que el sistema me sugiere perfiles, entonces estas sugerencias se basan en compañeros de mi misma facultad, mis preferencias de contenido o espacios de proyectos relacionados.
+- Dado que el sistema me sugiere perfiles, entonces estas sugerencias se basan en compañeros de mi misma facultad, mis preferencias de contenido, espacios de proyectos relacionados o perfiles complementarios (lo que yo necesito y otro puede aportar, o al revés).
+- Dado que una sugerencia se debe a perfiles complementarios, entonces el sistema me muestra el motivo (por ejemplo, "Puede aportar diseño gráfico, que tú necesitas").
 - Dado que selecciono a varios usuarios sugeridos, cuando finalizo el *onboarding*, entonces el sistema envía las solicitudes de conexión de forma automática y me redirige a mi feed.
 - Dado que decido omitir este paso, entonces el sistema me redirige al feed sin enviar solicitudes y me muestra publicaciones de mis categorías de interés o de mi facultad.
 

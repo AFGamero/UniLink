@@ -147,19 +147,21 @@ La **privacidad del perfil** admite dos niveles: _visible para toda la comunidad
 
 **Actor(es):** Usuario autenticado
 
-**Descripción:** Permite al usuario construir y mantener su identidad profesional en la plataforma, incluyendo biografía, habilidades, intereses, experiencia, proyectos y logros académicos.
+**Descripción:** Permite al usuario construir y mantener su identidad profesional en la plataforma, incluyendo biografía, habilidades, intereses, experiencia, proyectos y logros académicos, además de lo que puede aportar a la comunidad y lo que necesita de ella.
 
 **Precondiciones:** El usuario debe estar autenticado en la plataforma.
 
 **Flujo principal:**
 
 1. El usuario accede a la sección de edición de perfil.
-2. Completa o modifica los campos: biografía, habilidades, intereses, experiencia, proyectos y logros.
+2. Completa o modifica los campos: biografía, habilidades, intereses, experiencia, proyectos, logros, **"Puedo aportar"** y **"Necesito"**.
 3. El sistema valida la información ingresada.
 4. El sistema guarda los cambios.
 5. El perfil actualizado queda visible para otros usuarios, según la configuración de privacidad definida en [CU-03](#cu-03--administrar-cuenta).
 
 Son **campos obligatorios**: nombre, programa académico (o tipo de vínculo, para egresados y tercerizados) y al menos una habilidad. Los demás campos son opcionales.
+
+Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gráfico") y **"Necesito"** (por ejemplo, "un diseñador para mi proyecto", "mentoría en investigación") son listas de etiquetas. La plataforma los cruza para encontrar perfiles complementarios: lo que un usuario necesita con lo que otro puede aportar. Este cruce alimenta las sugerencias de conexión ([CU-13](#cu-13--sugerir-conexiones-iniciales-onboarding)) y la búsqueda de perfiles ([CU-05](#cu-05--buscar-y-visualizar-perfiles)).
 
 **Flujos alternativos / excepciones:**
 
@@ -182,7 +184,7 @@ Son **campos obligatorios**: nombre, programa académico (o tipo de vínculo, pa
 **Flujo principal:**
 
 1. El usuario accede al buscador de perfiles.
-2. Ingresa un término de búsqueda o aplica filtros (habilidades, intereses, programa académico, facultad).
+2. Ingresa un término de búsqueda o aplica filtros (habilidades, intereses, programa académico, facultad, "Puede aportar" o "Necesita").
 3. El sistema procesa la búsqueda y muestra los perfiles coincidentes con una vista previa de información básica.
 4. El usuario selecciona un perfil para visualizar su detalle completo.
 
@@ -385,8 +387,8 @@ Son **campos obligatorios**: nombre, programa académico (o tipo de vínculo, pa
 **Flujo principal:**
 
 1. El sistema detecta que es el primer inicio de sesión del usuario.
-2. El sistema analiza el programa académico, la facultad y las preferencias de contenido del usuario ([CU-18](#cu-18--seleccionar-preferencias-de-contenido)) para generar sugerencias.
-3. El sistema muestra una pantalla de *onboarding* con una lista de perfiles sugeridos y espacios de proyectos relevantes.
+2. El sistema analiza el programa académico, la facultad, las preferencias de contenido ([CU-18](#cu-18--seleccionar-preferencias-de-contenido)) y los campos "Puedo aportar" y "Necesito" del usuario ([CU-04](#cu-04--creareditar-perfil-profesional)) para generar sugerencias.
+3. El sistema muestra una pantalla de *onboarding* con una lista de perfiles sugeridos y espacios de proyectos relevantes. Cuando una sugerencia se debe a perfiles complementarios, el sistema indica el motivo (por ejemplo, "Puede aportar diseño gráfico, que tú necesitas").
 4. El usuario selecciona a los compañeros o proyectos con los que desea conectar de forma inmediata.
 5. El sistema envía las solicitudes de conexión (y de unión a proyectos) automáticamente y redirige al usuario a su panel principal (feed).
 

@@ -22,7 +22,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | Código | Módulo | Carpeta |
 |---|---|---|
 | CTA | Cuenta y acceso | [`cuenta/`](./cuenta/) |
-| PRF | Perfil y búsqueda | `perfil/` |
+| PRF | Perfil y búsqueda | [`perfil/`](./perfil/) |
 | RED | Red de conexiones | `red/` |
 | NOT | Notificaciones | `notificaciones/` |
 | CNT | Contenido | `contenido/` |
@@ -42,7 +42,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-CTA-03](./cuenta/FS-CTA-03-recuperar-contrasena.md) | Recuperación de contraseña | CU-17 | HU-28 | 1 | Borrador |
 | [FS-CTA-04](./cuenta/FS-CTA-04-preferencias-contenido.md) | Preferencias de contenido | CU-18 | HU-14 | 1 | Borrador |
 | FS-CTA-05 | Configuración de cuenta y privacidad | CU-03 | HU-03 | 2 | Pendiente |
-| FS-PRF-01 | Perfil profesional | CU-04 | HU-04 | 2 | Pendiente |
+| [FS-PRF-01](./perfil/FS-PRF-01-perfil-profesional.md) | Perfil profesional (incluye "Puedo aportar / Necesito") | CU-04 | HU-04 | 2 | Borrador |
 | FS-PRF-02 | Búsqueda de perfiles | CU-05 | HU-05 | 2 | Pendiente |
 | FS-PRF-03 | Hoja de vida en PDF | CU-19 | HU-13 | 2 | Pendiente |
 | FS-RED-01 | Solicitudes de conexión | CU-06, CU-07 | HU-06, HU-07 | 3 | Pendiente |
