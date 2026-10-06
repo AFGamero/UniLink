@@ -68,6 +68,7 @@ Reunir en un solo lugar la actividad que involucra al usuario, para que no tenga
 |---|---|---|---|---|
 | `conexion.solicitud_recibida` | "{actor} quiere conectar contigo." | Solicitudes recibidas | Sí, "Nuevas solicitudes de conexión" | 3 |
 | `conexion.solicitud_aceptada` | "{actor} aceptó tu solicitud de conexión." | Perfil del actor | No | 3 |
+| `publicacion.comentario` | "{actor} comentó tu publicación \"{título}\"." | Página de la publicación | No | 4 |
 | `mensaje.nuevo` | Por definir en FS-MSG-01 | — | — | 5 |
 | `postulacion.estado_cambiado` | Por definir en FS-OPO-02 | — | — | 6 |
 | `evento.recordatorio` | Por definir en FS-EVT-02 | — | — | 7 |

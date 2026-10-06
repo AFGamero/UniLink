@@ -25,9 +25,9 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | PRF | Perfil y búsqueda | [`perfil/`](./perfil/) |
 | RED | Red de conexiones | [`red/`](./red/) |
 | NOT | Notificaciones | [`notificaciones/`](./notificaciones/) |
-| CNT | Contenido | `contenido/` |
+| CNT | Contenido | [`contenido/`](./contenido/) |
 | MSG | Mensajería | `mensajeria/` |
-| ADM | Administración | `administracion/` |
+| ADM | Administración | [`administracion/`](./administracion/) |
 | OPO | Oportunidades | `oportunidades/` |
 | EVT | Eventos | `eventos/` |
 | PRY | Proyectos | `proyectos/` |
@@ -48,8 +48,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-RED-01](./red/FS-RED-01-solicitudes-conexion.md) | Solicitudes de conexión | CU-06, CU-07 | HU-06, HU-07 | 3 | Borrador |
 | [FS-RED-02](./red/FS-RED-02-onboarding-sugerencias.md) | Onboarding y sugerencias | CU-13 | HU-24 | 3 | Borrador |
 | [FS-NOT-01](./notificaciones/FS-NOT-01-centro-notificaciones.md) | Centro de notificaciones | CU-23 | HU-30 | 3 | Borrador |
-| FS-CNT-01 | Publicaciones y feed | CU-08, CU-09 | HU-08, HU-09 | 4 | Pendiente |
-| FS-ADM-01 | Gestión de categorías | CU-26 | HU-20 | 4 | Pendiente |
+| [FS-CNT-01](./contenido/FS-CNT-01-publicaciones-feed.md) | Publicaciones y feed | CU-08, CU-09 | HU-08, HU-09 | 4 | Borrador |
+| [FS-ADM-01](./administracion/FS-ADM-01-gestion-categorias.md) | Gestión de categorías | CU-26 | HU-20 | 4 | Borrador |
 | FS-MSG-01 | Mensajería privada | CU-10 | HU-10 | 5 | Pendiente |
 | FS-ADM-02 | Gestión de cuentas de usuario | CU-24 | HU-17 | 5 | Pendiente |
 | FS-ADM-03 | Moderación de contenido | CU-25 | HU-18, HU-19 | 5 | Pendiente |
