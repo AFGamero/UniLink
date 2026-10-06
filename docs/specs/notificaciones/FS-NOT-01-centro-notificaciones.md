@@ -70,12 +70,14 @@ Reunir en un solo lugar la actividad que involucra al usuario, para que no tenga
 | `conexion.solicitud_aceptada` | "{actor} aceptó tu solicitud de conexión." | Perfil del actor | No | 3 |
 | `publicacion.comentario` | "{actor} comentó tu publicación \"{título}\"." | Página de la publicación | No | 4 |
 | `mensaje.nuevo` | "{actor} te envió un mensaje." (una por conversación con mensajes sin leer) | Conversación | Sí, "Mensajes privados sin leer", tras 1 hora sin leer | 5 |
-| `moderacion.contenido_retirado` | "Retiramos tu publicación \"{título}\" por incumplir las normas de la comunidad." | Publicación retirada (vista del autor) | Siempre (no se puede desactivar) | 5 |
+| `moderacion.contenido_retirado` | "Retiramos tu {publicación / comentario / evento} \"{título}\" por incumplir las normas de la comunidad." | Contenido retirado (vista del autor) | Siempre (no se puede desactivar) | 5 |
 | `moderacion.reporte_revisado` | "Revisamos el contenido que reportaste." | Sin enlace | No | 5 |
 | `postulacion.nueva` | "{actor} se postuló a \"{oportunidad}\"." | Panel de postulaciones | Sí, "Nuevas postulaciones a mis oportunidades" | 6 |
 | `postulacion.estado_cambiado` | "Tu postulación a \"{oportunidad}\" está {estado}." | Postulación en "Mis postulaciones" | Sí, "Cambios en mis postulaciones" | 6 |
 | `postulacion.retirada` | "{actor} retiró su postulación a \"{oportunidad}\"." | Panel de postulaciones | No | 6 |
-| `evento.recordatorio` | Por definir en FS-EVT-02 | — | — | 7 |
+| `evento.recordatorio` | "Mañana es \"{evento}\" a las {hora}." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
+| `evento.actualizado` | "Cambió {fecha / lugar / enlace} de \"{evento}\"." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
+| `evento.cancelado` | "Se canceló \"{evento}\": {motivo}." | Detalle del evento | Sí, "Recordatorio de eventos a los que asistiré" | 7 |
 | `proyecto.*` | Por definir en FS-PRY-01 y FS-PRY-02 | — | — | 8 |
 
 ## 7. Estados

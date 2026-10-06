@@ -29,7 +29,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | MSG | Mensajería | [`mensajeria/`](./mensajeria/) |
 | ADM | Administración | [`administracion/`](./administracion/) |
 | OPO | Oportunidades | [`oportunidades/`](./oportunidades/) |
-| EVT | Eventos | `eventos/` |
+| EVT | Eventos | [`eventos/`](./eventos/) |
 | PRY | Proyectos | `proyectos/` |
 | SRV | Servicios | `servicios/` |
 
@@ -55,8 +55,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-ADM-03](./administracion/FS-ADM-03-moderacion-contenido.md) | Moderación de contenido | CU-25 | HU-18, HU-19 | 5 | Borrador |
 | [FS-OPO-01](./oportunidades/FS-OPO-01-publicacion-oportunidades.md) | Publicación de oportunidades | CU-22 | HU-29 | 6 | Borrador |
 | [FS-OPO-02](./oportunidades/FS-OPO-02-postulaciones.md) | Postulaciones | CU-12, CU-14 | HU-12, HU-25 | 6 | Borrador |
-| FS-EVT-01 | Publicación y listado de eventos | CU-20, CU-21 | HU-15, HU-16 | 7 | Pendiente |
-| FS-EVT-02 | Confirmación de asistencia (RSVP) | CU-15 | HU-26 | 7 | Pendiente |
+| [FS-EVT-01](./eventos/FS-EVT-01-publicacion-listado-eventos.md) | Publicación y listado de eventos | CU-20, CU-21 | HU-15, HU-16 | 7 | Borrador |
+| [FS-EVT-02](./eventos/FS-EVT-02-confirmacion-asistencia.md) | Confirmación de asistencia (RSVP) | CU-15 | HU-26 | 7 | Borrador |
 | FS-PRY-01 | Espacios de proyectos | CU-11 | HU-11 | 8 | Pendiente |
 | FS-PRY-02 | Roles en proyectos | CU-16 | HU-27 | 8 | Pendiente |
 | FS-SRV-01 | Verificación de credenciales | CU-27 | HU-21 | 9 | Pendiente |

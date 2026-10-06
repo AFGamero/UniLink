@@ -42,7 +42,7 @@ Mantener un espacio seguro y respetuoso: los usuarios reportan el contenido que 
 
 | ID | Regla |
 |---|---|
-| RN-01 | Se pueden reportar publicaciones y comentarios de otros usuarios. No se puede reportar el propio contenido. |
+| RN-01 | Se pueden reportar publicaciones y comentarios de otros usuarios y, desde el Sprint 7, eventos ([FS-EVT-01](../eventos/FS-EVT-01-publicacion-listado-eventos.md), RN-11). No se puede reportar el propio contenido. |
 | RN-02 | Un usuario solo puede reportar una vez el mismo elemento. |
 | RN-03 | Motivos de reporte: Spam, Acoso o lenguaje ofensivo, Información falsa, Contenido inapropiado, Otro. Con "Otro", el usuario debe escribir una descripción. |
 | RN-04 | Cuando un elemento recibe reportes de 5 usuarios distintos, se oculta automáticamente a todos menos a su autor, hasta que un administrador lo revise. |
@@ -96,7 +96,7 @@ Mantener un espacio seguro y respetuoso: los usuarios reportan el contenido que 
 |---|---|---|
 | MSG-01 | Reporte enviado | "Gracias por tu reporte. Lo revisaremos pronto." |
 | MSG-02 | Reporte repetido | "Ya reportaste este contenido." |
-| MSG-03 | Aviso al autor | "Retiramos tu publicación \"{título}\" porque incumple la norma \"{norma}\": {comentario}." |
+| MSG-03 | Aviso al autor | "Retiramos tu {publicación / comentario / evento} \"{título}\" porque incumple la norma \"{norma}\": {comentario}." |
 | MSG-04 | Aviso al denunciante | "Revisamos el contenido que reportaste. Gracias por ayudarnos a cuidar la comunidad." |
 | MSG-05 | Contenido retirado, visto por su autor | "Retirado por moderación: {norma}." |
 
