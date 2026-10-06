@@ -218,6 +218,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 **Flujos alternativos / excepciones:**
 
 - 1a. Ya existe una solicitud pendiente o una conexión establecida entre ambos usuarios: el sistema no permite enviar una nueva solicitud y muestra el estado actual.
+- 3a. El usuario cancela una solicitud que envió y sigue pendiente: el sistema la elimina sin notificar al destinatario.
 
 **Postcondiciones:** La solicitud queda registrada como pendiente hasta que el destinatario responda.
 
@@ -243,6 +244,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 **Flujos alternativos / excepciones:**
 
 - 3a. El usuario rechaza la solicitud: el sistema descarta la solicitud sin notificar el motivo al solicitante.
+- 4a. Más adelante, cualquiera de los dos usuarios elimina la conexión: el sistema los desconecta sin notificar al otro.
 
 **Postcondiciones:** La solicitud queda resuelta (aceptada o rechazada) y, en caso de aceptación, ambos usuarios quedan conectados.
 

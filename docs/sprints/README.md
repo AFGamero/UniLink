@@ -8,7 +8,7 @@ El MVP se construye en **9 sprints de 2 semanas**. El orden respeta las dependen
 |---|---|---|---|
 | [1](./sprint-01/README.md) | Un usuario puede registrarse, verificar su correo, iniciar sesión y recuperar su contraseña | FS-CTA-01, FS-CTA-02, FS-CTA-03, FS-CTA-04 | Alta |
 | [2](./sprint-02/README.md) | El usuario construye su perfil profesional y encuentra a otros | FS-CTA-05, FS-PRF-01, FS-PRF-02, FS-PRF-03 | Alta |
-| 3 | El usuario arma su red desde el primer ingreso | FS-RED-01, FS-RED-02, FS-NOT-01 | Alta |
+| [3](./sprint-03/README.md) | El usuario arma su red desde el primer ingreso | FS-RED-01, FS-RED-02, FS-NOT-01 | Alta |
 | 4 | El usuario publica y consume contenido en su feed | FS-CNT-01, FS-ADM-01 | Media |
 | 5 | Los usuarios conversan en privado y el administrador modera la plataforma | FS-MSG-01, FS-ADM-02, FS-ADM-03 | Alta |
 | 6 | Los responsables publican oportunidades y los usuarios se postulan | FS-OPO-01, FS-OPO-02 | Alta |

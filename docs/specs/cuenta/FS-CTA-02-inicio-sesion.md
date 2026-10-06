@@ -22,7 +22,7 @@ Permitir que un usuario con cuenta activa acceda a UniLink de forma segura y cie
 - Bloqueo temporal por intentos fallidos.
 - Opción "Mantener sesión iniciada".
 - Cierre de sesión.
-- Redirección al onboarding en el primer ingreso.
+- Redirección a la edición de perfil o al onboarding mientras estén pendientes.
 
 **No incluye:**
 
@@ -45,7 +45,7 @@ Permitir que un usuario con cuenta activa acceda a UniLink de forma segura y cie
 | RN-03 | El mensaje de credenciales incorrectas es el mismo si el correo no existe o si la contraseña es incorrecta, para no revelar qué correos están registrados. |
 | RN-04 | Sin "Mantener sesión iniciada", la sesión expira tras 2 horas de inactividad. Con la opción marcada, dura 30 días. |
 | RN-05 | Al cerrar sesión se invalida la sesión en el servidor, no solo en el navegador. |
-| RN-06 | En el primer inicio de sesión de la cuenta, el usuario va al onboarding (FS-RED-02) en lugar del feed. Mientras FS-RED-02 no exista, va al feed. |
+| RN-06 | Si el usuario nunca ha guardado su perfil, va a la edición de perfil ([FS-PRF-01](../perfil/FS-PRF-01-perfil-profesional.md)). Si ya lo guardó pero tiene el onboarding pendiente, va al onboarding ([FS-RED-02](../red/FS-RED-02-onboarding-sugerencias.md)). En cualquier otro caso, va al feed. |
 
 ## 5. Requisitos funcionales
 
@@ -77,7 +77,7 @@ Permitir que un usuario con cuenta activa acceda a UniLink de forma segura y cie
 
 ## 8. Flujo de pantallas
 
-1. **Inicio de sesión** → credenciales válidas → **Onboarding** (primer ingreso) o **Feed**.
+1. **Inicio de sesión** → credenciales válidas → **Editar perfil**, **Onboarding** o **Feed**, según RN-06.
 2. **Inicio de sesión** → credenciales inválidas → mismo formulario con el mensaje de error.
 3. **Menú del usuario** → "Cerrar sesión" → **Inicio de sesión**.
 
@@ -100,8 +100,13 @@ Escenario: Inicio de sesión exitoso
   Cuando ingreso mi correo y contraseña correctos
   Entonces quedo con la sesión iniciada en el feed
 
-Escenario: Primer inicio de sesión
-  Dado que mi cuenta nunca ha iniciado sesión
+Escenario: Perfil sin guardar
+  Dado que verifiqué mi cuenta pero nunca guardé mi perfil
+  Cuando ingreso credenciales correctas
+  Entonces soy dirigido a la edición de perfil
+
+Escenario: Onboarding pendiente
+  Dado que guardé mi perfil pero no terminé ni omití el onboarding
   Cuando ingreso credenciales correctas
   Entonces soy dirigido al onboarding
 

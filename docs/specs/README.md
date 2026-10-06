@@ -23,8 +23,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 |---|---|---|
 | CTA | Cuenta y acceso | [`cuenta/`](./cuenta/) |
 | PRF | Perfil y búsqueda | [`perfil/`](./perfil/) |
-| RED | Red de conexiones | `red/` |
-| NOT | Notificaciones | `notificaciones/` |
+| RED | Red de conexiones | [`red/`](./red/) |
+| NOT | Notificaciones | [`notificaciones/`](./notificaciones/) |
 | CNT | Contenido | `contenido/` |
 | MSG | Mensajería | `mensajeria/` |
 | ADM | Administración | `administracion/` |
@@ -45,9 +45,9 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-PRF-01](./perfil/FS-PRF-01-perfil-profesional.md) | Perfil profesional (incluye "Puedo aportar / Necesito") | CU-04 | HU-04 | 2 | Borrador |
 | [FS-PRF-02](./perfil/FS-PRF-02-busqueda-perfiles.md) | Búsqueda de perfiles | CU-05 | HU-05 | 2 | Borrador |
 | [FS-PRF-03](./perfil/FS-PRF-03-hoja-de-vida-pdf.md) | Hoja de vida en PDF | CU-19 | HU-13 | 2 | Borrador |
-| FS-RED-01 | Solicitudes de conexión | CU-06, CU-07 | HU-06, HU-07 | 3 | Pendiente |
-| FS-RED-02 | Onboarding y sugerencias | CU-13 | HU-24 | 3 | Pendiente |
-| FS-NOT-01 | Centro de notificaciones | CU-23 | HU-30 | 3 | Pendiente |
+| [FS-RED-01](./red/FS-RED-01-solicitudes-conexion.md) | Solicitudes de conexión | CU-06, CU-07 | HU-06, HU-07 | 3 | Borrador |
+| [FS-RED-02](./red/FS-RED-02-onboarding-sugerencias.md) | Onboarding y sugerencias | CU-13 | HU-24 | 3 | Borrador |
+| [FS-NOT-01](./notificaciones/FS-NOT-01-centro-notificaciones.md) | Centro de notificaciones | CU-23 | HU-30 | 3 | Borrador |
 | FS-CNT-01 | Publicaciones y feed | CU-08, CU-09 | HU-08, HU-09 | 4 | Pendiente |
 | FS-ADM-01 | Gestión de categorías | CU-26 | HU-20 | 4 | Pendiente |
 | FS-MSG-01 | Mensajería privada | CU-10 | HU-10 | 5 | Pendiente |

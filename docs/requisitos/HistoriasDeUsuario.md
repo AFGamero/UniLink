@@ -157,6 +157,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que visualizo el perfil de otro usuario sin conexión ni solicitud previa, entonces puedo enviarle una solicitud de conexión.
 - Dado que envío la solicitud, entonces el sistema la registra como pendiente y notifica al destinatario.
 - Dado que ya existe una solicitud pendiente o una conexión establecida con ese usuario, entonces el sistema no me permite enviar una nueva solicitud y me muestra el estado actual.
+- Dado que envié una solicitud que sigue pendiente, entonces puedo cancelarla sin que el destinatario sea notificado.
 
 **Prioridad:** Alta
 
@@ -175,6 +176,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que recibo una solicitud de conexión, entonces soy notificado y puedo revisar el perfil del solicitante.
 - Dado que acepto la solicitud, entonces el sistema actualiza la red de conexiones de ambos usuarios y notifica al solicitante.
 - Dado que rechazo la solicitud, entonces el sistema la descarta sin notificar el motivo al solicitante.
+- Dado que estoy conectado con alguien, entonces puedo eliminar esa conexión sin que la otra persona sea notificada.
 
 **Prioridad:** Alta
 
