@@ -3,7 +3,7 @@
 _MVP — Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
-Este documento describe los 30 casos de uso que delimitan el alcance funcional del MVP de UniLink. Cada caso de uso incluye actor, descripción, precondiciones, flujo principal, flujos alternativos/excepciones, postcondiciones y prioridad, siguiendo la estructura recomendada para la especificación de requisitos del proyecto.
+Este documento describe los 30 casos de uso de UniLink. Los casos CU-01 a CU-26 delimitan el alcance funcional del MVP; los casos CU-27 a CU-30 (módulo de servicios) corresponden a la **fase 2**. Cada caso de uso incluye actor, descripción, precondiciones, flujo principal, flujos alternativos/excepciones, postcondiciones y prioridad, siguiendo la estructura recomendada para la especificación de requisitos del proyecto.
 
 ## Índice
 
@@ -36,10 +36,10 @@ Este documento describe los 30 casos de uso que delimitan el alcance funcional d
   - [CU-24 — Administrar cuentas de usuario](#cu-24--administrar-cuentas-de-usuario)
   - [CU-25 — Moderar contenido (publicaciones y eventos)](#cu-25--moderar-contenido-publicaciones-y-eventos)
   - [CU-26 — Administrar categorías](#cu-26--administrar-categorías)
-  - [CU-27 — Verificar credenciales](#cu-27--verificar-credenciales)
-  - [CU-28 — Publicar servicio](#cu-28--publicar-servicio)
-  - [CU-29 — Registrar oferente de servicios externo](#cu-29--registrar-oferente-de-servicios-externo)
-  - [CU-30 — Solicitar servicio](#cu-30--solicitar-servicio)
+  - [CU-27 — Verificar credenciales](#cu-27--verificar-credenciales) _(fase 2)_
+  - [CU-28 — Publicar servicio](#cu-28--publicar-servicio) _(fase 2)_
+  - [CU-29 — Registrar oferente de servicios externo](#cu-29--registrar-oferente-de-servicios-externo) _(fase 2)_
+  - [CU-30 — Solicitar servicio](#cu-30--solicitar-servicio) _(fase 2)_
 
 ---
 
@@ -48,7 +48,7 @@ Este documento describe los 30 casos de uso que delimitan el alcance funcional d
 | Actor | Descripción |
 |---|---|
 | **Visitante** | Persona no autenticada que puede registrarse en la plataforma. |
-| **Usuario autenticado** | Estudiante, profesor, personal administrativo, egresado o personal tercerizado con cuenta activa y verificada. |
+| **Usuario autenticado** | Estudiante, profesor o personal administrativo con cuenta activa y verificada. Desde la fase 2, también egresados y personal tercerizado. |
 | **Responsable de oportunidad** | Usuario autenticado que publica una oportunidad (investigación, proyecto o voluntariado) y gestiona sus postulaciones. |
 | **Administrador de proyecto** | Usuario autenticado que creó un espacio de proyecto o recibió el rol de administrador en él. |
 | **Administrador de la plataforma** | Miembro del equipo de UniLink encargado de gestionar cuentas, moderar contenido, administrar categorías y validar credenciales. |
@@ -75,7 +75,7 @@ Este documento describe los 30 casos de uso que delimitan el alcance funcional d
 
 **Flujos alternativos / excepciones:**
 
-- 4a. El correo ingresado no corresponde a un dominio institucional válido: el sistema muestra un mensaje de error y no permite continuar. Si el usuario es egresado o personal tercerizado, el sistema le ofrece registrarse como oferente de servicios externo ([CU-29](#cu-29--registrar-oferente-de-servicios-externo)).
+- 4a. El correo ingresado no corresponde a un dominio institucional válido: el sistema muestra un mensaje de error y no permite continuar. En la fase 2, si el usuario es egresado o personal tercerizado, el sistema le ofrecerá registrarse como oferente de servicios externo ([CU-29](#cu-29--registrar-oferente-de-servicios-externo)).
 - 4b. El correo ya se encuentra registrado: el sistema notifica al usuario y sugiere iniciar sesión o recuperar su contraseña ([CU-17](#cu-17--recuperar-contraseña)).
 - 6a. El enlace de verificación expira antes de ser usado: el sistema permite solicitar un nuevo enlace.
 
@@ -87,7 +87,7 @@ Este documento describe los 30 casos de uso que delimitan el alcance funcional d
 
 ## CU-02 — Iniciar sesión
 
-**Actor(es):** Usuario registrado (estudiante, profesor, personal administrativo, egresado o personal tercerizado)
+**Actor(es):** Usuario registrado (estudiante, profesor o personal administrativo; en la fase 2, también egresado o personal tercerizado)
 
 **Descripción:** Permite al usuario autenticarse en la plataforma para acceder a sus funcionalidades y datos personales.
 
@@ -305,9 +305,9 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Actor(es):** Usuario autenticado
 
-**Descripción:** Permite al usuario comunicarse de forma privada (1 a 1) con otro miembro con quien tenga una conexión establecida, una postulación aceptada o una solicitud de servicio activa.
+**Descripción:** Permite al usuario comunicarse de forma privada (1 a 1) con otro miembro con quien tenga una conexión establecida, una postulación aceptada o, en la fase 2, una solicitud de servicio activa.
 
-**Precondiciones:** Debe existir una conexión establecida entre el usuario y el destinatario, una postulación aceptada entre el responsable de una oportunidad y el postulante ([CU-22](#cu-22--publicar-oportunidades-y-gestionar-postulaciones)), o una solicitud de servicio activa entre ambos ([CU-30](#cu-30--solicitar-servicio)).
+**Precondiciones:** Debe existir una conexión establecida entre el usuario y el destinatario, una postulación aceptada entre el responsable de una oportunidad y el postulante ([CU-22](#cu-22--publicar-oportunidades-y-gestionar-postulaciones)), o, en la fase 2, una solicitud de servicio activa entre ambos ([CU-30](#cu-30--solicitar-servicio)).
 
 **Flujo principal:**
 
@@ -722,7 +722,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Actor(es):** Administrador de la plataforma
 
-**Descripción:** Permite al administrador gestionar las categorías disponibles para publicaciones, proyectos, eventos, oportunidades y servicios.
+**Descripción:** Permite al administrador gestionar las categorías disponibles para publicaciones, proyectos, eventos, oportunidades y, en la fase 2, servicios.
 
 **Precondiciones:** El administrador debe estar autenticado con rol de administrador de la plataforma.
 
@@ -736,7 +736,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 **Flujos alternativos / excepciones:**
 
 - 3a. Ya existe una categoría con el mismo nombre para ese tipo de contenido: el sistema rechaza la creación.
-- 3b. El administrador revisa una solicitud de nueva categoría enviada por un usuario ([CU-28](#cu-28--publicar-servicio)): la aprueba (se crea la categoría) o la rechaza, y el sistema notifica al solicitante.
+- 3b. _(Fase 2)_ El administrador revisa una solicitud de nueva categoría enviada por un usuario ([CU-28](#cu-28--publicar-servicio)): la aprueba (se crea la categoría) o la rechaza, y el sistema notifica al solicitante.
 
 **Postcondiciones:** Las categorías quedan actualizadas. Una categoría desactivada no puede usarse en contenido nuevo, pero el contenido existente la conserva.
 
@@ -745,6 +745,8 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 ---
 
 ## CU-27 — Verificar credenciales
+
+> **Fase 2:** este caso de uso pertenece al módulo de servicios, que queda fuera del MVP.
 
 **Actor(es):** Usuario autenticado; Administrador de la plataforma
 
@@ -770,6 +772,8 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 ---
 
 ## CU-28 — Publicar servicio
+
+> **Fase 2:** este caso de uso pertenece al módulo de servicios, que queda fuera del MVP.
 
 **Actor(es):** Usuario autenticado
 
@@ -799,6 +803,8 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 ## CU-29 — Registrar oferente de servicios externo
 
+> **Fase 2:** este caso de uso pertenece al módulo de servicios, que queda fuera del MVP.
+
 **Actor(es):** Visitante (egresado o personal tercerizado); Administrador de la plataforma
 
 **Descripción:** Permite a egresados de la universidad y a empleados de empresas tercerizadas que prestan servicios en el campus registrarse en UniLink como oferentes de servicios, sin contar con un correo institucional activo.
@@ -825,6 +831,8 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 ---
 
 ## CU-30 — Solicitar servicio
+
+> **Fase 2:** este caso de uso pertenece al módulo de servicios, que queda fuera del MVP.
 
 **Actor(es):** Usuario autenticado (solicitante); Usuario autenticado (oferente)
 

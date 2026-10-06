@@ -65,7 +65,7 @@ Permitir que el usuario encuentre personas de la comunidad por quiénes son, qu�
 | Filtro | Tipo | Valores |
 |---|---|---|
 | Texto | Texto libre | Mínimo 2 caracteres. |
-| Tipo de usuario | Selección múltiple | Estudiante, Profesor, Personal administrativo, Egresado, Tercerizado. |
+| Tipo de usuario | Selección múltiple | Estudiante, Profesor, Personal administrativo. Egresado y Tercerizado se agregan en la fase 2. |
 | Facultad | Selección múltiple | Catálogo oficial. |
 | Programa | Selección múltiple | Catálogo oficial; se filtra por la facultad elegida. |
 | Habilidades | Etiquetas | Etiquetas existentes. |

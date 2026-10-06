@@ -29,7 +29,7 @@ Permitir que dos personas conectadas conversen en privado dentro de UniLink, par
 - Conversaciones grupales.
 - Adjuntar archivos, audios o imágenes.
 - Editar o borrar mensajes enviados.
-- Conversaciones originadas por solicitudes de servicio: se agregan con FS-SRV-02 (Sprint 9), reutilizando este módulo.
+- Conversaciones originadas por solicitudes de servicio: se agregan con FS-SRV-02 en la fase 2, reutilizando este módulo.
 
 ## 3. Actores
 
@@ -41,7 +41,7 @@ Permitir que dos personas conectadas conversen en privado dentro de UniLink, par
 
 | ID | Regla |
 |---|---|
-| RN-01 | Solo se puede iniciar una conversación o enviar mensajes a: una conexión ([FS-RED-01](../red/FS-RED-01-solicitudes-conexion.md)); el responsable o el postulante de una postulación aceptada ([FS-OPO-01](../oportunidades/FS-OPO-01-publicacion-oportunidades.md), RN-12, desde el Sprint 6); o la otra parte de una solicitud de servicio activa (desde el Sprint 9). |
+| RN-01 | Solo se puede iniciar una conversación o enviar mensajes a: una conexión ([FS-RED-01](../red/FS-RED-01-solicitudes-conexion.md)); el responsable o el postulante de una postulación aceptada ([FS-OPO-01](../oportunidades/FS-OPO-01-publicacion-oportunidades.md), RN-12, desde el Sprint 6); o, en la fase 2, la otra parte de una solicitud de servicio activa. |
 | RN-02 | Entre dos usuarios existe una sola conversación. |
 | RN-03 | Un mensaje tiene entre 1 y 2.000 caracteres de texto. Los enlaces se convierten en vínculos. |
 | RN-04 | Los mensajes se entregan en tiempo real: el destinatario con la conversación abierta lo ve en menos de 2 segundos. |

@@ -26,7 +26,7 @@ Permitir que el administrador de la plataforma mantenga ordenada la clasificaci�
 **No incluye:**
 
 - Asignar el rol de administrador desde la interfaz (ver RN-01).
-- Revisar solicitudes de categorías nuevas enviadas por usuarios: la única fuente de esas solicitudes es la publicación de servicios, así que se agrega con FS-SRV-02 (Sprint 9).
+- Revisar solicitudes de categorías nuevas enviadas por usuarios: la única fuente de esas solicitudes es la publicación de servicios, así que se agrega con FS-SRV-02 en la fase 2.
 - Gestión de cuentas (FS-ADM-02) y moderación (FS-ADM-03).
 
 ## 3. Actores
@@ -41,7 +41,7 @@ Permitir que el administrador de la plataforma mantenga ordenada la clasificaci�
 |---|---|
 | RN-01 | El rol de administrador de la plataforma se asigna directamente en la base de datos por el equipo técnico, con registro de quién lo asignó. No existe una pantalla para asignarlo en el MVP. |
 | RN-02 | Solo los usuarios con rol de administrador pueden entrar al panel. Cualquier otro usuario que intente abrir una dirección del panel recibe una página de "Acceso denegado". |
-| RN-03 | Cada categoría pertenece a un solo tipo de contenido: Publicaciones, Proyectos, Eventos, Oportunidades o Servicios. |
+| RN-03 | Cada categoría pertenece a un solo tipo de contenido: Publicaciones, Proyectos, Eventos u Oportunidades. El tipo Servicios se agrega en la fase 2. |
 | RN-04 | El nombre de una categoría es único dentro de su tipo (sin distinguir mayúsculas ni tildes). Dos tipos distintos sí pueden tener categorías con el mismo nombre (por ejemplo, "Investigación" en Publicaciones y en Proyectos). |
 | RN-05 | Las categorías no se eliminan, solo se desactivan. Una categoría desactivada no aparece al crear contenido nuevo ni en las preferencias, pero el contenido existente la conserva y sigue visible con ella ([FS-CTA-04](../cuenta/FS-CTA-04-preferencias-contenido.md), RN-03). |
 | RN-06 | No se puede desactivar la última categoría activa de un tipo. |
@@ -65,7 +65,7 @@ Permitir que el administrador de la plataforma mantenga ordenada la clasificaci�
 
 | Campo | Tipo | Obligatorio | Validación |
 |---|---|---|---|
-| Tipo de contenido | Lista | Sí | Publicaciones, Proyectos, Eventos, Oportunidades o Servicios. No se puede cambiar después de crear la categoría. |
+| Tipo de contenido | Lista | Sí | Publicaciones, Proyectos, Eventos u Oportunidades (Servicios en la fase 2). No se puede cambiar después de crear la categoría. |
 | Nombre | Texto | Sí | 2 a 40 caracteres; RN-04. |
 | Descripción | Texto | No | Máximo 200 caracteres. Se muestra como ayuda al elegir la categoría. |
 

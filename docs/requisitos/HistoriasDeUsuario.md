@@ -3,7 +3,7 @@
 _MVP — Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
-Este documento presenta las historias de usuario derivadas de los [Casos de Uso de UniLink](./CasosDeUso.md), en formato "Como / quiero / para", con criterios de aceptación en formato Given/When/Then (Dado/Cuando/Entonces) y prioridad heredada del caso de uso correspondiente.
+Este documento presenta las historias de usuario derivadas de los [Casos de Uso de UniLink](./CasosDeUso.md), en formato "Como / quiero / para", con criterios de aceptación en formato Given/When/Then (Dado/Cuando/Entonces) y prioridad heredada del caso de uso correspondiente. Las historias HU-21, HU-22, HU-23 y HU-31 (módulo de servicios) corresponden a la **fase 2**.
 
 ## Índice
 
@@ -27,9 +27,9 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - [HU-18 — Como administrador, quiero gestionar las publicaciones realizadas por los usuarios](#hu-18)
 - [HU-19 — Como administrador, quiero gestionar los eventos publicados por los usuarios](#hu-19)
 - [HU-20 — Como administrador, quiero gestionar las categorías disponibles para publicaciones, proyectos, eventos, oportunidades y servicios](#hu-20)
-- [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia asociadas a los servicios que ofrezco](#hu-21)
-- [HU-22 — Como usuario autenticado, quiero publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros](#hu-22)
-- [HU-23 — Como egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus, quiero registrarme en UniLink como oferente de servicios](#hu-23)
+- [HU-21 — Como usuario autenticado, quiero verificar mis certificaciones, credenciales o experiencia asociadas a los servicios que ofrezco](#hu-21) _(fase 2)_
+- [HU-22 — Como usuario autenticado, quiero publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros](#hu-22) _(fase 2)_
+- [HU-23 — Como egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus, quiero registrarme en UniLink como oferente de servicios](#hu-23) _(fase 2)_
 - [HU-24 — Como usuario nuevo, quiero recibir sugerencias de conexión (compañeros de facultad o espacios de proyectos) durante mi primer ingreso](#hu-24)
 - [HU-25 — Como usuario autenticado, quiero visualizar un panel con el estado de mis postulaciones](#hu-25)
 - [HU-26 — Como usuario autenticado, quiero confirmar mi asistencia a un evento (RSVP), ver quién más asistirá y agregarlo a mi calendario personal](#hu-26)
@@ -37,7 +37,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - [HU-28 — Como usuario registrado, quiero recuperar mi contraseña si la olvido](#hu-28)
 - [HU-29 — Como responsable de una oportunidad, quiero publicarla y gestionar el estado de las postulaciones que recibo](#hu-29)
 - [HU-30 — Como usuario autenticado, quiero consultar mis notificaciones en un solo lugar](#hu-30)
-- [HU-31 — Como usuario autenticado, quiero solicitar un servicio publicado y contactar a su oferente](#hu-31)
+- [HU-31 — Como usuario autenticado, quiero solicitar un servicio publicado y contactar a su oferente](#hu-31) _(fase 2)_
 
 
 ---
@@ -53,7 +53,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 **Criterios de aceptación:**
 
 - Dado que soy un visitante, cuando completo el formulario de registro con nombre, correo institucional, contraseña y programa académico, entonces el sistema valida el formato de los datos.
-- Dado que ingreso un correo que no es de dominio institucional, entonces el sistema muestra un error, no permite continuar y me ofrece registrarme como egresado o tercerizado si es mi caso ([HU-23](#hu-23)).
+- Dado que ingreso un correo que no es de dominio institucional, entonces el sistema muestra un error y no permite continuar. En la fase 2, me ofrecerá registrarme como egresado o tercerizado si es mi caso ([HU-23](#hu-23)).
 - Dado que ingreso un correo ya registrado, entonces el sistema me notifica y sugiere iniciar sesión o recuperar mi contraseña.
 - Dado que envío el formulario correctamente, entonces recibo en mi correo institucional un enlace de verificación válido por 24 horas.
 - Dado que confirmo mi correo mediante el enlace, entonces mi cuenta queda activa y soy redirigido a completar mi perfil y luego al paso de sugerencias de conexión.
@@ -65,7 +65,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 ## HU-02
 
-> **Como** usuario registrado (estudiante, profesor, personal administrativo, egresado o tercerizado),
+> **Como** usuario registrado (estudiante, profesor o personal administrativo; en la fase 2, también egresado o tercerizado),
 > **quiero** iniciar sesión con mi correo y contraseña,
 > **para** acceder a mis funcionalidades y datos personales en la plataforma.
 
@@ -230,7 +230,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que selecciono una conexión de mi red, entonces puedo abrir un chat privado con esa persona.
 - Dado que envío un mensaje, entonces el sistema lo entrega y notifica al destinatario.
-- Dado que intento escribir a un usuario con el que no tengo conexión, postulación aceptada ni solicitud de servicio activa ([HU-31](#hu-31)), entonces el sistema no me permite iniciar el chat.
+- Dado que intento escribir a un usuario con el que no tengo conexión, postulación aceptada ni, en la fase 2, solicitud de servicio activa ([HU-31](#hu-31)), entonces el sistema no me permite iniciar el chat.
 
 **Prioridad:** Alta
 
@@ -424,6 +424,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ---
 ## HU-21
 
+> **Fase 2:** esta historia pertenece al módulo de servicios, que queda fuera del MVP.
+
 > **Como** usuario autenticado,
 > **quiero** verificar mis certificaciones, credenciales o experiencia asociadas a los servicios que ofrezco,
 > **para** que quienes contraten confíen en que tengo la capacidad real de prestarlos.
@@ -445,6 +447,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 ## HU-22
 
+> **Fase 2:** esta historia pertenece al módulo de servicios, que queda fuera del MVP.
+
 > **Como** usuario autenticado,
 > **quiero** publicar servicios propios definiendo su categoría (académicos o no académicos), alcance y límites claros,
 > **para** ofrecer tanto habilidades profesionales como prácticas (por ejemplo monitorías, plomería, electrónica o eventos) sin generar confusión con quien lo contrata.
@@ -465,6 +469,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ---
 
 ## HU-23
+
+> **Fase 2:** esta historia pertenece al módulo de servicios, que queda fuera del MVP.
 
 > **Como** egresado de la universidad o empleado de una empresa tercerizada que presta servicios dentro del campus,
 > **quiero** registrarme en UniLink como oferente de servicios,
@@ -620,6 +626,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 ---
 
 ## HU-31
+
+> **Fase 2:** esta historia pertenece al módulo de servicios, que queda fuera del MVP.
 
 > **Como** usuario autenticado,
 > **quiero** solicitar un servicio publicado y contactar a su oferente,

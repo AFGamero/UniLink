@@ -28,7 +28,7 @@ Dar al administrador de la plataforma las herramientas para conocer a los miembr
 - Editar los datos personales o el perfil de un usuario.
 - Leer mensajes privados ([FS-MSG-01](../mensajeria/FS-MSG-01-mensajeria-privada.md), RN-11).
 - Asignar o quitar el rol de administrador ([FS-ADM-01](./FS-ADM-01-gestion-categorias.md), RN-01).
-- Aprobar cuentas de egresados y tercerizados: se agrega con FS-SRV-03 (Sprint 9).
+- Aprobar cuentas de egresados y tercerizados: se agrega con FS-SRV-03 en la fase 2.
 
 ## 3. Actores
 

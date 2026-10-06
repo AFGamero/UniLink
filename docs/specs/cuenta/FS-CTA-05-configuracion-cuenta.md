@@ -44,7 +44,7 @@ Dar al usuario control sobre su cuenta: sus datos de acceso, quién puede ver su
 | ID | Regla |
 |---|---|
 | RN-01 | Para cambiar el correo, la contraseña o eliminar la cuenta, el usuario debe ingresar su contraseña actual. |
-| RN-02 | El correo nuevo debe cumplir las mismas reglas del registro: dominio institucional ([FS-CTA-01](./FS-CTA-01-registro.md), RN-01) y no estar registrado (RN-02). Los egresados y tercerizados pueden usar un correo personal. |
+| RN-02 | El correo nuevo debe cumplir las mismas reglas del registro: dominio institucional ([FS-CTA-01](./FS-CTA-01-registro.md), RN-01) y no estar registrado (RN-02). En la fase 2, los egresados y tercerizados podrán usar un correo personal. |
 | RN-03 | El correo nuevo solo reemplaza al anterior cuando el usuario abre el enlace enviado a ese nuevo correo. El enlace vence en 24 horas. |
 | RN-04 | Cuando cambia el correo o la contraseña, se envía un aviso al correo anterior o actual. |
 | RN-05 | La nueva contraseña cumple la política del registro y no puede ser igual a la actual. Al cambiarla se cierran las demás sesiones. |

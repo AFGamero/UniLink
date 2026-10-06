@@ -30,7 +30,7 @@
 |---|---|
 | El tablero de tareas crece hasta parecer una herramienta de gestión completa. | Limitarse a lo definido en FS-PRY-01 (tres columnas, responsable, fecha límite). Todo lo demás va a preguntas abiertas. |
 | Errores de permisos que dejan editar a quien no debe. | Pruebas automatizadas de cada fila de la matriz de permisos, incluidas peticiones directas al servidor. |
-| Sprint 8 es grande. | Si se aprieta, pasar las invitaciones (RF-07), el portafolio (RF-09) y la extensión del onboarding (RF-10) al Sprint 9; son de prioridad media. |
+| Sprint 8 es grande. | Si se aprieta, pasar las invitaciones (RF-07), el portafolio (RF-09) y la extensión del onboarding (RF-10) a una iteración posterior al MVP; son de prioridad media. |
 
 ## Revisión
 

@@ -25,7 +25,7 @@ Permitir que estudiantes, profesores y personal administrativo de la Universidad
 
 **No incluye:**
 
-- Registro de egresados y tercerizados con correo personal (FS-SRV-03).
+- Registro de egresados y tercerizados con correo personal (FS-SRV-03, fase 2).
 - Contenido del formulario de perfil profesional (FS-PRF-01).
 - Inicio de sesión con proveedores externos (Google, Microsoft).
 
@@ -60,7 +60,7 @@ Permitir que estudiantes, profesores y personal administrativo de la Universidad
 | RF-04 | El sistema debe mostrar una pantalla de "Revisa tu correo" con la opción de reenviar el enlace. | Alta |
 | RF-05 | Al abrir un enlace válido, el sistema debe activar la cuenta, iniciar sesión y redirigir a la edición de perfil. | Alta |
 | RF-06 | Al abrir un enlace vencido o inválido, el sistema debe explicarlo y ofrecer reenviar uno nuevo. | Alta |
-| RF-07 | Si el correo no es institucional, el sistema debe mostrar el error y un enlace al registro de egresados y tercerizados. | Media |
+| RF-07 | _(Fase 2)_ Si el correo no es institucional, el sistema debe mostrar, además del error, un enlace al registro de egresados y tercerizados. | Media |
 | RF-08 | El sistema debe guardar la contraseña cifrada con un algoritmo de hash con sal; nunca en texto plano. | Alta |
 
 ## 6. Datos y validaciones
@@ -96,7 +96,7 @@ Permitir que estudiantes, profesores y personal administrativo de la Universidad
 
 | Código | Situación | Mensaje |
 |---|---|---|
-| MSG-01 | Dominio no institucional | "Usa tu correo institucional (@unimagdalena.edu.co). ¿Eres egresado o trabajas en el campus para una empresa externa? Regístrate aquí." |
+| MSG-01 | Dominio no institucional | "Usa tu correo institucional (@unimagdalena.edu.co)." En la fase 2 se agrega: "¿Eres egresado o trabajas en el campus para una empresa externa? Regístrate aquí." |
 | MSG-02 | Correo ya registrado | "Ya existe una cuenta con este correo. Inicia sesión o recupera tu contraseña." |
 | MSG-03 | Contraseña débil | "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número." |
 | MSG-04 | Contraseñas distintas | "Las contraseñas no coinciden." |

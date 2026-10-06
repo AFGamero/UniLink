@@ -1,6 +1,6 @@
 # Sprints — UniLink
 
-El MVP se construye en **9 sprints de 2 semanas**. El orden respeta las dependencias entre módulos: primero el acceso, luego la identidad, la red y, sobre esa base, el contenido y los módulos de valor.
+El MVP se construye en **8 sprints de 2 semanas** (unas 16 semanas). El orden respeta las dependencias entre módulos: primero el acceso, luego la identidad, la red y, sobre esa base, el contenido y los módulos de valor.
 
 ## Roadmap
 
@@ -14,17 +14,22 @@ El MVP se construye en **9 sprints de 2 semanas**. El orden respeta las dependen
 | [6](./sprint-06/README.md) | Los responsables publican oportunidades y los usuarios se postulan | FS-OPO-01, FS-OPO-02 | Alta |
 | [7](./sprint-07/README.md) | La comunidad publica eventos y confirma asistencia | FS-EVT-01, FS-EVT-02 | Alta |
 | [8](./sprint-08/README.md) | Los usuarios colaboran en espacios de proyectos con permisos | FS-PRY-01, FS-PRY-02 | Media |
-| 9 | Los usuarios ofrecen y solicitan servicios con credenciales verificadas | FS-SRV-01, FS-SRV-02, FS-SRV-03 | Alta ⚠️ |
-
-⚠️ **Sprint 9 pendiente de decisión:** el módulo de servicios amplía el alcance más allá de una red profesional universitaria. El equipo debe confirmar si entra en el MVP o pasa a una segunda fase.
 
 **Antes del Sprint 1 (Sprint 0, sin specs funcionales):** definir el stack, la arquitectura, el modelo de datos base, los repositorios, la integración continua y el entorno de despliegue.
+
+## Fase 2 (fuera del MVP)
+
+El equipo decidió dejar el **módulo de servicios** para una segunda fase: amplía el alcance más allá de una red profesional universitaria, introduce usuarios sin correo institucional y exige verificación manual de documentos. Sus casos de uso e historias se conservan en los requisitos, marcados como _fase 2_; sus specs se escribirán cuando se retome.
+
+| Objetivo | Specs | Casos de uso |
+|---|---|---|
+| Los usuarios ofrecen y solicitan servicios con credenciales verificadas, y egresados y personal tercerizado se registran como oferentes | FS-SRV-01, FS-SRV-02, FS-SRV-03 | CU-27 a CU-30 |
 
 ## Dependencias clave
 
 - **Categorías:** FS-CTA-04 (Sprint 1) necesita categorías, pero su administración llega en FS-ADM-01 (Sprint 4). En el Sprint 1 se cargan categorías iniciales como datos semilla.
 - **Notificaciones:** desde el Sprint 1 se envían correos; el centro de notificaciones dentro de la plataforma (FS-NOT-01) llega en el Sprint 3. Los sprints 1 y 2 no generan notificaciones internas.
-- **Mensajería:** FS-SRV-02 (Sprint 9) reutiliza el chat de FS-MSG-01 (Sprint 5).
+- **Mensajería:** FS-OPO-01 (Sprint 6) reutiliza el chat de FS-MSG-01 (Sprint 5) para las postulaciones aceptadas; en la fase 2, FS-SRV-02 hará lo mismo con las solicitudes de servicio.
 
 ## Ceremonias
 

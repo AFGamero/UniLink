@@ -31,7 +31,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | OPO | Oportunidades | [`oportunidades/`](./oportunidades/) |
 | EVT | Eventos | [`eventos/`](./eventos/) |
 | PRY | Proyectos | [`proyectos/`](./proyectos/) |
-| SRV | Servicios | `servicios/` |
+| SRV | Servicios _(fase 2)_ | `servicios/` |
 
 ## Índice y trazabilidad
 
@@ -59,8 +59,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-EVT-02](./eventos/FS-EVT-02-confirmacion-asistencia.md) | Confirmación de asistencia (RSVP) | CU-15 | HU-26 | 7 | Borrador |
 | [FS-PRY-01](./proyectos/FS-PRY-01-espacios-proyectos.md) | Espacios de proyectos | CU-11 | HU-11 | 8 | Borrador |
 | [FS-PRY-02](./proyectos/FS-PRY-02-roles-proyectos.md) | Roles en proyectos | CU-16 | HU-27 | 8 | Borrador |
-| FS-SRV-01 | Verificación de credenciales | CU-27 | HU-21 | 9 | Pendiente |
-| FS-SRV-02 | Publicación y solicitud de servicios | CU-28, CU-30 | HU-22, HU-31 | 9 | Pendiente |
-| FS-SRV-03 | Registro de oferentes externos | CU-29 | HU-23 | 9 | Pendiente |
+| FS-SRV-01 | Verificación de credenciales | CU-27 | HU-21 | Fase 2 | Pendiente |
+| FS-SRV-02 | Publicación y solicitud de servicios | CU-28, CU-30 | HU-22, HU-31 | Fase 2 | Pendiente |
+| FS-SRV-03 | Registro de oferentes externos | CU-29 | HU-23 | Fase 2 | Pendiente |
 
-Los 30 casos de uso quedan cubiertos por 25 specs.
+Los 30 casos de uso quedan cubiertos por 25 specs: 22 del MVP (sprints 1 a 8) y 3 de la fase 2.
