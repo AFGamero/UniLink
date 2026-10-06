@@ -28,7 +28,7 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | CNT | Contenido | [`contenido/`](./contenido/) |
 | MSG | Mensajería | [`mensajeria/`](./mensajeria/) |
 | ADM | Administración | [`administracion/`](./administracion/) |
-| OPO | Oportunidades | `oportunidades/` |
+| OPO | Oportunidades | [`oportunidades/`](./oportunidades/) |
 | EVT | Eventos | `eventos/` |
 | PRY | Proyectos | `proyectos/` |
 | SRV | Servicios | `servicios/` |
@@ -53,8 +53,8 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-MSG-01](./mensajeria/FS-MSG-01-mensajeria-privada.md) | Mensajería privada | CU-10 | HU-10 | 5 | Borrador |
 | [FS-ADM-02](./administracion/FS-ADM-02-gestion-cuentas.md) | Gestión de cuentas de usuario | CU-24 | HU-17 | 5 | Borrador |
 | [FS-ADM-03](./administracion/FS-ADM-03-moderacion-contenido.md) | Moderación de contenido | CU-25 | HU-18, HU-19 | 5 | Borrador |
-| FS-OPO-01 | Publicación de oportunidades | CU-22 | HU-29 | 6 | Pendiente |
-| FS-OPO-02 | Postulaciones | CU-12, CU-14 | HU-12, HU-25 | 6 | Pendiente |
+| [FS-OPO-01](./oportunidades/FS-OPO-01-publicacion-oportunidades.md) | Publicación de oportunidades | CU-22 | HU-29 | 6 | Borrador |
+| [FS-OPO-02](./oportunidades/FS-OPO-02-postulaciones.md) | Postulaciones | CU-12, CU-14 | HU-12, HU-25 | 6 | Borrador |
 | FS-EVT-01 | Publicación y listado de eventos | CU-20, CU-21 | HU-15, HU-16 | 7 | Pendiente |
 | FS-EVT-02 | Confirmación de asistencia (RSVP) | CU-15 | HU-26 | 7 | Pendiente |
 | FS-PRY-01 | Espacios de proyectos | CU-11 | HU-11 | 8 | Pendiente |

@@ -305,9 +305,9 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Actor(es):** Usuario autenticado
 
-**Descripción:** Permite al usuario comunicarse de forma privada (1 a 1) con otro miembro con quien tenga una conexión establecida o una solicitud de servicio activa.
+**Descripción:** Permite al usuario comunicarse de forma privada (1 a 1) con otro miembro con quien tenga una conexión establecida, una postulación aceptada o una solicitud de servicio activa.
 
-**Precondiciones:** Debe existir una conexión establecida entre el usuario y el destinatario, o una solicitud de servicio activa entre ambos ([CU-30](#cu-30--solicitar-servicio)).
+**Precondiciones:** Debe existir una conexión establecida entre el usuario y el destinatario, una postulación aceptada entre el responsable de una oportunidad y el postulante ([CU-22](#cu-22--publicar-oportunidades-y-gestionar-postulaciones)), o una solicitud de servicio activa entre ambos ([CU-30](#cu-30--solicitar-servicio)).
 
 **Flujo principal:**
 
@@ -318,7 +318,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Flujos alternativos / excepciones:**
 
-- 1a. No existe conexión ni solicitud de servicio activa con el usuario seleccionado: el sistema no permite iniciar el chat.
+- 1a. No existe conexión, postulación aceptada ni solicitud de servicio activa con el usuario seleccionado: el sistema no permite iniciar el chat.
 
 **Postcondiciones:** El mensaje queda registrado en la conversación y disponible para ambos usuarios.
 

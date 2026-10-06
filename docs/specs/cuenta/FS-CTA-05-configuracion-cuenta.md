@@ -85,6 +85,7 @@ Dar al usuario control sobre su cuenta: sus datos de acceso, quién puede ver su
 | Nuevas solicitudes de conexión | Sprint 3 |
 | Mensajes privados sin leer | Sprint 5 |
 | Cambios en mis postulaciones | Sprint 6 |
+| Nuevas postulaciones a mis oportunidades | Sprint 6 |
 | Recordatorio de eventos a los que asistiré | Sprint 7 |
 | Actividad en mis proyectos | Sprint 8 |
 

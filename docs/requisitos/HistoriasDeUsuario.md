@@ -230,7 +230,7 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 
 - Dado que selecciono una conexión de mi red, entonces puedo abrir un chat privado con esa persona.
 - Dado que envío un mensaje, entonces el sistema lo entrega y notifica al destinatario.
-- Dado que intento escribir a un usuario con el que no tengo conexión ni una solicitud de servicio activa ([HU-31](#hu-31)), entonces el sistema no me permite iniciar el chat.
+- Dado que intento escribir a un usuario con el que no tengo conexión, postulación aceptada ni solicitud de servicio activa ([HU-31](#hu-31)), entonces el sistema no me permite iniciar el chat.
 
 **Prioridad:** Alta
 
