@@ -81,7 +81,7 @@ Reunir en un solo lugar los eventos de la comunidad universitaria (charlas, tall
 | Lugar | Texto | Según RN-04 | 3 a 150 caracteres (por ejemplo, "Edificio Ernestina Lozano, auditorio"). |
 | Enlace | URL | Según RN-04 | URL válida que empiece por `https://`. |
 | Cupo | Número | No | De 1 a 5.000. Vacío significa sin límite. |
-| Portada | Imagen | No | JPG, PNG o WebP de máximo 5 MB. Si no hay, se usa una imagen por categoría. |
+| Portada | Imagen | No | JPG, PNG o WebP de máximo 5 MB, con descripción opcional para lectores de pantalla ([RNF-ACC-05](../../requisitos/RequisitosNoFuncionales.md#6-accesibilidad)). Si no hay, se usa una imagen por categoría. |
 
 ## 7. Estados
 

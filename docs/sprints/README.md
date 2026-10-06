@@ -54,6 +54,7 @@ El equipo decidió dejar el **módulo de servicios** para una segunda fase: ampl
 
 - [ ] Cumple todos los criterios de aceptación del spec.
 - [ ] Tiene pruebas automatizadas de sus reglas de negocio.
+- [ ] Cumple los [requisitos no funcionales](../requisitos/RequisitosNoFuncionales.md#cuándo-se-aplica-cada-requisito) que aplican a todos los sprints: control de acceso en el servidor, seguridad, rendimiento, usabilidad y accesibilidad.
 - [ ] El código fue revisado por al menos otro integrante (pull request aprobado).
 - [ ] Está desplegado en el entorno de pruebas.
 - [ ] Se mostró en la revisión del sprint.

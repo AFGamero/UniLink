@@ -93,7 +93,7 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 | Título | Texto | Sí | 5 a 120 caracteres. |
 | Texto | Texto largo | Sí | 10 a 3.000 caracteres. Los enlaces se convierten en vínculos. |
 | Categoría | Lista | Sí | Categorías activas de tipo "Publicaciones". |
-| Imágenes | Archivos | No | RN-02. |
+| Imágenes | Archivos | No | RN-02. Cada imagen admite una descripción opcional de hasta 250 caracteres para lectores de pantalla ([RNF-ACC-05](../../requisitos/RequisitosNoFuncionales.md#6-accesibilidad)). |
 | PDF | Archivo | No | RN-02. |
 | Comentario | Texto | Sí, para comentar | 1 a 1.000 caracteres; RN-13. |
 
