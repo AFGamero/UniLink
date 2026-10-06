@@ -29,7 +29,7 @@
 
 | Riesgo | Mitigación |
 |---|---|
-| No hay normas de la comunidad aprobadas, y la moderación no puede citar qué se incumple. | Resolver la pregunta bloqueante de FS-ADM-03 antes de la planificación; ese spec no pasa a **Aprobado** sin las normas. |
+| Las [normas de la comunidad](../../normas-comunidad.md) siguen en borrador. | Conseguir la aprobación del equipo y de la oficina jurídica antes de la planificación; FS-ADM-03 no pasa a **Aprobado** sin ellas. |
 | El tiempo real es la parte técnica más compleja del MVP. | Hacer una prueba de concepto al inicio del sprint; si falla, usar consultas periódicas cada 5 segundos en la conversación abierta como plan B. |
 | Ocultar el contenido de cuentas suspendidas exige cambiar consultas de varios módulos. | Centralizar el filtro de "cuenta visible" en un único lugar del código. |
 

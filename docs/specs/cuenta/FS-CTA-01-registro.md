@@ -48,7 +48,7 @@ Permitir que estudiantes, profesores y personal administrativo de la Universidad
 | RN-06 | Se pueden pedir como máximo 3 reenvíos por hora para un mismo correo. |
 | RN-07 | Una cuenta sin verificar no puede iniciar sesión ([FS-CTA-02](./FS-CTA-02-inicio-sesion.md)). |
 | RN-08 | Las cuentas sin verificar se eliminan a los 7 días de creadas, liberando el correo. |
-| RN-09 | El usuario debe aceptar los términos de uso y la política de tratamiento de datos personales (Ley 1581 de 2012) para registrarse. |
+| RN-09 | El usuario debe aceptar los términos de uso, las [normas de la comunidad](../../normas-comunidad.md) y la política de tratamiento de datos personales (Ley 1581 de 2012) para registrarse. |
 
 ## 5. Requisitos funcionales
 
@@ -76,7 +76,7 @@ Permitir que estudiantes, profesores y personal administrativo de la Universidad
 | Programa académico | Lista | Sí, si es estudiante o profesor | Programas vigentes de la universidad. |
 | Dependencia | Texto | Sí, si es personal administrativo | 2 a 100 caracteres. |
 | Categorías de interés | Selección múltiple | No | Ver [FS-CTA-04](./FS-CTA-04-preferencias-contenido.md). |
-| Acepto términos y tratamiento de datos | Casilla | Sí | Debe estar marcada (RN-09). |
+| Acepto términos, normas de la comunidad y tratamiento de datos | Casilla | Sí | Debe estar marcada (RN-09). Cada documento se abre con un enlace. |
 
 ## 7. Estados
 

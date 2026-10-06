@@ -144,7 +144,7 @@ Escenario: Cuenta desactivada por el usuario
 
 ## 12. Preguntas abiertas
 
-- [ ] ¿Se quiere un proceso de apelación dentro de la plataforma, o basta con el correo de soporte?
+- [ ] ¿Se quiere un proceso de apelación dentro de la plataforma? Las [normas de la comunidad](../../normas-comunidad.md#si-no-estás-de-acuerdo-con-una-decisión) proponen por ahora una revisión por correo de soporte en 15 días, hecha por otro administrador.
 - [ ] ¿Debe haber suspensiones automáticas (por ejemplo, tras 3 contenidos retirados en un mes) o todas las decide un administrador?
 
 ## 13. Historial de cambios

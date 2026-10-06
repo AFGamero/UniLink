@@ -74,7 +74,7 @@ Mantener un espacio seguro y respetuoso: los usuarios reportan el contenido que 
 |---|---|---|---|
 | Motivo del reporte | Opción | Sí | RN-03. |
 | Descripción | Texto | Sí, si el motivo es "Otro" | 10 a 500 caracteres. |
-| Norma incumplida (al retirar) | Opción | Sí | Lista de normas de la comunidad. |
+| Norma incumplida (al retirar) | Opción | Sí | Códigos N-01 a N-11 de las [normas de la comunidad](../../normas-comunidad.md). |
 | Comentario del administrador | Texto | Sí, al retirar | 20 a 500 caracteres. |
 
 ## 7. Estados
@@ -150,11 +150,11 @@ Escenario: Retirar sin reportes
 - [FS-ADM-01](./FS-ADM-01-gestion-categorias.md): panel y registro de acciones.
 - [FS-ADM-02](./FS-ADM-02-gestion-cuentas.md): historial de moderación en el detalle de la cuenta.
 - [FS-NOT-01](../notificaciones/FS-NOT-01-centro-notificaciones.md): avisos al autor y al denunciante.
-- Documento de **normas de la comunidad** publicado y aprobado (ver preguntas abiertas).
+- [Normas de la comunidad](../../normas-comunidad.md) aprobadas (hoy en borrador, versión 0.1).
 
 ## 12. Preguntas abiertas
 
-- [ ] **Bloqueante:** UniLink necesita un documento de normas de la comunidad que los usuarios acepten y que los administradores citen al retirar contenido. ¿Quién lo redacta y aprueba?
+- [ ] **Bloqueante:** aprobar las [normas de la comunidad](../../normas-comunidad.md). El borrador ya existe; falta la revisión del equipo y de la oficina jurídica de la universidad.
 - [ ] ¿El umbral de 5 reportes para ocultar automáticamente es adecuado para el tamaño de la comunidad?
 
 ## 13. Historial de cambios
