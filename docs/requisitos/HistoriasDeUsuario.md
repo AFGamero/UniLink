@@ -97,6 +97,8 @@ Este documento presenta las historias de usuario derivadas de los [Casos de Uso 
 - Dado que ingreso datos con un formato inválido, entonces el sistema muestra un error y no guarda los cambios.
 - Dado que intento cambiar mi correo a uno ya registrado por otra cuenta, entonces el sistema rechaza el cambio.
 - Dado que cambio la privacidad de mi perfil a "solo mis conexiones", entonces los usuarios no conectados solo ven mi nombre, foto y programa académico.
+- Dado que cambio mi correo, entonces el cambio solo se aplica cuando verifico el nuevo correo con el enlace que recibo.
+- Dado que solicito eliminar mi cuenta y confirmo con mi contraseña, entonces mi cuenta se desactiva y se elimina definitivamente a los 30 días si no vuelvo a iniciar sesión.
 - Dado que la actualización es exitosa, entonces el sistema me confirma el cambio realizado.
 
 **Prioridad:** Media

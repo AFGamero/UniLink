@@ -41,10 +41,10 @@ Cada spec detalla el comportamiento de uno o varios casos de uso de un mismo mó
 | [FS-CTA-02](./cuenta/FS-CTA-02-inicio-sesion.md) | Inicio y cierre de sesión | CU-02 | HU-02 | 1 | Borrador |
 | [FS-CTA-03](./cuenta/FS-CTA-03-recuperar-contrasena.md) | Recuperación de contraseña | CU-17 | HU-28 | 1 | Borrador |
 | [FS-CTA-04](./cuenta/FS-CTA-04-preferencias-contenido.md) | Preferencias de contenido | CU-18 | HU-14 | 1 | Borrador |
-| FS-CTA-05 | Configuración de cuenta y privacidad | CU-03 | HU-03 | 2 | Pendiente |
+| [FS-CTA-05](./cuenta/FS-CTA-05-configuracion-cuenta.md) | Configuración de cuenta y privacidad | CU-03 | HU-03 | 2 | Borrador |
 | [FS-PRF-01](./perfil/FS-PRF-01-perfil-profesional.md) | Perfil profesional (incluye "Puedo aportar / Necesito") | CU-04 | HU-04 | 2 | Borrador |
-| FS-PRF-02 | Búsqueda de perfiles | CU-05 | HU-05 | 2 | Pendiente |
-| FS-PRF-03 | Hoja de vida en PDF | CU-19 | HU-13 | 2 | Pendiente |
+| [FS-PRF-02](./perfil/FS-PRF-02-busqueda-perfiles.md) | Búsqueda de perfiles | CU-05 | HU-05 | 2 | Borrador |
+| [FS-PRF-03](./perfil/FS-PRF-03-hoja-de-vida-pdf.md) | Hoja de vida en PDF | CU-19 | HU-13 | 2 | Borrador |
 | FS-RED-01 | Solicitudes de conexión | CU-06, CU-07 | HU-06, HU-07 | 3 | Pendiente |
 | FS-RED-02 | Onboarding y sugerencias | CU-13 | HU-24 | 3 | Pendiente |
 | FS-NOT-01 | Centro de notificaciones | CU-23 | HU-30 | 3 | Pendiente |

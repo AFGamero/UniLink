@@ -136,6 +136,8 @@ La **privacidad del perfil** admite dos niveles: _visible para toda la comunidad
 
 - 3a. Los datos ingresados no cumplen el formato requerido: el sistema muestra un mensaje de error y no guarda los cambios.
 - 3b. El usuario intenta cambiar su correo a uno ya registrado por otra cuenta: el sistema rechaza el cambio.
+- 3c. El usuario cambia su correo: el nuevo correo debe verificarse con un enlace antes de reemplazar al anterior.
+- 3d. El usuario solicita eliminar su cuenta: el sistema pide su contraseña, desactiva la cuenta y la elimina definitivamente tras 30 días, salvo que el usuario vuelva a iniciar sesión en ese plazo.
 
 **Postcondiciones:** La información de la cuenta queda actualizada.
 
