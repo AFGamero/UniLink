@@ -89,7 +89,7 @@ Todos los datos personales se tratan según la Ley 1581 de 2012 de protección d
 
 - Contenido sexual explícito o desnudos.
 - Contenido que muestre, promueva o celebre la violencia, las autolesiones o el consumo de sustancias ilegales.
-- **Cualquier contenido sexual que involucre a menores de edad.** Este contenido se elimina de inmediato, la cuenta se desactiva y el caso se reporta a las autoridades competentes.
+- **Cualquier contenido sexual que involucre a menores de edad.** Este contenido se elimina de inmediato, la cuenta se inhabilita y el caso se reporta a las autoridades competentes.
 
 > Si alguien publica algo que indica que puede hacerse daño, repórtalo. Los administradores lo remitirán a bienestar universitario.
 

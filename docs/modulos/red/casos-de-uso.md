@@ -97,13 +97,13 @@ Casos de uso del módulo Red (RED). Los actores se definen en el [mapa de módul
 
 **Descripción:** Permite presentar sugerencias de conexiones inmediatas (compañeros de facultad o espacios de proyectos) durante el primer ingreso del usuario a la plataforma, con el fin de prevenir el "feed vacío" (cold start) y asegurar que visualice contenido relevante.
 
-**Precondiciones:** El usuario ha completado su registro y accede a la plataforma por primera vez.
+**Precondiciones:** El usuario acaba de guardar su perfil por primera vez ([CU-04](../usuarios/casos-de-uso.md#cu-04--creareditar-perfil-profesional)) o lo hizo antes y cerró el onboarding sin terminarlo ni omitirlo.
 
 **Flujo principal:**
 
-1. El sistema detecta que es el primer inicio de sesión del usuario.
-2. El sistema analiza el programa académico, la facultad, las preferencias de contenido ([CU-18](../usuarios/casos-de-uso.md#cu-18--seleccionar-preferencias-de-contenido)) y los campos "Puedo aportar" y "Necesito" del usuario ([CU-04](../usuarios/casos-de-uso.md#cu-04--creareditar-perfil-profesional)) para generar sugerencias.
-3. El sistema muestra una pantalla de *onboarding* con una lista de perfiles sugeridos y espacios de proyectos relevantes. Cuando una sugerencia se debe a perfiles complementarios, el sistema indica el motivo (por ejemplo, "Puede aportar diseño gráfico, que tú necesitas").
+1. El sistema detecta que el onboarding del usuario está pendiente.
+2. El sistema analiza la unidad académica, la facultad, las categorías de interés ([CU-18](../usuarios/casos-de-uso.md#cu-18--seleccionar-preferencias-de-contenido)) y los campos "Puedo aportar" y "Necesito" del usuario ([CU-04](../usuarios/casos-de-uso.md#cu-04--creareditar-perfil-profesional)) para generar sugerencias.
+3. El sistema muestra una pantalla de *onboarding* con una lista de perfiles sugeridos y, desde el Sprint 8, espacios de proyectos relevantes ([P-50](../../preguntas-abiertas.md)). Cuando una sugerencia se debe a perfiles complementarios, el sistema indica el motivo (por ejemplo, "Puede aportar diseño gráfico, que tú necesitas").
 4. El usuario selecciona a los compañeros o proyectos con los que desea conectar de forma inmediata.
 5. El sistema envía las solicitudes de conexión (y de unión a proyectos) automáticamente y redirige al usuario a su panel principal (feed).
 

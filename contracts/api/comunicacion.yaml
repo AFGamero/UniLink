@@ -1,0 +1,326 @@
+openapi: 3.0.3
+info:
+  title: UniLink — API del módulo Comunicación
+  version: 0.1.0
+  description: 'Mensajería privada y notificaciones.
+
+
+    Esqueleto acordado antes de programar (ADR-006): rutas, quién puede usarlas, caso de uso y spec de origen. Los esquemas
+    de las peticiones y respuestas se completan cuando el spec pasa a Aprobado. Convenciones en contracts/api/README.md.'
+servers:
+- url: /api/v1/comunicacion
+security:
+- sesion: []
+paths:
+  /conversaciones:
+    get:
+      summary: Bandeja de conversaciones
+      description: 'Quién: Usuario. Detalle en FS-COM-01.'
+      operationId: getConversaciones
+      tags:
+      - FS-COM-01
+      x-casos-de-uso:
+      - CU-10
+      x-spec: FS-COM-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    post:
+      summary: Abrir la conversación con un usuario
+      description: 'Quién: Remitente. Detalle en FS-COM-01.'
+      operationId: postConversaciones
+      tags:
+      - FS-COM-01
+      x-casos-de-uso:
+      - CU-10
+      x-spec: FS-COM-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /conversaciones/{conversacion_id}/mensajes:
+    get:
+      summary: Mensajes de una conversación
+      description: 'Quién: Usuario. Detalle en FS-COM-01.'
+      operationId: getConversacionesConversacion_idMensajes
+      tags:
+      - FS-COM-01
+      x-casos-de-uso:
+      - CU-10
+      x-spec: FS-COM-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: conversacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Enviar un mensaje
+      description: 'Quién: Remitente. Detalle en FS-COM-01.'
+      operationId: postConversacionesConversacion_idMensajes
+      tags:
+      - FS-COM-01
+      x-casos-de-uso:
+      - CU-10
+      x-spec: FS-COM-01
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: conversacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /conversaciones/{conversacion_id}/ocultamiento:
+    post:
+      summary: Ocultar una conversación
+      description: 'Quién: Usuario. Detalle en FS-COM-01.'
+      operationId: postConversacionesConversacion_idOcultamiento
+      tags:
+      - FS-COM-01
+      x-casos-de-uso:
+      - CU-10
+      x-spec: FS-COM-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: conversacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /notificaciones:
+    get:
+      summary: Notificaciones del usuario
+      description: 'Quién: Destinatario. Detalle en FS-COM-02.'
+      operationId: getNotificaciones
+      tags:
+      - FS-COM-02
+      x-casos-de-uso:
+      - CU-23
+      x-spec: FS-COM-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /notificaciones/no-leidas:
+    get:
+      summary: Número de notificaciones sin leer
+      description: 'Quién: Destinatario. Detalle en FS-COM-02.'
+      operationId: getNotificacionesNoLeidas
+      tags:
+      - FS-COM-02
+      x-casos-de-uso:
+      - CU-23
+      x-spec: FS-COM-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /notificaciones/{notificacion_id}/lectura:
+    post:
+      summary: Marcar una notificación como leída
+      description: 'Quién: Destinatario. Detalle en FS-COM-02.'
+      operationId: postNotificacionesNotificacion_idLectura
+      tags:
+      - FS-COM-02
+      x-casos-de-uso:
+      - CU-23
+      x-spec: FS-COM-02
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: notificacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /notificaciones/lectura:
+    post:
+      summary: Marcar todas como leídas
+      description: 'Quién: Destinatario. Detalle en FS-COM-02.'
+      operationId: postNotificacionesLectura
+      tags:
+      - FS-COM-02
+      x-casos-de-uso:
+      - CU-23
+      x-spec: FS-COM-02
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+components:
+  securitySchemes:
+    sesion:
+      type: apiKey
+      in: cookie
+      name: unilink_sesion
+      description: Cookie HttpOnly, Secure y SameSite (RNF-SEG-03). Las escrituras exigen además la cabecera X-CSRF-Token.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: Evita duplicar una creación reenviada (RNF-CON-03).
+      schema:
+        type: string
+        format: uuid
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: Versión (ETag) que el usuario editó; si cambió, 409 (RNF-CON-02).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      - message
+      - correlation_id
+      properties:
+        error:
+          type: string
+          description: Código estable, por ejemplo CUPO_COMPLETO.
+        message:
+          type: string
+          description: Texto MSG-NN del spec, listo para mostrar.
+        correlation_id:
+          type: string
+          description: Identificador de la petición (RNF-OBS-01).
+  responses:
+    Validacion:
+      description: Datos inválidos.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutenticado:
+      description: Sin sesión o sesión vencida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Prohibido:
+      description: El actor no tiene permiso según "Quién es quién" (RNF-SEG-04).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoEncontrado:
+      description: No existe o el usuario no puede verlo.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflicto:
+      description: Estado cambiado, versión desactualizada o regla de negocio incumplida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    LimiteDeUso:
+      description: Límite de uso superado (RNF-SEG-07).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Segundos para reintentar.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

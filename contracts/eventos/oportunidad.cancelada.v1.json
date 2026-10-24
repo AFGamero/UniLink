@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oportunidad.cancelada.v1.json",
+  "title": "oportunidad.cancelada (datos v1)",
+  "description": "El responsable canceló una oportunidad. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "oportunidad_id",
+    "responsable_id",
+    "motivo",
+    "postulantes_afectados_id",
+    "titulo"
+  ],
+  "properties": {
+    "oportunidad_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "responsable_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "motivo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "postulantes_afectados_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,18 +3,27 @@
 | Campo | Valor |
 |---|---|
 | **Módulo** | Colaboración (COL) |
-| **Sprint** | Sprint 08 |
 | **Estado** | Borrador |
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-16](../casos-de-uso.md#cu-16--administrar-roles-en-espacios-de-proyectos) |
 | **Historias** | [HU-27](../historias.md#hu-27) |
-| **Última actualización** | 2026-10-06 |
+| **Última actualización** | 2026-10-24 |
 
 ## 1. Objetivo
 
 Permitir que cada proyecto controle quién puede ver, editar y administrar su espacio, para que los equipos colaboren con orden y ningún proyecto quede sin quien lo gestione.
 
-## 2. Alcance
+## 2. Quién es quién
+
+| Actor | Qué hace | Qué ve | Qué no puede hacer |
+|---|---|---|---|
+| Administrador de proyecto | Cambia roles y retira miembros. | Todos los miembros con su rol y fecha de ingreso. | Quitarle el rol al creador o retirarlo; dejar el proyecto sin administrador. |
+| Creador del proyecto | Puede cambiar su propio rol o salir, respetando RN-05. | Igual que un administrador. | — |
+| Editor | Crea, edita y mueve tareas. | Todo el espacio. | Cambiar roles, aprobar solicitudes o editar el proyecto. |
+| Visualizador | Ve el proyecto y mueve sus propias tareas. | Todo el espacio. | Crear o editar tareas de otros. |
+| Miembro del proyecto | Recibe el aviso de su cambio de rol o retiro. | Qué permite su rol (RF-06). | — |
+
+## 3. Alcance
 
 **Incluye:**
 
@@ -27,13 +36,6 @@ Permitir que cada proyecto controle quién puede ver, editar y administrar su es
 
 - Roles personalizados o permisos por tarea.
 - Transferir la autoría (creador) del proyecto.
-
-## 3. Actores
-
-| Actor | Participación |
-|---|---|
-| Administrador de proyecto | Asigna roles y retira miembros. |
-| Miembro del proyecto | Recibe el aviso de su cambio de rol. |
 
 ## 4. Reglas de negocio
 
@@ -48,6 +50,7 @@ Permitir que cada proyecto controle quién puede ver, editar y administrar su es
 | RN-07 | Al retirar a un miembro, sus tareas quedan sin responsable y el miembro recibe una notificación. Puede volver a solicitar unirse después de 30 días. |
 | RN-08 | Cada cambio de rol y cada retiro notifica al miembro afectado y queda en la pestaña Actividad ([FS-COL-05](./FS-COL-05-espacios-proyectos.md), RN-17). |
 | RN-09 | En un proyecto finalizado no se pueden cambiar roles ni retirar miembros. |
+| RN-10 | Dos cambios simultáneos que dejarían el proyecto sin administrador (por ejemplo, los dos únicos administradores se quitan el rol a la vez) se resuelven en orden: el segundo se rechaza con MSG-01. |
 
 ## 5. Requisitos funcionales
 
@@ -83,12 +86,32 @@ Permitir que cada proyecto controle quién puede ver, editar y administrar su es
 
 No aplica: el rol es un atributo del miembro, sin ciclo de vida propio.
 
-## 8. Flujo de pantallas
+## 8. Flujo principal
 
 1. **Espacio del proyecto > Miembros** → selector de rol junto a un miembro → elige el nuevo rol → confirma.
 2. **Miembros** → "Retirar del proyecto" → confirma.
 
-## 9. Mensajes al usuario
+## 9. Variaciones
+
+| Variación | Qué cambia | Regla |
+|---|---|---|
+| Rol por defecto | Editor, por solicitud o invitación. | RN-02 |
+| El creador se quita el rol | Solo si hay otro administrador. | RN-05, RN-06 |
+| Proyecto finalizado | Sin cambios de rol ni retiros. | RN-09 |
+| Retiro de un miembro | Sus tareas quedan sin responsable; espera de 30 días para volver a pedir. | RN-07 |
+
+## 10. ¿Qué pasaría si…?
+
+| Situación | Comportamiento esperado | Regla o pregunta |
+|---|---|---|
+| Los dos únicos administradores se quitan el rol a la vez | El segundo cambio se rechaza con MSG-01. | RN-10 |
+| A un Editor le bajan el rol mientras edita una tarea | Su siguiente acción se valida con el rol nuevo (MSG-06). | RN-03 |
+| Un Editor llama directamente a la API para cambiar un rol | Se rechaza (403). | RF-03, EC-03 |
+| La cuenta del único administrador se suspende | Depende de P-51 (el proyecto quedaría sin gestión). | P-51 |
+| Falla la notificación del cambio de rol | El cambio se aplica; el aviso se reintenta. | RNF-CON-04 |
+| Privacidad | Los miembros ven los roles de los demás; quien no es miembro ve los miembros pero no la actividad. | FS-COL-05 RF-04 |
+
+## 11. Mensajes al usuario
 
 | Código | Situación | Mensaje |
 |---|---|---|
@@ -99,7 +122,7 @@ No aplica: el rol es un atributo del miembro, sin ciclo de vida propio.
 | MSG-05 | Confirmar retiro | "¿Retirar a {nombre} del proyecto? Sus tareas quedarán sin responsable." |
 | MSG-06 | Acción sin permiso | "Tu rol en este proyecto no permite esta acción." |
 
-## 10. Criterios de aceptación
+## 12. Resultado esperado
 
 ```gherkin
 Escenario: Rol por defecto
@@ -143,19 +166,51 @@ Escenario: Permisos validados en el servidor
   Dado que soy Editor
   Cuando envío directamente al servidor una petición para cambiar el rol de otro miembro
   Entonces la petición es rechazada
+
+Escenario: Dos administradores se quitan el rol a la vez
+  Dado que Ana y Luis son los únicos administradores
+  Cuando ambos cambian su propio rol a Editor al mismo tiempo
+  Entonces solo uno de los cambios se aplica
+  Y el otro ve el mensaje MSG-01
+
+Escenario: Rol cambiado durante la edición
+  Dado que soy Editor y estoy editando una tarea de otra persona
+  Cuando un administrador me cambia a Visualizador antes de que guarde
+  Entonces al guardar veo el mensaje MSG-06
 ```
 
-## 11. Dependencias
+## 13. Contratos
 
-- [FS-COL-05](./FS-COL-05-espacios-proyectos.md): proyectos, membresía, tareas y actividad.
-- [FS-COM-02](../../comunicacion/specs/FS-COM-02-centro-notificaciones.md): avisos de cambio de rol y retiro.
+**Expone:**
 
-## 12. Preguntas abiertas
+- API: `PUT /api/v1/colaboracion/proyectos/{id}/miembros/{usuario_id}/rol`, `DELETE /api/v1/colaboracion/proyectos/{id}/miembros/{usuario_id}`, `GET /api/v1/colaboracion/proyectos/{id}/permisos` ([contrato](../../../../contracts/api/colaboracion.yaml)).
+- Eventos: `proyecto.rol_cambiado`, `proyecto.miembro_retirado` ([catálogo](../../../../contracts/eventos/README.md)).
 
-- [ ] ¿El rol por defecto debe ser configurable por cada proyecto (por ejemplo, que un proyecto grande haga entrar a todos como Visualizadores)?
+**Consume:** contexto de la petición (usuario autenticado).
 
-## 13. Historial de cambios
+## 14. Calidad
+
+RNF-SEG-04, [EC-03](../../../srs/Especificacion_Requisitos.md#34-escenarios-de-atributos-de-calidad).
+
+## 15. Preguntas abiertas
+
+- P-44 — ¿rol por defecto configurable?
+- P-51 — proyecto cuyo único administrador deja de estar activo.
+
+## 16. Lista de revisión
+
+- [x] Cada actor de "Quién es quién" existe en el [SRS §2.4](../../../srs/Especificacion_Requisitos.md#24-actores-del-sistema) con el mismo nombre.
+- [x] Toda acción tiene un actor que puede hacerla y se valida en el servidor (RNF-SEG-04).
+- [ ] Cada regla tiene al menos un escenario en "Resultado esperado".
+- [x] "¿Qué pasaría si…?" revisó las siete situaciones: concurrencia, estado de la cuenta, eliminación de lo que usa, pérdida de permiso, falla externa, límites de uso y privacidad.
+- [ ] Ningún dato se recoge sin finalidad (RNF-PRI-01).
+- [x] No contradice a su caso de uso, a su historia ni a otro spec.
+- [x] Sus contratos existen en [`contracts/`](../../../../contracts/README.md).
+- [ ] No tiene preguntas abiertas que bloqueen el desarrollo.
+
+## 17. Historial de cambios
 
 | Fecha | Autor | Cambio |
 |---|---|---|
 | 2026-10-06 | Gamero | Creación |
+| 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |

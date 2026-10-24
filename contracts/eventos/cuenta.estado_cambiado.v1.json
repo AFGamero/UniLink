@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cuenta.estado_cambiado.v1.json",
+  "title": "cuenta.estado_cambiado (datos v1)",
+  "description": "Publicado cuando una cuenta cambia de estado según la máquina de estados del módulo Usuarios. Productor: usuarios.",
+  "type": "object",
+  "required": [
+    "usuario_id",
+    "estado_anterior",
+    "estado_nuevo",
+    "hasta",
+    "motivo"
+  ],
+  "properties": {
+    "usuario_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "estado_anterior": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "PENDIENTE_VERIFICACION",
+            "ACTIVA",
+            "SUSPENDIDA",
+            "INHABILITADA",
+            "EN_ELIMINACION",
+            "ELIMINADA"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "estado_nuevo": {
+      "type": "string",
+      "enum": [
+        "PENDIENTE_VERIFICACION",
+        "ACTIVA",
+        "SUSPENDIDA",
+        "INHABILITADA",
+        "EN_ELIMINACION",
+        "ELIMINADA"
+      ]
+    },
+    "hasta": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Fin de la suspensión; null en los demás casos."
+    },
+    "motivo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

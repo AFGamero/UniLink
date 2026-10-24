@@ -21,7 +21,7 @@
 - [ ] Montar la infraestructura de tiempo real para la mensajería y reutilizarla en el indicador de notificaciones.
 - [ ] Garantizar una sola conversación entre dos usuarios (restricción única).
 - [ ] Implementar el mecanismo común de reportes, preparado para agregar eventos en el Sprint 7.
-- [ ] Ocultar el contenido de cuentas suspendidas o desactivadas en todas las consultas (perfil, búsqueda, feed, sugerencias).
+- [ ] Ocultar el contenido de cuentas suspendidas o inhabilitadas en todas las consultas (perfil, búsqueda, feed, sugerencias).
 - [ ] Programar la reactivación automática al terminar una suspensión.
 - [ ] Programar el correo de mensajes sin leer (1 hora, máximo uno por conversación al día).
 

@@ -76,7 +76,7 @@ Casos de uso del módulo Colaboración (COL). Los actores se definen en el [mapa
 
 **Actor(es):** Usuario autenticado
 
-**Descripción:** Permite al usuario acceder a un panel específico para ver y hacer seguimiento al estado de sus postulaciones a oportunidades ("Enviada", "En revisión", "Aceptada" o "Rechazada"). Los cambios de estado los realiza el responsable de la oportunidad ([CU-22](#cu-22--publicar-oportunidades-y-gestionar-postulaciones)).
+**Descripción:** Permite al usuario acceder a un panel específico para ver y hacer seguimiento al estado de sus postulaciones a oportunidades ("Enviada", "En revisión", "Aceptada", "Rechazada" o "Retirada"). Los cambios de estado los realiza el responsable de la oportunidad ([CU-22](#cu-22--publicar-oportunidades-y-gestionar-postulaciones)).
 
 **Precondiciones:** El usuario debe estar autenticado en la plataforma.
 
@@ -221,7 +221,8 @@ Casos de uso del módulo Colaboración (COL). Los actores se definen en el [mapa
 
 - 1a. Faltan datos requeridos: el sistema indica los campos pendientes y no publica la oportunidad.
 - 4a. Se alcanza la fecha de cierre o se completan los cupos: el sistema cierra la oportunidad a nuevas postulaciones.
-- 4b. El responsable cierra la oportunidad manualmente: el sistema deja de aceptar postulaciones y notifica a los postulantes pendientes.
+- 4b. El responsable cierra la oportunidad manualmente: el sistema deja de aceptar postulaciones; las pendientes siguen en revisión y el responsable puede seguir decidiéndolas.
+- 4c. El responsable cancela la oportunidad indicando el motivo: las postulaciones pendientes pasan a "Rechazada" con ese motivo y sus postulantes son notificados.
 
 **Postcondiciones:** La oportunidad queda publicada y las postulaciones reflejan su estado actualizado para el postulante.
 

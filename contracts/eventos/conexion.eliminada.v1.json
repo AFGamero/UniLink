@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conexion.eliminada.v1.json",
+  "title": "conexion.eliminada (datos v1)",
+  "description": "Uno de los dos eliminó la conexión. Productor: red.",
+  "type": "object",
+  "required": [
+    "usuario_a_id",
+    "usuario_b_id",
+    "eliminada_por_id"
+  ],
+  "properties": {
+    "usuario_a_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "usuario_b_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "eliminada_por_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  },
+  "additionalProperties": false
+}

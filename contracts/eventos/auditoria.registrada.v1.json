@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "auditoria.registrada.v1.json",
+  "title": "auditoria.registrada (datos v1)",
+  "description": "Una acción de administración que debe quedar en el registro de auditoría. Productor: usuarios, contenido, plataforma.",
+  "type": "object",
+  "required": [
+    "administrador_id",
+    "modulo",
+    "accion",
+    "elemento_tipo",
+    "elemento_id",
+    "valores_anteriores",
+    "valores_nuevos",
+    "motivo"
+  ],
+  "properties": {
+    "administrador_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "modulo": {
+      "type": "string",
+      "enum": [
+        "usuarios",
+        "red",
+        "contenido",
+        "comunicacion",
+        "colaboracion",
+        "plataforma"
+      ]
+    },
+    "accion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "elemento_tipo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "elemento_id": {
+      "type": "string"
+    },
+    "valores_anteriores": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "valores_nuevos": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "motivo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

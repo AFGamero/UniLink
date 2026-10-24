@@ -29,7 +29,7 @@ Casos de uso del módulo Usuarios (USR). Los actores se definen en el [mapa de m
 **Flujo principal:**
 
 1. El usuario accede a la página de registro.
-2. Completa el formulario con nombre, correo institucional, contraseña y programa académico.
+2. Completa el formulario con nombre, correo institucional, contraseña, tipo de usuario y unidad académica (programa, facultad y departamento, o dependencia, según el tipo).
 3. Opcionalmente, selecciona las categorías de contenido de su interés ([CU-18](#cu-18--seleccionar-preferencias-de-contenido)).
 4. El sistema valida el formato de los datos ingresados.
 5. El sistema envía un enlace de verificación al correo institucional, válido por 24 horas.
@@ -61,15 +61,16 @@ Casos de uso del módulo Usuarios (USR). Los actores se definen en el [mapa de m
 1. El usuario accede a la página de inicio de sesión.
 2. Ingresa su correo electrónico y contraseña.
 3. El sistema valida las credenciales.
-4. El sistema otorga acceso y redirige al panel principal (feed).
+4. El sistema otorga acceso y redirige al panel principal (feed), salvo en el flujo 4a.
 
 **Flujos alternativos / excepciones:**
 
-- 3a. Las credenciales son incorrectas: el sistema muestra un mensaje de error e indica el número de intentos restantes (máximo 5 intentos fallidos consecutivos).
+- 3a. Las credenciales son incorrectas: el sistema muestra un mensaje de error e indica los intentos restantes cuando quedan 2 o menos (máximo 5 intentos fallidos consecutivos).
 - 3b. La cuenta no ha sido verificada: el sistema solicita completar la verificación antes de continuar.
 - 3c. El usuario excede el número máximo de intentos: el sistema bloquea el acceso durante 15 minutos y sugiere recuperar la contraseña ([CU-17](#cu-17--recuperar-contraseña)).
-- 3d. La cuenta está suspendida o desactivada por un administrador ([CU-24](#cu-24--administrar-cuentas-de-usuario)): el sistema impide el acceso e informa el estado de la cuenta.
-- 4a. Es el primer ingreso del usuario: el sistema ejecuta el onboarding ([CU-13](../red/casos-de-uso.md#cu-13--sugerir-conexiones-iniciales-onboarding)) antes de mostrar el panel principal.
+- 3d. La cuenta está suspendida o inhabilitada por un administrador ([CU-24](#cu-24--administrar-cuentas-de-usuario)): el sistema impide el acceso e informa el estado de la cuenta.
+- 3e. La cuenta está en eliminación ([CU-03](#cu-03--administrar-cuenta), flujo 3d): el sistema solo ofrece recuperar la cuenta.
+- 4a. El usuario nunca ha guardado su perfil o tiene el onboarding pendiente: el sistema lo lleva a la edición del perfil ([CU-04](#cu-04--creareditar-perfil-profesional)) o al onboarding ([CU-13](../red/casos-de-uso.md#cu-13--sugerir-conexiones-iniciales-onboarding)) antes de mostrar el panel principal.
 
 **Postcondiciones:** El usuario queda autenticado y con una sesión activa en la plataforma.
 
@@ -88,19 +89,19 @@ Casos de uso del módulo Usuarios (USR). Los actores se definen en el [mapa de m
 **Flujo principal:**
 
 1. El usuario accede a la sección de configuración de cuenta.
-2. Selecciona el dato que desea modificar (nombre, correo, contraseña, foto de perfil, preferencias de notificación, preferencias de contenido o privacidad del perfil).
+2. Selecciona el dato que desea modificar (correo, contraseña, correo de respaldo, preferencias de notificación, preferencias de contenido o privacidad del perfil). El nombre y la foto se editan en el perfil ([CU-04](#cu-04--creareditar-perfil-profesional)).
 3. Ingresa la nueva información y confirma los cambios.
 4. El sistema valida y guarda los cambios.
 5. El sistema confirma la actualización al usuario.
 
-La **privacidad del perfil** admite dos niveles: _visible para toda la comunidad_ (valor por defecto) o _visible solo para mis conexiones_. En ambos casos, el nombre, la foto y el programa académico permanecen visibles en los resultados de búsqueda.
+La **privacidad del perfil** admite dos niveles: _visible para toda la comunidad_ (valor por defecto) o _visible solo para mis conexiones_. En ambos casos, el nombre, la foto y la unidad académica permanecen visibles en los resultados de búsqueda.
 
 **Flujos alternativos / excepciones:**
 
 - 3a. Los datos ingresados no cumplen el formato requerido: el sistema muestra un mensaje de error y no guarda los cambios.
 - 3b. El usuario intenta cambiar su correo a uno ya registrado por otra cuenta: el sistema rechaza el cambio.
 - 3c. El usuario cambia su correo: el nuevo correo debe verificarse con un enlace antes de reemplazar al anterior.
-- 3d. El usuario solicita eliminar su cuenta: el sistema pide su contraseña, desactiva la cuenta y la elimina definitivamente tras 30 días, salvo que el usuario vuelva a iniciar sesión en ese plazo.
+- 3d. El usuario solicita eliminar su cuenta: el sistema pide su contraseña, pasa la cuenta a "En eliminación" y la elimina definitivamente tras 30 días, salvo que el usuario vuelva a iniciar sesión en ese plazo.
 
 **Postcondiciones:** La información de la cuenta queda actualizada.
 
@@ -124,7 +125,7 @@ La **privacidad del perfil** admite dos niveles: _visible para toda la comunidad
 4. El sistema guarda los cambios.
 5. El perfil actualizado queda visible para otros usuarios, según la configuración de privacidad definida en [CU-03](#cu-03--administrar-cuenta).
 
-Son **campos obligatorios**: nombre, programa académico (o tipo de vínculo, para egresados y tercerizados) y al menos una habilidad. Los demás campos son opcionales.
+Son **campos obligatorios**: nombre, unidad académica según el tipo de usuario (en la fase 2, tipo de vínculo para egresados y tercerizados) y al menos una habilidad. Los demás campos son opcionales.
 
 Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gráfico") y **"Necesito"** (por ejemplo, "un diseñador para mi proyecto", "mentoría en investigación") son listas de etiquetas. La plataforma los cruza para encontrar perfiles complementarios: lo que un usuario necesita con lo que otro puede aportar. Este cruce alimenta las sugerencias de conexión ([CU-13](../red/casos-de-uso.md#cu-13--sugerir-conexiones-iniciales-onboarding)) y la búsqueda de perfiles ([CU-05](../red/casos-de-uso.md#cu-05--buscar-y-visualizar-perfiles)).
 
@@ -149,7 +150,7 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 **Flujo principal:**
 
 1. El usuario selecciona la opción "¿Olvidaste tu contraseña?" en la página de inicio de sesión.
-2. Ingresa el correo asociado a su cuenta.
+2. Ingresa el correo institucional o el correo de respaldo de su cuenta.
 3. El sistema envía al correo un enlace de restablecimiento válido por 1 hora.
 4. El usuario abre el enlace e ingresa una nueva contraseña.
 5. El sistema valida la contraseña, la guarda, cierra las sesiones abiertas y redirige al inicio de sesión.
@@ -220,22 +221,22 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 
 **Actor(es):** Administrador de la plataforma
 
-**Descripción:** Permite al administrador consultar las cuentas registradas y suspender, desactivar o reactivar las que incumplan las condiciones de uso.
+**Descripción:** Permite al administrador consultar las cuentas registradas y suspender, inhabilitar o reactivar las que incumplan las condiciones de uso.
 
 **Precondiciones:** El usuario debe estar autenticado con rol de administrador de la plataforma.
 
 **Flujo principal:**
 
 1. El administrador accede al panel de gestión de usuarios.
-2. El sistema lista las cuentas registradas con su estado (activa, suspendida, desactivada).
+2. El sistema lista las cuentas registradas con su estado (activa, suspendida, inhabilitada, en eliminación).
 3. El administrador busca y selecciona una cuenta para ver su información básica.
-4. El administrador suspende, desactiva o reactiva la cuenta indicando el motivo.
+4. El administrador suspende, inhabilita o reactiva la cuenta indicando el motivo.
 5. El sistema aplica el cambio, registra la acción y notifica al usuario afectado.
 
 **Flujos alternativos / excepciones:**
 
 - 4a. El administrador intenta suspender su propia cuenta: el sistema bloquea la acción.
 
-**Postcondiciones:** El estado de la cuenta queda actualizado. Un usuario suspendido o desactivado no puede iniciar sesión ([CU-02](#cu-02--iniciar-sesión), flujo 3d).
+**Postcondiciones:** El estado de la cuenta queda actualizado. Un usuario suspendido o inhabilitado no puede iniciar sesión ([CU-02](#cu-02--iniciar-sesión), flujo 3d).
 
 **Prioridad:** Alta

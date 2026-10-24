@@ -1,16 +1,16 @@
 # Preguntas abiertas — UniLink
 
-_Consolidado para la reunión de decisiones · Última actualización: 2026-10-08_
+_Consolidado para la reunión de decisiones · Última actualización: 2026-10-24_
 
-Este documento reúne las preguntas abiertas de los specs, los requisitos no funcionales y las normas de la comunidad, agrupadas según **quién debe responderlas** y ordenadas por el **sprint que las necesita**. Cada pregunta trae una propuesta para agilizar la discusión.
+Este documento es la **única fuente** de las preguntas abiertas de los specs, el SRS, las ADR y las normas de la comunidad: los demás documentos solo citan su código (`P-NN`). Están agrupadas según **quién debe responderlas** y ordenadas por el **sprint que las necesita**. Cada pregunta trae una propuesta para agilizar la discusión.
 
 ## Cómo usar este documento
 
 1. En la reunión, se lee la propuesta y se acepta, se ajusta o se descarta. La respuesta se anota en la columna **Decisión**.
-2. Después de la reunión, quien tenga asignada la pregunta actualiza el documento de origen (regla, dato o mensaje) y marca allí la casilla como resuelta.
+2. Después de la reunión, quien tenga asignada la pregunta actualiza el documento de origen (regla, dato o mensaje), quita la referencia `P-NN` de su sección de preguntas y deja aquí la decisión con su fecha.
 3. Cuando un spec ya no tiene preguntas que bloqueen el desarrollo, puede pasar a **Aprobado** (ver la [Definition of Ready](./sprints/README.md#definition-of-ready-un-spec-puede-entrar-a-un-sprint)).
 
-**El documento de origen es la fuente de verdad.** Este consolidado solo sirve para organizar la reunión.
+**La pregunta vive aquí; la decisión, una vez tomada, vive en el documento de origen.**
 
 ## Resumen
 
@@ -18,19 +18,19 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 |---|---|---|---|
 | [A. Institucionales](#a-institucionales) | Dirección del CIDTI y TI de la universidad | 10 | Sprint 0 |
 | [B. Jurídicas](#b-jurídicas) | Oficina jurídica de la universidad | 5 | Sprint 1 |
-| [C. Técnicas](#c-técnicas) | Equipo de desarrollo | 3 | Sprint 0 |
-| [D. De producto](#d-de-producto) | Equipo de UniLink (Product Owner) | 26 | Sprint 1 |
+| [C. Técnicas](#c-técnicas) | Equipo de desarrollo | 5 | Sprint 0 |
+| [D. De producto](#d-de-producto) | Equipo de UniLink (Product Owner) | 30 | Sprint 1 |
 | [E. Para después del lanzamiento](#e-para-después-del-lanzamiento) | Equipo de UniLink | 5 | No bloquean el MVP |
-| **Total** | | **49** | |
+| **Total** | | **55** (una resuelta: P-30) | |
 
-**Prioridad para la primera reunión:** P-01 a P-05, P-11, P-16 a P-18 y P-19 a P-22. Sin ellas no pueden empezar el Sprint 0 ni el Sprint 1.
+**Prioridad para la primera reunión:** P-01 a P-05, P-11, P-16 a P-18, P-19 a P-22 y P-52 a P-55. Sin ellas no pueden empezar el Sprint 0 ni el Sprint 1.
 
 ## A. Institucionales
 
 | ID | Pregunta | Origen | Antes de | Propuesta | Decisión |
 |---|---|---|---|---|---|
-| P-01 | ¿Las cifras de los supuestos de uso (5.000 usuarios el primer año, 500 simultáneos) son realistas? | [RNF](./requisitos/RequisitosNoFuncionales.md#preguntas-abiertas) | Sprint 0 | Validarlas con las cifras de matrícula y planta de personal de la universidad. | |
-| P-02 | ¿UniLink se aloja en la infraestructura de la universidad o en un proveedor en la nube? | [RNF](./requisitos/RequisitosNoFuncionales.md#preguntas-abiertas) | Sprint 0 | Consultar primero con TI si ofrece servidores y respaldos. Si no, usar la nube con datos alojados en una región que cumpla RNF-PRI-08. | |
+| P-01 | ¿Las cifras de los supuestos de uso (5.000 usuarios el primer año, 500 simultáneos) son realistas? | [SRS §3.3](./srs/Especificacion_Requisitos.md#33-requisitos-no-funcionales) | Sprint 0 | Validarlas con las cifras de matrícula y planta de personal de la universidad. | |
+| P-02 | ¿UniLink se aloja en la infraestructura de la universidad o en un proveedor en la nube? | [SRS §3.3](./srs/Especificacion_Requisitos.md#33-requisitos-no-funcionales) | Sprint 0 | Consultar primero con TI si ofrece servidores y respaldos. Si no, usar la nube con datos alojados en una región que cumpla RNF-PRI-08. | |
 | P-03 | ¿Qué dominios de correo institucional son válidos además de `unimagdalena.edu.co`? | [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md) | Sprint 1 | Pedir a TI la lista completa de dominios y dejarla configurable. | |
 | P-04 | ¿De dónde se obtiene el catálogo oficial de programas académicos? | [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md) | Sprint 1 | Pedir a Admisiones y Registro un listado exportable y cargarlo como datos semilla. | |
 | P-05 | ¿Cuál es el correo de soporte oficial de UniLink? | [FS-USR-02](./modulos/usuarios/specs/FS-USR-02-inicio-sesion.md), [Normas](./normas-comunidad.md#preguntas-abiertas) | Sprint 1 | Crear un buzón institucional propio, por ejemplo `unilink@unimagdalena.edu.co`. | |
@@ -38,7 +38,7 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 | P-07 | ¿Quiénes serán los administradores de la plataforma en el lanzamiento? | [FS-PLT-01](./modulos/plataforma/specs/FS-PLT-01-gestion-categorias.md) | Sprint 4 | Dos personas del CIDTI y una de Bienestar Universitario, para que siempre haya otro administrador que revise las sanciones. | |
 | P-08 | ¿Qué rutas de atención institucionales se enlazan en las normas N-01 y N-07? | [Normas](./normas-comunidad.md#preguntas-abiertas) | Sprint 5 | Pedir a Bienestar Universitario los enlaces vigentes, incluido el protocolo de violencias basadas en género. | |
 | P-09 | ¿Se necesita un calendario de espacios de la universidad para validar el lugar de los eventos? | [FS-COL-03](./modulos/colaboracion/specs/FS-COL-03-publicacion-listado-eventos.md) | Sprint 7 | No en el MVP: el organizador es responsable de reservar el espacio. | |
-| P-10 | ¿La universidad ya tiene registrada en la SIC una base de datos de la comunidad, o UniLink requiere un registro nuevo? | [RNF](./requisitos/RequisitosNoFuncionales.md#preguntas-abiertas) | Lanzamiento | Consultarlo con la oficina responsable de protección de datos. | |
+| P-10 | ¿La universidad ya tiene registrada en la SIC una base de datos de la comunidad, o UniLink requiere un registro nuevo? | [SRS §3.3](./srs/Especificacion_Requisitos.md#33-requisitos-no-funcionales) | Lanzamiento | Consultarlo con la oficina responsable de protección de datos. | |
 
 ## B. Jurídicas
 
@@ -56,7 +56,9 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 |---|---|---|---|---|---|
 | P-16 | ¿Las notificaciones se actualizan consultando al servidor cada cierto tiempo o con conexión en tiempo real? | [FS-COM-02](./modulos/comunicacion/specs/FS-COM-02-centro-notificaciones.md) | Sprint 0 | Tiempo real (WebSockets) desde el inicio, porque la mensajería del Sprint 5 lo necesitará. Se decide al elegir el stack. | |
 | P-17 | ¿Se necesita un motor de búsqueda dedicado o basta con la base de datos? | [FS-RED-03](./modulos/red/specs/FS-RED-03-busqueda-perfiles.md) | Sprint 0 | La búsqueda de texto completo de la base de datos alcanza para el volumen del MVP. | |
-| P-18 | ¿La disponibilidad del 99,5 % y el horario de soporte son compatibles con el tamaño del equipo? | [RNF](./requisitos/RequisitosNoFuncionales.md#preguntas-abiertas) | Sprint 0 | Depende de P-02. Con servicios gestionados en la nube es alcanzable; con infraestructura propia, revisarlo con TI. | |
+| P-18 | ¿La disponibilidad del 99,5 % y el horario de soporte son compatibles con el tamaño del equipo? | [SRS §3.3](./srs/Especificacion_Requisitos.md#33-requisitos-no-funcionales) | Sprint 0 | Depende de P-02. Con servicios gestionados en la nube es alcanzable; con infraestructura propia, revisarlo con TI. | |
+| P-52 | ¿Cuánto tiempo se conservan los registros técnicos (logs)? | [SRS §3.3.12](./srs/Especificacion_Requisitos.md#3312-retención-de-datos) | Sprint 0 | A. 90 días; B. 30 días; C. 1 año. **Propuesta: A**, suficiente para investigar incidentes sin acumular datos personales (RNF-PRI-07). | |
+| P-53 | ¿Qué lenguajes y frameworks domina el equipo? Bloquea el stack. | [ADR-010](./arquitectura/Registro_Decisiones.md#adr-010-lenguaje-y-framework) | Sprint 0 | A. Java con Spring Boot; B. TypeScript con NestJS; C. Python con Django o FastAPI. **Propuesta:** elegir el que más integrantes dominen; a igualdad, A por su soporte para monolitos modulares. | |
 
 ## D. De producto
 
@@ -68,6 +70,8 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 | P-20 | ¿Las oportunidades y los servicios también deben tener preferencias de contenido? | [FS-USR-04](./modulos/usuarios/specs/FS-USR-04-preferencias-contenido.md) | No en el MVP: las oportunidades ya usan la afinidad por etiquetas, y los servicios son de la fase 2. | |
 | P-21 | ¿Se avisa por correo al usuario cuando su cuenta se bloquea por intentos fallidos? | [FS-USR-02](./modulos/usuarios/specs/FS-USR-02-inicio-sesion.md) | Sí: ayuda a detectar accesos no autorizados. | |
 | P-22 | ¿Se impide reutilizar contraseñas anteriores además de la actual? | [FS-USR-03](./modulos/usuarios/specs/FS-USR-03-recuperar-contrasena.md) | No en el MVP: basta con impedir la actual. | |
+| P-54 | El registro dice "Ya existe una cuenta con este correo" (MSG-02). ¿Se debe ocultar que un correo tiene cuenta? | [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md) | A. Mantenerlo (el correo es institucional y los intentos están limitados); B. Mensaje genérico "Te enviamos un correo" y el correo explica que ya tiene cuenta; C. Mantenerlo y limitar los registros por origen. **Propuesta: B**, coherente con la recuperación de contraseña. | |
+| P-55 | Fallar 5 veces con el correo de otra persona la bloquea 15 minutos. ¿Se limita también por origen? | [FS-USR-02](./modulos/usuarios/specs/FS-USR-02-inicio-sesion.md) | A. Además del bloqueo por cuenta, limitar intentos por dirección de origen; B. Sustituir el bloqueo por una espera creciente entre intentos; C. Aceptar el riesgo: se desbloquea restableciendo la contraseña. **Propuesta: A.** | |
 
 ### Sprint 2 — Perfil
 
@@ -90,7 +94,7 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 | ID | Pregunta | Origen | Propuesta | Decisión |
 |---|---|---|---|---|
 | P-29 | ¿Quién define y mantiene la lista de palabras prohibidas? | [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) | Los administradores, desde el panel de FS-PLT-01. | |
-| P-30 | ¿La categoría de publicaciones "Oportunidades" se renombra o se elimina cuando exista el módulo de oportunidades? | [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) | Renombrarla a "Convocatorias externas" desde el Sprint 4. | |
+| P-30 | ¿La categoría de publicaciones "Oportunidades" se renombra o se elimina cuando exista el módulo de oportunidades? | [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) | Renombrarla a "Convocatorias externas" desde el Sprint 4. |**Resuelta (2026-10-24):** se renombra a "Convocatorias externas" desde el Sprint 4 (I-14). |
 | P-31 | ¿Una sola reacción ("Me gusta") o varias? | [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) | Una sola en el MVP. | |
 
 ### Sprint 5 — Mensajería y moderación
@@ -101,6 +105,7 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 | P-33 | ¿Se quiere un proceso de apelación dentro de la plataforma? | [FS-USR-08](./modulos/usuarios/specs/FS-USR-08-gestion-cuentas.md) | No en el MVP: revisión por correo de soporte, como proponen las normas. | |
 | P-34 | ¿Suspensiones automáticas o todas decididas por un administrador? | [FS-USR-08](./modulos/usuarios/specs/FS-USR-08-gestion-cuentas.md) | Todas por un administrador. El sistema solo avisa cuando un usuario acumula 3 contenidos retirados en un mes. | |
 | P-35 | ¿El umbral de 5 reportes para ocultar automáticamente es adecuado? | [FS-CNT-02](./modulos/contenido/specs/FS-CNT-02-moderacion-contenido.md) | Mantener 5 y dejarlo configurable para ajustarlo con datos reales. | |
+| P-51 | ¿Qué pasa con lo que posee una cuenta suspendida, inhabilitada o eliminada (oportunidades con postulantes, eventos con asistentes, proyectos con creador protegido, postulaciones y asistencias)? | [Usuarios](./modulos/usuarios/README.md#máquina-de-estados-de-la-cuenta) | A. Tabla única de efectos en el README de Usuarios, que cada módulo aplica al recibir `cuenta.estado_cambiado`; B. Resolverlo spec por spec; C. Regla general: todo queda oculto y congelado mientras la cuenta no esté activa y pasa a "Usuario eliminado" al eliminarse. **Propuesta: A** con la regla C como punto de partida. | |
 
 ### Sprint 6 — Oportunidades
 
@@ -125,6 +130,7 @@ Este documento reúne las preguntas abiertas de los specs, los requisitos no fun
 | P-42 | ¿Se necesita un espacio de conversación del equipo dentro del proyecto? | [FS-COL-05](./modulos/colaboracion/specs/FS-COL-05-espacios-proyectos.md) | No en el MVP: los miembros se coordinan por mensajes privados. | |
 | P-43 | ¿Los proyectos de clase pueden ser privados? | [FS-COL-05](./modulos/colaboracion/specs/FS-COL-05-espacios-proyectos.md) | Sí: un proyecto privado solo lo ven sus miembros. | |
 | P-44 | ¿El rol por defecto de los nuevos miembros es configurable por proyecto? | [FS-COL-06](./modulos/colaboracion/specs/FS-COL-06-roles-proyectos.md) | No en el MVP. | |
+| P-50 | Quien pasó el onboarding antes del Sprint 8 nunca verá proyectos sugeridos. ¿Cómo se le sugieren? | [FS-RED-02](./modulos/red/specs/FS-RED-02-onboarding-sugerencias.md), [FS-COL-05](./modulos/colaboracion/specs/FS-COL-05-espacios-proyectos.md) | A. Sugerir proyectos también en "Personas que podrían interesarte"; B. Sugerirlos solo en la sección Proyectos (orden por afinidad); C. Mostrar una vez un "mini onboarding" de proyectos a los usuarios existentes. **Propuesta: A.** | |
 
 ## E. Para después del lanzamiento
 
@@ -143,3 +149,4 @@ Ninguna de estas preguntas bloquea el MVP. Se revisan con datos reales o cuando 
 | Fecha | Autor | Cambio |
 |---|---|---|
 | 2026-10-08 | Gamero | Creación: 49 preguntas consolidadas de 22 specs, los requisitos no funcionales y las normas. |
+| 2026-10-24 | Equipo UniLink | Única fuente de las preguntas; P-50 a P-55 agregadas con tres alternativas cada una; P-30 resuelta; orígenes actualizados a la nueva estructura. |

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "postulacion.estado_cambiado.v1.json",
+  "title": "postulacion.estado_cambiado (datos v1)",
+  "description": "El responsable cambió el estado de una postulación. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "postulacion_id",
+    "oportunidad_id",
+    "responsable_id",
+    "postulante_id",
+    "estado_anterior",
+    "estado_nuevo",
+    "retroalimentacion",
+    "titulo_oportunidad"
+  ],
+  "properties": {
+    "postulacion_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "oportunidad_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "responsable_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "postulante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "estado_anterior": {
+      "type": "string",
+      "enum": [
+        "ENVIADA",
+        "EN_REVISION",
+        "ACEPTADA",
+        "RECHAZADA",
+        "RETIRADA"
+      ]
+    },
+    "estado_nuevo": {
+      "type": "string",
+      "enum": [
+        "ENVIADA",
+        "EN_REVISION",
+        "ACEPTADA",
+        "RECHAZADA",
+        "RETIRADA"
+      ]
+    },
+    "retroalimentacion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "titulo_oportunidad": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

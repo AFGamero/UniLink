@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.invitacion_creada.v1.json",
+  "title": "proyecto.invitacion_creada (datos v1)",
+  "description": "Un administrador invitó a una conexión al proyecto. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "invitacion_id",
+    "proyecto_id",
+    "invitado_id",
+    "invitado_por_id",
+    "vence_en",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "invitacion_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "invitado_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "invitado_por_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "vence_en": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,18 +3,26 @@
 | Campo | Valor |
 |---|---|
 | **Módulo** | Contenido (CNT) |
-| **Sprint** | Sprint 04 |
 | **Estado** | Borrador |
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-08](../casos-de-uso.md#cu-08--publicar-contenido), [CU-09](../casos-de-uso.md#cu-09--visualizar-publicaciones) |
 | **Historias** | [HU-08](../historias.md#hu-08), [HU-09](../historias.md#hu-09) |
-| **Última actualización** | 2026-10-06 |
+| **Última actualización** | 2026-10-24 |
 
 ## 1. Objetivo
 
 Permitir que la comunidad comparta proyectos, logros y artículos, y que cada usuario vea en su feed el contenido de su red y de sus temas de interés, incluso si todavía no tiene conexiones.
 
-## 2. Alcance
+## 2. Quién es quién
+
+| Actor | Qué hace | Qué ve | Qué no puede hacer |
+|---|---|---|---|
+| Autor | Publica, edita (título, texto y categoría) y elimina sus publicaciones; elimina comentarios en ellas. | Sus publicaciones aunque estén ocultas o retiradas, con el motivo. | Cambiar adjuntos después de publicar; publicar con palabras prohibidas. |
+| Lector | Ve el feed, reacciona, comenta y comparte el enlace. | Lo que permite la privacidad del autor (RN-06). | Ver publicaciones de un perfil "Solo mis conexiones" sin ser su conexión; reaccionar dos veces. |
+| Denunciante | Reporta publicaciones y comentarios ajenos (FS-CNT-02). | — | Reportar lo propio. |
+| Sistema | Arma el feed con contenido de respaldo y ordena por relevancia. | — | — |
+
+## 3. Alcance
 
 **Incluye:**
 
@@ -31,13 +39,6 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 - Volver a publicar contenido de otros en el propio perfil, menciones (@) y etiquetas (#).
 - Encuestas o videos.
 
-## 3. Actores
-
-| Actor | Participación |
-|---|---|
-| Usuario autenticado (autor) | Crea, edita y elimina sus publicaciones; modera los comentarios de sus publicaciones. |
-| Usuario autenticado (lector) | Ve el feed, reacciona, comenta y comparte. |
-
 ## 4. Reglas de negocio
 
 **Publicaciones**
@@ -46,7 +47,7 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 |---|---|
 | RN-01 | Toda publicación tiene título, texto y una categoría activa de tipo "Publicaciones" ([FS-PLT-01](../../plataforma/specs/FS-PLT-01-gestion-categorias.md)). |
 | RN-02 | Adjuntos: hasta 4 imágenes (JPG, PNG o WebP, máximo 5 MB cada una) **o** un PDF (máximo 10 MB). No se pueden combinar imágenes y PDF. |
-| RN-03 | Antes de publicar, el sistema revisa el título y el texto contra una lista de palabras prohibidas configurable. Si hay coincidencias, rechaza la publicación e indica el motivo. |
+| RN-03 | Antes de publicar, el sistema revisa el título y el texto contra la lista de palabras prohibidas que administra [FS-PLT-01](../../plataforma/specs/FS-PLT-01-gestion-categorias.md). Si hay coincidencias, rechaza la publicación e indica el motivo. |
 | RN-04 | El autor puede editar el título, el texto y la categoría en cualquier momento; la publicación muestra "Editada". Los adjuntos no se pueden cambiar después de publicar. |
 | RN-05 | Al eliminar una publicación se eliminan también sus comentarios y reacciones. |
 | RN-06 | **Visibilidad:** si el perfil del autor es "Comunidad", la publicación la ve cualquier usuario autenticado. Si es "Solo mis conexiones", solo la ven sus conexiones. |
@@ -70,6 +71,9 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 | RN-14 | El autor de un comentario puede eliminarlo. El autor de la publicación puede eliminar cualquier comentario de su publicación. |
 | RN-15 | "Compartir" copia el enlace de la publicación. El enlace solo funciona para usuarios autenticados que tengan permiso de verla según RN-06. |
 | RN-16 | Se notifica al autor de la publicación cuando alguien comenta ([FS-COM-02](../../comunicacion/specs/FS-COM-02-centro-notificaciones.md)). Las reacciones no generan notificación, para no saturar al usuario. |
+| RN-17 | Las publicaciones y los comentarios implementan el contrato `Reportable` de [FS-CNT-02](./FS-CNT-02-moderacion-contenido.md). Una publicación retirada u oculta no aparece en ningún feed, perfil ni enlace, salvo para su autor. |
+| RN-18 | Si la subida de un adjunto falla, la publicación no se crea y el texto escrito se conserva para reintentar (MSG-09). |
+| RN-19 | Una edición sobre una publicación que cambió mientras tanto (otra pestaña o un retiro) recibe un conflicto y muestra la versión actual (RNF-CON-02). |
 
 ## 5. Requisitos funcionales
 
@@ -93,25 +97,61 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 | Título | Texto | Sí | 5 a 120 caracteres. |
 | Texto | Texto largo | Sí | 10 a 3.000 caracteres. Los enlaces se convierten en vínculos. |
 | Categoría | Lista | Sí | Categorías activas de tipo "Publicaciones". |
-| Imágenes | Archivos | No | RN-02. Cada imagen admite una descripción opcional de hasta 250 caracteres para lectores de pantalla ([RNF-ACC-05](../../../requisitos/RequisitosNoFuncionales.md#6-accesibilidad)). |
+| Imágenes | Archivos | No | RN-02. Cada imagen admite una descripción opcional de hasta 250 caracteres para lectores de pantalla ([RNF-ACC-05](../../../srs/Especificacion_Requisitos.md#336-accesibilidad)). |
 | PDF | Archivo | No | RN-02. |
 | Comentario | Texto | Sí, para comentar | 1 a 1.000 caracteres; RN-13. |
 
 ## 7. Estados
+
+```mermaid
+stateDiagram-v2
+    state "Publicada" as e1
+    state "Eliminada" as e2
+    state "Retirada" as e3
+    [*] --> e1
+    e1 --> e2
+    e1 --> e3
+    e2 --> [*]
+```
 
 | Estado de la publicación | Entra cuando | Sale hacia |
 |---|---|---|
 | Publicada | Pasa la validación | **Eliminada** por su autor; **Retirada** por un administrador (FS-CNT-02) |
 | Eliminada | El autor la elimina | Estado final |
 
-## 8. Flujo de pantallas
+## 8. Flujo principal
 
 1. **Feed** → "Comparte algo con la comunidad" → **Formulario** → "Publicar" → **Feed** con la publicación arriba.
 2. **Feed** → "Me gusta" o "Comentar" en una publicación → se actualiza en el mismo lugar.
 3. **Feed** → menú "…" de una publicación propia → "Editar" o "Eliminar".
 4. **Enlace compartido** → **Página de la publicación**.
 
-## 9. Mensajes al usuario
+## 9. Variaciones
+
+| Variación | Qué cambia | Regla |
+|---|---|---|
+| Con imágenes o con un PDF | Hasta 4 imágenes **o** 1 PDF. | RN-02 |
+| Usuario sin red ni categorías | Contenido de respaldo de su facultad y de la plataforma. | RN-08 |
+| Personal administrativo (sin facultad) | El respaldo usa las publicaciones más recientes de toda la plataforma. | RN-08 |
+| Orden "Relevantes" | Puntaje por actividad, conexión e interés. | RN-10 |
+| Autor con perfil "Solo mis conexiones" | Solo sus conexiones ven sus publicaciones. | RN-06 |
+| Publicación editada | Muestra "Editada". | RN-04 |
+
+## 10. ¿Qué pasaría si…?
+
+| Situación | Comportamiento esperado | Regla o pregunta |
+|---|---|---|
+| Comenta una publicación que su autor acaba de eliminar | El comentario se rechaza con MSG-06. | RN-05 |
+| Dos "Me gusta" del mismo usuario a la vez | Cuenta uno solo. | RN-12 |
+| El autor edita mientras un administrador la retira | El retiro prevalece; la edición recibe un conflicto. | RN-19, FS-CNT-02 |
+| La cuenta del autor se suspende | Sus publicaciones y comentarios dejan de verse hasta la reactivación. | FS-USR-08 RN-04 |
+| Falla el almacenamiento al subir adjuntos | No se publica; el texto se conserva (MSG-09). | RN-18 |
+| Publica dos veces por un reintento | Se crea una sola publicación. | RNF-CON-03 |
+| Cambia la lista de palabras prohibidas | Lo ya publicado no se revisa de nuevo; se revisa al editar. Lo inapropiado se reporta. | RN-03 |
+| La categoría se desactiva | La publicación la conserva (FS-PLT-01 RN-05). | FS-PLT-01 |
+| Privacidad: alguien comparte el enlace con quien no puede verla | Ve MSG-06. | RN-15 |
+
+## 11. Mensajes al usuario
 
 | Código | Situación | Mensaje |
 |---|---|---|
@@ -123,8 +163,9 @@ Permitir que la comunidad comparta proyectos, logros y artículos, y que cada us
 | MSG-06 | Sin permiso o eliminada | "Esta publicación no está disponible." |
 | MSG-07 | Filtro sin resultados | "No hay publicaciones recientes en esta categoría." |
 | MSG-08 | Etiqueta de respaldo | "Sugerida para ti" |
+| MSG-09 | Adjunto no subido | "No pudimos subir tus archivos. Tu texto sigue aquí; inténtalo de nuevo." |
 
-## 10. Criterios de aceptación
+## 12. Resultado esperado
 
 ```gherkin
 Escenario: Publicar con imágenes
@@ -179,24 +220,66 @@ Escenario: Orden por relevancia
   Y una tiene 10 comentarios y la otra ninguno
   Cuando elijo "Relevantes"
   Entonces la publicación con comentarios aparece primero
+
+Escenario: Comentar una publicación eliminada
+  Dado que estoy escribiendo un comentario en la publicación de Luis
+  Cuando Luis la elimina antes de que envíe
+  Entonces veo el mensaje MSG-06 y el comentario no se guarda
+
+Escenario: Me gusta repetido
+  Dado que pulso "Me gusta" dos veces seguidas en la misma publicación
+  Entonces la publicación cuenta un solo "Me gusta" mío
+
+Escenario: Falla al subir adjuntos
+  Dado que el almacenamiento de archivos no responde
+  Cuando publico con 2 imágenes
+  Entonces la publicación no se crea
+  Y veo el mensaje MSG-09 con mi texto intacto
+
+Escenario: Autor suspendido
+  Dado que la cuenta de Luis se suspende
+  Cuando abro mi feed
+  Entonces no veo las publicaciones de Luis
+
+Escenario: Publicación retirada
+  Dado que un administrador retiró una publicación de Luis
+  Cuando abro su enlace
+  Entonces veo el mensaje MSG-06
 ```
 
-## 11. Dependencias
+## 13. Contratos
 
-- [FS-PLT-01](../../plataforma/specs/FS-PLT-01-gestion-categorias.md): categorías de tipo "Publicaciones".
-- [FS-RED-01](../../red/specs/FS-RED-01-solicitudes-conexion.md): conexiones del usuario.
-- [FS-USR-04](../../usuarios/specs/FS-USR-04-preferencias-contenido.md) y [FS-USR-05](../../usuarios/specs/FS-USR-05-configuracion-cuenta.md): intereses y privacidad.
-- [FS-COM-02](../../comunicacion/specs/FS-COM-02-centro-notificaciones.md): notificación de comentarios.
-- Almacenamiento de archivos para imágenes y PDF (el mismo de la foto de perfil).
+**Expone:**
 
-## 12. Preguntas abiertas
+- API: `GET /api/v1/contenido/feed`, `POST /api/v1/contenido/publicaciones`, `GET`, `PUT` y `DELETE /api/v1/contenido/publicaciones/{id}`, `POST /api/v1/contenido/publicaciones/{id}/comentarios`, `DELETE /api/v1/contenido/comentarios/{id}`, `PUT` y `DELETE /api/v1/contenido/publicaciones/{id}/reaccion`, `GET /api/v1/contenido/usuarios/{id}/publicaciones` ([contrato](../../../../contracts/api/contenido.yaml)).
+- `Reportable` para "publicación" y "comentario".
+- Evento: `publicacion.comentada` ([catálogo](../../../../contracts/eventos/README.md)).
 
-- [ ] ¿Quién define y mantiene la lista de palabras prohibidas?
-- [ ] La categoría "Oportunidades" de publicaciones puede confundirse con el módulo de oportunidades (Sprint 6), que sí permite postularse. ¿Se renombra (por ejemplo, "Convocatorias externas") o se elimina cuando exista ese módulo?
-- [ ] ¿Basta con una sola reacción ("Me gusta") o se quieren varias (por ejemplo, "Me gusta", "Interesante", "Felicitaciones")?
+**Consume:** Red (conexiones y visibilidad), Usuarios (autor, estado y categorías de interés), Plataforma (categorías y palabras prohibidas).
 
-## 13. Historial de cambios
+## 14. Calidad
+
+RNF-SEG-06 (adjuntos), RNF-ACC-05, RNF-REN-02, RNF-CON-02, RNF-CON-03, [EC-01](../../../srs/Especificacion_Requisitos.md#34-escenarios-de-atributos-de-calidad).
+
+## 15. Preguntas abiertas
+
+- P-29 — quién mantiene la lista de palabras prohibidas.
+- P-31 — ¿una o varias reacciones?
+
+## 16. Lista de revisión
+
+- [x] Cada actor de "Quién es quién" existe en el [SRS §2.4](../../../srs/Especificacion_Requisitos.md#24-actores-del-sistema) con el mismo nombre.
+- [x] Toda acción tiene un actor que puede hacerla y se valida en el servidor (RNF-SEG-04).
+- [ ] Cada regla tiene al menos un escenario en "Resultado esperado".
+- [x] "¿Qué pasaría si…?" revisó las siete situaciones: concurrencia, estado de la cuenta, eliminación de lo que usa, pérdida de permiso, falla externa, límites de uso y privacidad.
+- [ ] Ningún dato se recoge sin finalidad (RNF-PRI-01).
+- [x] No contradice a su caso de uso, a su historia ni a otro spec.
+- [x] Sus contratos existen en [`contracts/`](../../../../contracts/README.md).
+- [ ] No tiene preguntas abiertas que bloqueen el desarrollo.
+
+## 17. Historial de cambios
 
 | Fecha | Autor | Cambio |
 |---|---|---|
 | 2026-10-06 | Gamero | Creación |
+| 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |

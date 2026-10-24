@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.rol_cambiado.v1.json",
+  "title": "proyecto.rol_cambiado (datos v1)",
+  "description": "Cambió el rol de un miembro del proyecto. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "proyecto_id",
+    "miembro_id",
+    "rol_anterior",
+    "rol_nuevo",
+    "cambiado_por_id",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "miembro_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "rol_anterior": {
+      "type": "string",
+      "enum": [
+        "VISUALIZADOR",
+        "EDITOR",
+        "ADMINISTRADOR"
+      ]
+    },
+    "rol_nuevo": {
+      "type": "string",
+      "enum": [
+        "VISUALIZADOR",
+        "EDITOR",
+        "ADMINISTRADOR"
+      ]
+    },
+    "cambiado_por_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,538 @@
+openapi: 3.0.3
+info:
+  title: UniLink — API del módulo Contenido
+  version: 0.1.0
+  description: 'Publicaciones, feed, comentarios, reacciones, reportes y moderación.
+
+
+    Esqueleto acordado antes de programar (ADR-006): rutas, quién puede usarlas, caso de uso y spec de origen. Los esquemas
+    de las peticiones y respuestas se completan cuando el spec pasa a Aprobado. Convenciones en contracts/api/README.md.'
+servers:
+- url: /api/v1/contenido
+security:
+- sesion: []
+paths:
+  /feed:
+    get:
+      summary: Feed del usuario
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: getFeed
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /publicaciones:
+    post:
+      summary: Publicar
+      description: 'Quién: Autor. Detalle en FS-CNT-01.'
+      operationId: postPublicaciones
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-08
+      x-spec: FS-CNT-01
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+  /publicaciones/{publicacion_id}:
+    get:
+      summary: Ver una publicación
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: getPublicacionesPublicacion_id
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      summary: Editar una publicación propia
+      description: 'Quién: Autor. Detalle en FS-CNT-01.'
+      operationId: putPublicacionesPublicacion_id
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-08
+      x-spec: FS-CNT-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Eliminar una publicación propia
+      description: 'Quién: Autor. Detalle en FS-CNT-01.'
+      operationId: deletePublicacionesPublicacion_id
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-08
+      x-spec: FS-CNT-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /publicaciones/{publicacion_id}/comentarios:
+    get:
+      summary: Comentarios de una publicación
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: getPublicacionesPublicacion_idComentarios
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Comentar
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: postPublicacionesPublicacion_idComentarios
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /comentarios/{comentario_id}:
+    delete:
+      summary: Eliminar un comentario (propio o en una publicación propia)
+      description: 'Quién: Autor. Detalle en FS-CNT-01.'
+      operationId: deleteComentariosComentario_id
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: comentario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /publicaciones/{publicacion_id}/reaccion:
+    put:
+      summary: Dar "Me gusta"
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: putPublicacionesPublicacion_idReaccion
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Quitar "Me gusta"
+      description: 'Quién: Lector. Detalle en FS-CNT-01.'
+      operationId: deletePublicacionesPublicacion_idReaccion
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: publicacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /usuarios/{usuario_id}/publicaciones:
+    get:
+      summary: Publicaciones de un usuario (pestaña del perfil)
+      description: 'Quién: Observador. Detalle en FS-CNT-01.'
+      operationId: getUsuariosUsuario_idPublicaciones
+      tags:
+      - FS-CNT-01
+      x-casos-de-uso:
+      - CU-09
+      x-spec: FS-CNT-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /reportes:
+    post:
+      summary: Reportar un elemento Reportable
+      description: 'Quién: Denunciante. Detalle en FS-CNT-02.'
+      operationId: postReportes
+      tags:
+      - FS-CNT-02
+      x-casos-de-uso:
+      - CU-25
+      x-spec: FS-CNT-02
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+  /admin/moderacion/cola:
+    get:
+      summary: Cola de moderación
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-CNT-02.'
+      operationId: getAdminModeracionCola
+      tags:
+      - FS-CNT-02
+      x-casos-de-uso:
+      - CU-25
+      x-spec: FS-CNT-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /admin/moderacion/publicaciones:
+    get:
+      summary: Todas las publicaciones, para retirar sin reportes
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-CNT-02.'
+      operationId: getAdminModeracionPublicaciones
+      tags:
+      - FS-CNT-02
+      x-casos-de-uso:
+      - CU-25
+      x-spec: FS-CNT-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /admin/moderacion/{tipo}/{elemento_id}/decision:
+    post:
+      summary: Retirar o mantener un elemento
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-CNT-02.'
+      operationId: postAdminModeracionTipoElemento_idDecision
+      tags:
+      - FS-CNT-02
+      x-casos-de-uso:
+      - CU-25
+      x-spec: FS-CNT-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: tipo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: elemento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /admin/moderacion/historial:
+    get:
+      summary: Historial de decisiones
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-CNT-02.'
+      operationId: getAdminModeracionHistorial
+      tags:
+      - FS-CNT-02
+      x-casos-de-uso:
+      - CU-25
+      x-spec: FS-CNT-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+components:
+  securitySchemes:
+    sesion:
+      type: apiKey
+      in: cookie
+      name: unilink_sesion
+      description: Cookie HttpOnly, Secure y SameSite (RNF-SEG-03). Las escrituras exigen además la cabecera X-CSRF-Token.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: Evita duplicar una creación reenviada (RNF-CON-03).
+      schema:
+        type: string
+        format: uuid
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: Versión (ETag) que el usuario editó; si cambió, 409 (RNF-CON-02).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      - message
+      - correlation_id
+      properties:
+        error:
+          type: string
+          description: Código estable, por ejemplo CUPO_COMPLETO.
+        message:
+          type: string
+          description: Texto MSG-NN del spec, listo para mostrar.
+        correlation_id:
+          type: string
+          description: Identificador de la petición (RNF-OBS-01).
+  responses:
+    Validacion:
+      description: Datos inválidos.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutenticado:
+      description: Sin sesión o sesión vencida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Prohibido:
+      description: El actor no tiene permiso según "Quién es quién" (RNF-SEG-04).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoEncontrado:
+      description: No existe o el usuario no puede verlo.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflicto:
+      description: Estado cambiado, versión desactualizada o regla de negocio incumplida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    LimiteDeUso:
+      description: Límite de uso superado (RNF-SEG-07).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Segundos para reintentar.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evento.retirado.v1.json",
+  "title": "evento.retirado (datos v1)",
+  "description": "Un administrador retiró un evento por moderación. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "evento_id",
+    "organizador_id",
+    "asistentes_id",
+    "titulo"
+  ],
+  "properties": {
+    "evento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "organizador_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "asistentes_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

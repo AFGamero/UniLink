@@ -17,7 +17,7 @@ Casos de uso del módulo Contenido (CNT). Los actores se definen en el [mapa de 
 
 **Actor(es):** Usuario autenticado
 
-**Descripción:** Permite al usuario compartir publicaciones académicas o profesionales, como proyectos, logros, oportunidades o artículos, con la comunidad.
+**Descripción:** Permite al usuario compartir publicaciones académicas o profesionales, como proyectos, logros, convocatorias externas o artículos, con la comunidad.
 
 **Precondiciones:** El usuario debe estar autenticado en la plataforma.
 
@@ -66,7 +66,7 @@ Casos de uso del módulo Contenido (CNT). Los actores se definen en el [mapa de 
 
 **Actor(es):** Administrador de la plataforma; Usuario autenticado (reporta contenido)
 
-**Descripción:** Permite al administrador revisar y retirar publicaciones (incluidos sus comentarios) o eventos que incumplan las políticas de uso, incluidos los reportados por los usuarios.
+**Descripción:** Permite al administrador revisar y retirar publicaciones (incluidos sus comentarios), eventos y, con el mismo mecanismo, perfiles, oportunidades y proyectos que incumplan las políticas de uso, incluidos los reportados por los usuarios.
 
 **Precondiciones:** El administrador debe estar autenticado con rol de administrador de la plataforma.
 

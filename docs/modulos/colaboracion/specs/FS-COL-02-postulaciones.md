@@ -3,18 +3,24 @@
 | Campo | Valor |
 |---|---|
 | **Módulo** | Colaboración (COL) |
-| **Sprint** | Sprint 06 |
 | **Estado** | Borrador |
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-12](../casos-de-uso.md#cu-12--explorar-oportunidades), [CU-14](../casos-de-uso.md#cu-14--gestionar-estado-de-postulaciones) |
 | **Historias** | [HU-12](../historias.md#hu-12), [HU-25](../historias.md#hu-25) |
-| **Última actualización** | 2026-10-06 |
+| **Última actualización** | 2026-10-24 |
 
 ## 1. Objetivo
 
 Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su perfil, postularse en pocos pasos y saber en todo momento en qué va cada postulación.
 
-## 2. Alcance
+## 2. Quién es quién
+
+| Actor | Qué hace | Qué ve | Qué no puede hacer |
+|---|---|---|---|
+| Postulante | Explora, se postula con motivación, sigue el estado y se retira. | Las oportunidades abiertas con su afinidad; sus postulaciones con historial y retroalimentación. | Postularse dos veces a la misma, a una cerrada o a la propia; volver a postularse tras retirarse. |
+| Responsable de oportunidad | Recibe la postulación. | El perfil completo del postulante mientras la postulación exista. | — |
+
+## 3. Alcance
 
 **Incluye:**
 
@@ -30,13 +36,6 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 - Adjuntar archivos o la hoja de vida a la postulación: el responsable consulta el perfil del postulante.
 - Guardar oportunidades como favoritas.
 
-## 3. Actores
-
-| Actor | Participación |
-|---|---|
-| Usuario autenticado (postulante) | Explora, se postula y hace seguimiento. |
-| Responsable de oportunidad | Recibe la postulación (notificación). |
-
 ## 4. Reglas de negocio
 
 | ID | Regla |
@@ -50,6 +49,7 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 | RN-07 | El postulante puede retirar su postulación mientras esté "Enviada" o "En revisión". Pasa a "Retirada" y el responsable es notificado. |
 | RN-08 | Cada cambio de estado queda en el historial de la postulación con su fecha y, si existe, la retroalimentación del responsable. |
 | RN-09 | Por defecto, la sección Oportunidades muestra solo las abiertas, ordenadas por afinidad y, a igual afinidad, por fecha de cierre más próxima. |
+| RN-10 | Al postularse se comprueba de nuevo que la oportunidad siga abierta y con cupo; si no, MSG-03. |
 
 ## 5. Requisitos funcionales
 
@@ -61,7 +61,7 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 | RF-04 | El detalle debe mostrar todos los datos de la oportunidad, el perfil resumido del responsable, las habilidades requeridas marcando cuáles tiene el usuario, y el botón "Postularme" o el estado de la postulación existente. | Alta |
 | RF-05 | Al postularse, el sistema debe pedir el mensaje de motivación, confirmar el envío y notificar al responsable. | Alta |
 | RF-06 | El sistema debe ofrecer el panel "Mis postulaciones" con cada postulación: oportunidad, responsable, fecha y estado como etiqueta de color, con filtro por estado. | Alta |
-| RF-07 | Al abrir una postulación, el sistema debe mostrar el historial de estados con la retroalimentación (RN-08) y la opción "Retirar postulación" cuando aplique (RN-07). | Alta |
+| RF-07 | Al abrir una postulación, el sistema debe mostrar el historial de estados con la retroalimentación (RN-08) y la opción "Retirar postulación" cuando aplique (RN-07). Si la postulación está aceptada, ofrece "Enviar mensaje" al responsable ([FS-COM-01](../../comunicacion/specs/FS-COM-01-mensajeria-privada.md), RF-03). | Alta |
 | RF-08 | El sistema debe mostrar un mensaje con enlace a la sección Oportunidades cuando el usuario no tenga postulaciones. | Media |
 
 ## 6. Datos y validaciones
@@ -82,6 +82,26 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 
 ## 7. Estados
 
+```mermaid
+stateDiagram-v2
+    state "Enviada" as e1
+    state "En revisión" as e2
+    state "Aceptada" as e3
+    state "Rechazada" as e4
+    state "Retirada" as e5
+    [*] --> e1
+    e1 --> e2
+    e1 --> e3
+    e1 --> e4
+    e1 --> e5
+    e2 --> e3
+    e2 --> e4
+    e2 --> e5
+    e3 --> [*]
+    e4 --> [*]
+    e5 --> [*]
+```
+
 | Estado | Entra cuando | Sale hacia |
 |---|---|---|
 | Enviada | El usuario se postula | **En revisión**, **Aceptada**, **Rechazada** (responsable) o **Retirada** (postulante) |
@@ -90,13 +110,34 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 | Rechazada | Decisión del responsable o cancelación de la oportunidad | Estado final |
 | Retirada | El postulante la retira | Estado final |
 
-## 8. Flujo de pantallas
+## 8. Flujo principal
 
 1. **Menú principal** → "Oportunidades" → filtra o busca → selecciona una → **Detalle**.
 2. **Detalle** → "Postularme" → escribe la motivación → "Enviar postulación" → el detalle muestra "Enviada".
 3. **Menú del usuario** → "Mis postulaciones" → selecciona una → **Historial** → "Retirar postulación" (opcional).
 
-## 9. Mensajes al usuario
+## 9. Variaciones
+
+| Variación | Qué cambia | Regla |
+|---|---|---|
+| Perfil "Solo mis conexiones" | El responsable lo ve completo mientras exista la postulación. | RN-05 |
+| Postulación aceptada | Habilita la conversación con el responsable. | RF-07 |
+| Postulación retirada | No puede volver a postularse. | RN-02, RN-07 |
+| Sin postulaciones | MSG-05 con enlace a Oportunidades. | RF-08 |
+
+## 10. ¿Qué pasaría si…?
+
+| Situación | Comportamiento esperado | Regla o pregunta |
+|---|---|---|
+| Se postula dos veces por un reintento | Se crea una sola postulación. | RN-02, RNF-CON-03 |
+| Se postula justo cuando cierra o se llena | MSG-03. | RN-10 |
+| Retira la postulación mientras el responsable la acepta | Gana la primera operación; la otra ve el estado actual. | RN-07, RNF-CON-02 |
+| La oportunidad se cancela o se retira | La postulación pendiente pasa a "Rechazada" con el motivo. | FS-COL-01 RN-08, RN-15 |
+| La cuenta del postulante se suspende | Qué pasa con sus postulaciones depende de P-51. | P-51 |
+| Falla la notificación al responsable | La postulación existe igual; el aviso se reintenta. | RNF-CON-04 |
+| Privacidad: el responsable deja de ver el perfil privado al eliminarse la postulación | Al retirarse, el responsable vuelve a ver solo lo público. | RN-05 |
+
+## 11. Mensajes al usuario
 
 | Código | Situación | Mensaje |
 |---|---|---|
@@ -108,7 +149,7 @@ Ayudar a cada usuario a encontrar las oportunidades que mejor encajan con su per
 | MSG-06 | Sin resultados | "No hay oportunidades abiertas con estos filtros." |
 | MSG-07 | Ayuda de motivación | "Cuéntale al responsable por qué te interesa y qué puedes aportar." |
 
-## 10. Criterios de aceptación
+## 12. Resultado esperado
 
 ```gherkin
 Escenario: Orden por afinidad
@@ -156,20 +197,60 @@ Escenario: Sin postulaciones
   Dado que nunca me he postulado
   Cuando abro "Mis postulaciones"
   Entonces veo el mensaje MSG-05 con un enlace a Oportunidades
+
+Escenario: Postulación repetida por reintento
+  Dado que envío mi postulación y la conexión se corta
+  Cuando el navegador reenvía la misma petición
+  Entonces tengo una sola postulación
+
+Escenario: Oportunidad que se llena mientras escribo
+  Dado que estoy escribiendo mi motivación
+  Cuando la oportunidad completa sus cupos antes de que envíe
+  Entonces veo el mensaje MSG-03
+
+Escenario: Retirar y aceptar a la vez
+  Dado que retiro mi postulación en el momento en que el responsable la acepta
+  Entonces solo una de las dos acciones tiene efecto
+  Y ambos vemos el estado final
+
+Escenario: Mensaje al responsable tras ser aceptado
+  Dado que mi postulación fue aceptada
+  Cuando abro la postulación en "Mis postulaciones"
+  Entonces veo "Enviar mensaje"
 ```
 
-## 11. Dependencias
+## 13. Contratos
 
-- [FS-COL-01](./FS-COL-01-publicacion-oportunidades.md): oportunidades, afinidad y decisiones del responsable.
-- [FS-USR-06](../../usuarios/specs/FS-USR-06-perfil-profesional.md): habilidades y "Puedo aportar" del postulante.
-- [FS-COM-02](../../comunicacion/specs/FS-COM-02-centro-notificaciones.md): notificaciones de postulación y de cambio de estado.
+**Expone:**
 
-## 12. Preguntas abiertas
+- API: `GET /api/v1/colaboracion/oportunidades` (exploración), `POST /api/v1/colaboracion/oportunidades/{id}/postulaciones`, `GET /api/v1/colaboracion/postulaciones` (mis postulaciones), `GET /api/v1/colaboracion/postulaciones/{id}`, `POST /api/v1/colaboracion/postulaciones/{id}/retiro` ([contrato](../../../../contracts/api/colaboracion.yaml)).
+- Eventos: `postulacion.creada`, `postulacion.retirada` ([catálogo](../../../../contracts/eventos/README.md)).
 
-- [ ] ¿Se debe limitar el número de postulaciones activas por usuario para evitar que se postulen a todo sin leer?
+**Consume:** Usuarios (afinidad y datos públicos).
 
-## 13. Historial de cambios
+## 14. Calidad
+
+RNF-CON-02, RNF-CON-03, RNF-ACC-04 (estados con texto y color).
+
+## 15. Preguntas abiertas
+
+- P-38 — ¿limitar postulaciones activas?
+- P-51 — postulaciones de cuentas que dejan de estar activas.
+
+## 16. Lista de revisión
+
+- [x] Cada actor de "Quién es quién" existe en el [SRS §2.4](../../../srs/Especificacion_Requisitos.md#24-actores-del-sistema) con el mismo nombre.
+- [x] Toda acción tiene un actor que puede hacerla y se valida en el servidor (RNF-SEG-04).
+- [ ] Cada regla tiene al menos un escenario en "Resultado esperado".
+- [x] "¿Qué pasaría si…?" revisó las siete situaciones: concurrencia, estado de la cuenta, eliminación de lo que usa, pérdida de permiso, falla externa, límites de uso y privacidad.
+- [ ] Ningún dato se recoge sin finalidad (RNF-PRI-01).
+- [x] No contradice a su caso de uso, a su historia ni a otro spec.
+- [x] Sus contratos existen en [`contracts/`](../../../../contracts/README.md).
+- [ ] No tiene preguntas abiertas que bloqueen el desarrollo.
+
+## 17. Historial de cambios
 
 | Fecha | Autor | Cambio |
 |---|---|---|
 | 2026-10-06 | Gamero | Creación |
+| 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |

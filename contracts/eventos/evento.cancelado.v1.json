@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evento.cancelado.v1.json",
+  "title": "evento.cancelado (datos v1)",
+  "description": "El organizador canceló un evento. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "evento_id",
+    "organizador_id",
+    "motivo",
+    "asistentes_id",
+    "titulo"
+  ],
+  "properties": {
+    "evento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "organizador_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "motivo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asistentes_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

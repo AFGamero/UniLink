@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.tarea_asignada.v1.json",
+  "title": "proyecto.tarea_asignada (datos v1)",
+  "description": "Se asignó una tarea a un miembro. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "tarea_id",
+    "proyecto_id",
+    "responsable_id",
+    "asignada_por_id",
+    "titulo_tarea",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "tarea_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "responsable_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "asignada_por_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "titulo_tarea": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,41 +3,54 @@
 _MVP — Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
+## Documentos
+
+| # | Documento | Contenido |
+|---|---|---|
+| 1 | [Especificación de requisitos (SRS)](./srs/Especificacion_Requisitos.md) | Alcance, stakeholders, actores y matriz de permisos ("quién es quién"), restricciones, requisitos funcionales y no funcionales, escenarios de calidad, verificación, trazabilidad, riesgos y responsabilidades. |
+| 2 | [Comparación de alternativas](./arquitectura/Comparacion_Alternativas.md) | Monolito en capas, monolito modular y microservicios: tabla ponderada, decisión y trade-offs. |
+| 3 | [Registro de decisiones (ADR)](./arquitectura/Registro_Decisiones.md) | Estilo, módulos y dependencias, comunicación, persistencia, contratos, tiempo real, búsqueda, alojamiento, stack, tareas y archivos. |
+| 4 | [Vistas de arquitectura](./arquitectura/Vistas_Arquitectura.md) | Vista de módulos, vista de componentes y conectores (C&C) y vista de despliegue. |
+| 5 | [Módulos](./modulos/README.md) | Por cada módulo: README, casos de uso, historias de usuario y specs con el estudio de cada funcionalidad. |
+| 6 | [Contratos](../contracts/README.md) | API REST, interfaces públicas de los módulos y eventos de dominio. |
+| 7 | [Plan de implementación](./arquitectura/Plan_de_Implementacion.md) | Estructura interna de un módulo, fronteras, flujos clave, tareas programadas y pruebas. |
+| 8 | [Sprints](./sprints/README.md) | Roadmap, ceremonias, _Definition of Ready_ y _Definition of Done_. |
+
+Además: [preguntas abiertas](./preguntas-abiertas.md) (única fuente de las decisiones pendientes), [normas de la comunidad](./normas-comunidad.md) y [decisiones sobre la documentación](./decisiones/).
+
+## Orden de lectura
+
+1. **SRS, secciones 1 y 2:** qué problema resuelve UniLink, para quién y con qué restricciones.
+2. **Comparación de alternativas:** por qué un monolito modular.
+3. **Registro de decisiones:** cómo se materializa.
+4. **Vistas de arquitectura:** qué módulos hay, cómo se comunican y dónde se ejecutan.
+5. **Módulos:** el estudio de cada funcionalidad.
+6. **Contratos:** lo que cada módulo expone y consume.
+7. **Plan de implementación y sprints:** cómo y cuándo se construye.
+
 ## Estructura
 
 ```
 docs/
-├── README.md                  ← este archivo
-├── normas-comunidad.md        ← reglas de convivencia que aceptan los usuarios y aplican los administradores
-├── preguntas-abiertas.md      ← decisiones pendientes de todos los documentos, agrupadas por responsable
-├── requisitos/                ← QUÉ necesita el usuario (fuente de verdad del alcance)
-│   ├── CasosDeUso.md          (CU-01 … CU-30)
-│   ├── HistoriasDeUsuario.md  (HU-01 … HU-31)
-│   └── RequisitosNoFuncionales.md (seguridad, privacidad, rendimiento, accesibilidad…)
-├── specs/                     ← CÓMO se comporta el sistema (especificaciones funcionales)
-│   ├── README.md              (índice, estados y trazabilidad CU → spec)
+├── README.md
+├── srs/Especificacion_Requisitos.md
+├── arquitectura/        ← comparación, ADR, vistas y plan de implementación
+├── modulos/
+│   ├── README.md        ← mapa de módulos, índice de specs y equivalencias
 │   ├── _plantilla-spec.md
-│   └── <modulo>/FS-<MOD>-NN-<nombre>.md
-└── sprints/                   ← CUÁNDO se construye cada spec
-    ├── README.md              (roadmap, Definition of Ready / Done)
-    ├── _plantilla-sprint.md
-    └── sprint-NN/README.md
+│   └── <modulo>/        ← README, casos-de-uso.md, historias.md, specs/
+├── sprints/
+├── decisiones/
+├── preguntas-abiertas.md
+└── normas-comunidad.md
+contracts/               ← en la raíz del repositorio
 ```
 
 ## Cómo fluye el trabajo
 
 1. **Requisitos:** los casos de uso y las historias definen el alcance. No se programa nada que no esté trazado a un CU.
-2. **Specs:** cada spec detalla uno o varios CU de un mismo módulo: reglas de negocio, datos, validaciones, mensajes y criterios de aceptación.
-3. **Sprints:** cada sprint toma specs en estado **Aprobado** y las lleva a **Implementado**.
+2. **Specs:** cada spec estudia una funcionalidad: quién es quién, reglas, variaciones, qué pasaría en cada situación límite y el resultado esperado.
+3. **Contratos:** antes de programar, el módulo acuerda en `contracts/` lo que expone y consume.
+4. **Sprints:** cada sprint toma specs en estado **Aprobado** y los lleva a **Implementado**.
 
-Los specs se organizan por **módulo** (no por sprint) para que un spec no cambie de carpeta si se replanifica. La asignación a sprints vive en [`sprints/README.md`](./sprints/README.md).
-
-## Enlaces rápidos
-
-- [Casos de uso](./modulos/README.md)
-- [Historias de usuario](./modulos/README.md)
-- [Requisitos no funcionales](./requisitos/RequisitosNoFuncionales.md)
-- [Índice de specs](./modulos/README.md)
-- [Roadmap de sprints](./sprints/README.md)
-- [Normas de la comunidad](./normas-comunidad.md)
-- [Preguntas abiertas](./preguntas-abiertas.md)
+Para revisar enlaces, códigos y cobertura: `python scripts/verificar_docs.py --fase completa`.

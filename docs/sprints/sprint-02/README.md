@@ -24,7 +24,7 @@
 - [ ] Implementar la consulta de complementariedad (FS-USR-06, RF-06) con pruebas de rendimiento.
 - [ ] Cargar el catálogo de facultades y programas.
 - [ ] Elegir la librería de generación de PDF y validar que soporte tildes y "ñ".
-- [ ] Programar la tarea diaria que elimina las cuentas con 30 días de desactivación.
+- [ ] Programar la tarea diaria que elimina los datos de las cuentas que llevan 30 días "En eliminación".
 
 ## Riesgos
 

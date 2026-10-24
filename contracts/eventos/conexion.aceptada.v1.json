@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conexion.aceptada.v1.json",
+  "title": "conexion.aceptada (datos v1)",
+  "description": "Dos usuarios quedaron conectados. Productor: red.",
+  "type": "object",
+  "required": [
+    "solicitud_id",
+    "solicitante_id",
+    "destinatario_id",
+    "automatica"
+  ],
+  "properties": {
+    "solicitud_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "solicitante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "destinatario_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "automatica": {
+      "type": "boolean",
+      "description": "true si se conectaron por solicitudes cruzadas."
+    }
+  },
+  "additionalProperties": false
+}

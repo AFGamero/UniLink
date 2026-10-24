@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "postulacion.creada.v1.json",
+  "title": "postulacion.creada (datos v1)",
+  "description": "Un usuario se postuló a una oportunidad. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "postulacion_id",
+    "oportunidad_id",
+    "responsable_id",
+    "postulante_id",
+    "titulo_oportunidad"
+  ],
+  "properties": {
+    "postulacion_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "oportunidad_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "responsable_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "postulante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "titulo_oportunidad": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

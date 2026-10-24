@@ -3,18 +3,23 @@
 | Campo | Valor |
 |---|---|
 | **Módulo** | Usuarios (USR) |
-| **Sprint** | Sprint 02 |
 | **Estado** | Borrador |
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-19](../casos-de-uso.md#cu-19--generar-hoja-de-vida-en-pdf) |
 | **Historias** | [HU-13](../historias.md#hu-13) |
-| **Última actualización** | 2026-10-06 |
+| **Última actualización** | 2026-10-24 |
 
 ## 1. Objetivo
 
 Convertir el perfil de UniLink en una hoja de vida profesional en PDF, lista para enviar a convocatorias o empleadores, sin que el usuario tenga que escribirla de nuevo.
 
-## 2. Alcance
+## 2. Quién es quién
+
+| Actor | Qué hace | Qué ve | Qué no puede hacer |
+|---|---|---|---|
+| Dueño del perfil | Elige qué incluir y descarga su hoja de vida. | Las opciones y el PDF. | Descargar la hoja de vida de otro usuario. |
+
+## 3. Alcance
 
 **Incluye:**
 
@@ -27,12 +32,6 @@ Convertir el perfil de UniLink en una hoja de vida profesional en PDF, lista par
 - Descargar la hoja de vida de otro usuario.
 - Varias plantillas de diseño o edición del PDF dentro de la plataforma.
 - Hoja de vida en otros idiomas.
-
-## 3. Actores
-
-| Actor | Participación |
-|---|---|
-| Usuario autenticado | Genera y descarga su hoja de vida. |
 
 ## 4. Reglas de negocio
 
@@ -64,7 +63,7 @@ Convertir el perfil de UniLink en una hoja de vida profesional en PDF, lista par
 
 | Orden | Sección | Origen en el perfil | Contenido |
 |---|---|---|---|
-| 1 | Encabezado | Básico | Foto (opcional), nombre, titular, programa o vínculo, correo (opcional), teléfono (opcional) |
+| 1 | Encabezado | Básico | Foto (opcional), nombre, titular, unidad académica, correo (opcional), teléfono (opcional) |
 | 2 | Perfil | Biografía | Texto completo |
 | 3 | Experiencia | Trayectoria | Cargo, organización, periodo y descripción |
 | 4 | Proyectos | Trayectoria | Nombre, descripción y enlace |
@@ -83,12 +82,32 @@ Convertir el perfil de UniLink en una hoja de vida profesional en PDF, lista par
 
 No aplica.
 
-## 8. Flujo de pantallas
+## 8. Flujo principal
 
 1. **Mi perfil** → "Descargar hoja de vida" → **Opciones de la hoja de vida** → "Generar" → descarga del PDF.
 2. Si el perfil está incompleto: **Mi perfil** → "Descargar hoja de vida" → aviso con lo que falta → **Editar perfil**.
 
-## 9. Mensajes al usuario
+## 9. Variaciones
+
+| Variación | Qué cambia | Regla |
+|---|---|---|
+| Sin foto o sin correo | El encabezado los omite. | RF-02 |
+| Con teléfono | Se valida y se usa solo en el PDF. | Sección 6 |
+| Secciones vacías | Se omiten sin título. | RN-04 |
+| Perfil retirado por moderación | Titular, biografía y trayectoria retirados no se incluyen. | FS-USR-06 RN-11 |
+
+## 10. ¿Qué pasaría si…?
+
+| Situación | Comportamiento esperado | Regla o pregunta |
+|---|---|---|
+| El perfil cambia mientras se genera | El PDF refleja el perfil al empezar la generación. | RN-03 |
+| La generación tarda más de 10 segundos o falla | MSG-03; se puede reintentar. | RF-04 |
+| La foto no está disponible en el almacenamiento | Se genera sin foto y se avisa. | RNF-DIS-05 |
+| Pide muchas hojas de vida seguidas | Se aplica el límite general de la API (RNF-SEG-07). | RNF-SEG-07 |
+| Privacidad: el teléfono | Se usa solo en el PDF y no se guarda. | Sección 6 |
+| La cuenta deja de estar activa | No hay sesión, así que no puede generarla. | FS-USR-02 RN-07 |
+
+## 11. Mensajes al usuario
 
 | Código | Situación | Mensaje |
 |---|---|---|
@@ -97,7 +116,7 @@ No aplica.
 | MSG-03 | Error al generar | "No pudimos generar tu hoja de vida. Intenta de nuevo en unos minutos." |
 | MSG-04 | Teléfono inválido | "El teléfono debe tener 10 dígitos." |
 
-## 10. Criterios de aceptación
+## 12. Resultado esperado
 
 ```gherkin
 Escenario: Generar hoja de vida completa
@@ -133,20 +152,48 @@ Escenario: Caracteres especiales
   Cuando descargo mi hoja de vida
   Entonces el PDF muestra correctamente la "ñ"
   Y el archivo se llama "HV-Inaki-Penaranda-<fecha>.pdf"
+
+Escenario: Foto no disponible
+  Dado que el almacenamiento de archivos no responde
+  Cuando descargo mi hoja de vida con foto
+  Entonces obtengo el PDF sin foto
+  Y veo un aviso de que la foto no se pudo incluir
+
+Escenario: Perfil retirado
+  Dado que mi biografía fue retirada por moderación
+  Cuando descargo mi hoja de vida
+  Entonces el PDF no incluye la biografía
 ```
 
-## 11. Dependencias
+## 13. Contratos
 
-- [FS-USR-06](./FS-USR-06-perfil-profesional.md): datos del perfil.
-- Librería de generación de PDF con soporte de fuentes UTF-8.
+**Expone:** `POST /api/v1/usuarios/perfil/hoja-de-vida` (devuelve `application/pdf`) ([contrato](../../../../contracts/api/usuarios.yaml)).
 
-## 12. Preguntas abiertas
+**Consume:** nada de otros módulos.
 
-- [ ] ¿Se quiere incluir la imagen de la Universidad del Magdalena o del CIDTI en el pie de página? Requiere autorización de uso de marca.
-- [ ] ¿Las credenciales verificadas (FS-SRV-01) deberían aparecer en la hoja de vida cuando exista ese módulo?
+## 14. Calidad
 
-## 13. Historial de cambios
+RNF-REN-05, RNF-ACC-01 (texto seleccionable), RNF-PRI-01.
+
+## 15. Preguntas abiertas
+
+- P-06 — uso de la imagen de la universidad en el pie.
+- P-48 — credenciales verificadas en la hoja de vida (fase 2).
+
+## 16. Lista de revisión
+
+- [x] Cada actor de "Quién es quién" existe en el [SRS §2.4](../../../srs/Especificacion_Requisitos.md#24-actores-del-sistema) con el mismo nombre.
+- [x] Toda acción tiene un actor que puede hacerla y se valida en el servidor (RNF-SEG-04).
+- [ ] Cada regla tiene al menos un escenario en "Resultado esperado".
+- [x] "¿Qué pasaría si…?" revisó las siete situaciones: concurrencia, estado de la cuenta, eliminación de lo que usa, pérdida de permiso, falla externa, límites de uso y privacidad.
+- [ ] Ningún dato se recoge sin finalidad (RNF-PRI-01).
+- [x] No contradice a su caso de uso, a su historia ni a otro spec.
+- [x] Sus contratos existen en [`contracts/`](../../../../contracts/README.md).
+- [ ] No tiene preguntas abiertas que bloqueen el desarrollo.
+
+## 17. Historial de cambios
 
 | Fecha | Autor | Cambio |
 |---|---|---|
 | 2026-10-06 | Gamero | Creación |
+| 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |

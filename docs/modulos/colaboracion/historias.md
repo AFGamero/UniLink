@@ -3,7 +3,7 @@
 _MVP — Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
-Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero / para", derivadas de sus [casos de uso](./casos-de-uso.md).
+Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero / para". Sus criterios de aceptación son los escenarios de cada spec (sección 12, "Resultado esperado"); se derivan de sus [casos de uso](./casos-de-uso.md).
 
 ## Índice
 
@@ -26,12 +26,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-11](./casos-de-uso.md#cu-11--gestionar-espacio-de-proyectos)
 
-**Criterios de aceptación:**
-
-- Dado que creo un proyecto, entonces puedo definir nombre, descripción, perfiles requeridos, número máximo de integrantes, tareas y objetivos, y quedo como administrador del proyecto.
-- Dado que solicito unirme a un proyecto existente, entonces los administradores del proyecto reciben mi solicitud y la aprueban o rechazan.
-- Dado que el proyecto ya alcanzó el número máximo de integrantes, entonces el sistema no permite mi solicitud e informa el motivo.
-- Dado que soy miembro de un proyecto, entonces puedo abandonarlo, salvo que sea su único administrador.
+**Spec y criterios de aceptación:** [FS-COL-05 — escenarios](./specs/FS-COL-05-espacios-proyectos.md#12-resultado-esperado)
 
 **Prioridad:** Media
 
@@ -45,13 +40,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-12](./casos-de-uso.md#cu-12--explorar-oportunidades)
 
-**Criterios de aceptación:**
-
-- Dado que accedo a la sección de oportunidades, entonces puedo explorarlas filtrando por categoría.
-- Dado que selecciono una oportunidad abierta, entonces puedo ver su detalle y postularme directamente.
-- Dado que ya estoy postulado a una oportunidad, entonces el sistema no permite una nueva postulación y muestra el estado actual.
-- Dado que la oportunidad está cerrada, entonces el sistema no permite postularme e informa el motivo.
-- Dado que me postulo exitosamente, entonces mi postulación queda en estado "Enviada" y el sistema notifica al responsable de la oportunidad.
+**Spec y criterios de aceptación:** [FS-COL-02 — escenarios](./specs/FS-COL-02-postulaciones.md#12-resultado-esperado)
 
 **Prioridad:** Media
 
@@ -65,13 +54,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-20](./casos-de-uso.md#cu-20--publicar-evento)
 
-**Criterios de aceptación:**
-
-- Dado que soy un usuario autenticado, entonces puedo acceder a la opción para publicar un evento.
-- Dado que estoy creando un evento, entonces el sistema me permite ingresar la fecha, categoría, lugar, título y descripción.
-- Dado que ingreso todos los datos requeridos correctamente, entonces el sistema valida y publica el evento.
-- Dado que el evento es publicado correctamente, entonces los demás usuarios pueden visualizar su información para conocerlo y asistir.
-- Dado que no ingreso alguno de los datos requeridos o la fecha ya pasó, entonces el sistema me indica la información pendiente y no permite publicar el evento.
+**Spec y criterios de aceptación:** [FS-COL-03 — escenarios](./specs/FS-COL-03-publicacion-listado-eventos.md#12-resultado-esperado)
 
 **Prioridad:** Media
 
@@ -85,12 +68,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-21](./casos-de-uso.md#cu-21--visualizar-eventos)
 
-**Criterios de aceptación:**
-
-- Dado que soy un usuario autenticado, entonces puedo acceder al apartado de eventos.
-- Dado que accedo al apartado de eventos, entonces el sistema muestra los próximos eventos ordenados por fecha, con título, fecha, categoría, lugar y descripción.
-- Dado que visualizo un evento, entonces puedo consultar su información para determinar si es de mi interés.
-- Dado que no existen eventos publicados, entonces el sistema me informa que no hay eventos disponibles.
+**Spec y criterios de aceptación:** [FS-COL-03 — escenarios](./specs/FS-COL-03-publicacion-listado-eventos.md#12-resultado-esperado)
 
 **Prioridad:** Media
 
@@ -104,13 +82,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-14](./casos-de-uso.md#cu-14--gestionar-estado-de-postulaciones)
 
-**Criterios de aceptación:**
-
-- Dado que he aplicado a oportunidades en la plataforma, cuando accedo al panel de postulaciones, entonces veo una lista de todas mis solicitudes.
-- Dado que visualizo una postulación, entonces el sistema me indica si su estado es "Enviada", "En revisión", "Aceptada", "Rechazada" o "Retirada".
-- Dado que el responsable de la oportunidad cambia el estado de mi postulación, entonces el sistema me notifica y actualiza el panel con el estado más reciente.
-- Dado que una postulación está "Enviada" o "En revisión", entonces puedo retirarla.
-- Dado que no he realizado ninguna postulación, entonces el sistema me muestra un mensaje invitándome a explorar oportunidades, con un enlace a esa sección.
+**Spec y criterios de aceptación:** [FS-COL-02 — escenarios](./specs/FS-COL-02-postulaciones.md#12-resultado-esperado)
 
 **Prioridad:** Alta
 
@@ -124,12 +96,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-15](./casos-de-uso.md#cu-15--confirmar-asistencia-a-eventos-rsvp)
 
-**Criterios de aceptación:**
-
-- Dado que visualizo la información de un evento que aún no ha ocurrido, entonces el sistema me muestra un botón para confirmar mi asistencia de forma explícita.
-- Dado que confirmo mi asistencia, entonces el sistema me permite visualizar la lista de otros miembros que también asistirán.
-- Dado que he confirmado mi asistencia, entonces el sistema me ofrece una opción para exportar o añadir el evento a mi calendario personal.
-- Dado que decido cancelar mi asistencia, entonces el sistema me permite revertir la acción y oculta mi perfil de la lista de asistentes.
+**Spec y criterios de aceptación:** [FS-COL-04 — escenarios](./specs/FS-COL-04-confirmacion-asistencia.md#12-resultado-esperado)
 
 **Prioridad:** Alta
 
@@ -143,12 +110,7 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-16](./casos-de-uso.md#cu-16--administrar-roles-en-espacios-de-proyectos)
 
-**Criterios de aceptación:**
-
-- Dado que soy el administrador del proyecto, cuando accedo a la sección de miembros, entonces el sistema me permite visualizar el rol actual de cada integrante.
-- Dado que selecciono a un miembro, entonces puedo cambiar su nivel de acceso escogiendo entre los roles de visualizador, editor o administrador.
-- Dado que asigno un rol granular a un miembro, entonces el sistema aplica restricciones o permisos de edición inmediatamente basados en ese rol y notifica al miembro.
-- Dado que intento dejar el proyecto sin ningún administrador asignado, entonces el sistema me muestra un error y me impide realizar el cambio.
+**Spec y criterios de aceptación:** [FS-COL-06 — escenarios](./specs/FS-COL-06-roles-proyectos.md#12-resultado-esperado)
 
 **Prioridad:** Media
 
@@ -162,11 +124,6 @@ Historias de usuario del módulo Colaboración (COL), en formato "Como / quiero 
 
 **Caso de uso relacionado:** [CU-22](./casos-de-uso.md#cu-22--publicar-oportunidades-y-gestionar-postulaciones)
 
-**Criterios de aceptación:**
-
-- Dado que soy un usuario autenticado, cuando creo una oportunidad con título, descripción, categoría, requisitos, cupos y fecha de cierre, entonces el sistema la publica en la sección de oportunidades.
-- Dado que mi oportunidad recibe postulaciones, entonces puedo ver el listado de postulantes y consultar sus perfiles.
-- Dado que reviso una postulación, cuando cambio su estado a "En revisión", "Aceptada" o "Rechazada", entonces el sistema notifica al postulante y actualiza su panel.
-- Dado que se alcanza la fecha de cierre o se completan los cupos, entonces el sistema cierra la oportunidad a nuevas postulaciones.
+**Spec y criterios de aceptación:** [FS-COL-01 — escenarios](./specs/FS-COL-01-publicacion-oportunidades.md#12-resultado-esperado)
 
 **Prioridad:** Alta

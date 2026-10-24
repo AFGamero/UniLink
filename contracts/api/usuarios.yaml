@@ -1,0 +1,760 @@
+openapi: 3.0.3
+info:
+  title: UniLink — API del módulo Usuarios
+  version: 0.1.0
+  description: 'Cuenta, sesión, configuración, preferencias, perfil, hoja de vida y gestión de cuentas.
+
+
+    Esqueleto acordado antes de programar (ADR-006): rutas, quién puede usarlas, caso de uso y spec de origen. Los esquemas
+    de las peticiones y respuestas se completan cuando el spec pasa a Aprobado. Convenciones en contracts/api/README.md.'
+servers:
+- url: /api/v1/usuarios
+security:
+- sesion: []
+paths:
+  /registro:
+    post:
+      summary: Registrarse con correo institucional
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-01.'
+      operationId: postRegistro
+      tags:
+      - FS-USR-01
+      x-casos-de-uso:
+      - CU-01
+      x-spec: FS-USR-01
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      security: []
+  /registro/reenvio:
+    post:
+      summary: Reenviar el enlace de verificación
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-01.'
+      operationId: postRegistroReenvio
+      tags:
+      - FS-USR-01
+      x-casos-de-uso:
+      - CU-01
+      x-spec: FS-USR-01
+      responses:
+        '202':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      security: []
+  /verificacion:
+    post:
+      summary: Verificar el correo con el enlace recibido
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-01.'
+      operationId: postVerificacion
+      tags:
+      - FS-USR-01
+      x-casos-de-uso:
+      - CU-01
+      x-spec: FS-USR-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      security: []
+  /sesion:
+    post:
+      summary: Iniciar sesión
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-02.'
+      operationId: postSesion
+      tags:
+      - FS-USR-02
+      x-casos-de-uso:
+      - CU-02
+      x-spec: FS-USR-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      security: []
+    get:
+      summary: Usuario actual y a dónde redirigir
+      description: 'Quién: Usuario. Detalle en FS-USR-02.'
+      operationId: getSesion
+      tags:
+      - FS-USR-02
+      x-casos-de-uso:
+      - CU-02
+      x-spec: FS-USR-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    delete:
+      summary: Cerrar sesión
+      description: 'Quién: Usuario. Detalle en FS-USR-02.'
+      operationId: deleteSesion
+      tags:
+      - FS-USR-02
+      x-casos-de-uso:
+      - CU-02
+      x-spec: FS-USR-02
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /recuperacion:
+    post:
+      summary: Pedir el enlace de restablecimiento (correo institucional o de respaldo)
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-03.'
+      operationId: postRecuperacion
+      tags:
+      - FS-USR-03
+      x-casos-de-uso:
+      - CU-17
+      x-spec: FS-USR-03
+      responses:
+        '202':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      security: []
+  /recuperacion/confirmacion:
+    post:
+      summary: Definir la nueva contraseña con el enlace
+      description: 'Quién: Público (sin sesión). Detalle en FS-USR-03.'
+      operationId: postRecuperacionConfirmacion
+      tags:
+      - FS-USR-03
+      x-casos-de-uso:
+      - CU-17
+      x-spec: FS-USR-03
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      security: []
+  /preferencias:
+    get:
+      summary: Categorías de interés del usuario
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-04.'
+      operationId: getPreferencias
+      tags:
+      - FS-USR-04
+      x-casos-de-uso:
+      - CU-18
+      x-spec: FS-USR-04
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    put:
+      summary: Cambiar las categorías de interés
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-04.'
+      operationId: putPreferencias
+      tags:
+      - FS-USR-04
+      x-casos-de-uso:
+      - CU-18
+      x-spec: FS-USR-04
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion:
+    get:
+      summary: Configuración de la cuenta
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: getConfiguracion
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/correo:
+    put:
+      summary: Cambiar el correo (queda pendiente hasta verificarlo)
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: putConfiguracionCorreo
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '202':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/contrasena:
+    put:
+      summary: Cambiar la contraseña
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: putConfiguracionContrasena
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/correo-respaldo:
+    put:
+      summary: Registrar o cambiar el correo de respaldo
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: putConfiguracionCorreoRespaldo
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '202':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    delete:
+      summary: Quitar el correo de respaldo
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: deleteConfiguracionCorreoRespaldo
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/privacidad:
+    put:
+      summary: Cambiar la privacidad del perfil
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: putConfiguracionPrivacidad
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/correos:
+    put:
+      summary: Elegir qué correos de actividad recibir
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: putConfiguracionCorreos
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/sesiones:
+    delete:
+      summary: Cerrar la sesión en los demás dispositivos
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: deleteConfiguracionSesiones
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /configuracion/eliminacion:
+    post:
+      summary: Pedir la eliminación de la cuenta
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: postConfiguracionEliminacion
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '202':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    delete:
+      summary: Cancelar la eliminación
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
+      operationId: deleteConfiguracionEliminacion
+      tags:
+      - FS-USR-05
+      x-casos-de-uso:
+      - CU-03
+      x-spec: FS-USR-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /perfil:
+    get:
+      summary: Perfil propio para editarlo
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-06.'
+      operationId: getPerfil
+      tags:
+      - FS-USR-06
+      x-casos-de-uso:
+      - CU-04
+      x-spec: FS-USR-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    put:
+      summary: Guardar el perfil
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-06.'
+      operationId: putPerfil
+      tags:
+      - FS-USR-06
+      x-casos-de-uso:
+      - CU-04
+      x-spec: FS-USR-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+  /perfil/foto:
+    put:
+      summary: Subir la foto de perfil
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-06.'
+      operationId: putPerfilFoto
+      tags:
+      - FS-USR-06
+      x-casos-de-uso:
+      - CU-04
+      x-spec: FS-USR-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /etiquetas:
+    get:
+      summary: Sugerir etiquetas existentes mientras se escribe
+      description: 'Quién: Usuario. Detalle en FS-USR-06.'
+      operationId: getEtiquetas
+      tags:
+      - FS-USR-06
+      x-casos-de-uso:
+      - CU-04
+      x-spec: FS-USR-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /perfil/hoja-de-vida:
+    post:
+      summary: Generar la hoja de vida en PDF
+      description: 'Quién: Dueño del perfil. Detalle en FS-USR-07.'
+      operationId: postPerfilHojaDeVida
+      tags:
+      - FS-USR-07
+      x-casos-de-uso:
+      - CU-19
+      x-spec: FS-USR-07
+      responses:
+        '200':
+          description: Operación exitosa.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /admin/cuentas:
+    get:
+      summary: Listar y buscar cuentas
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-USR-08.'
+      operationId: getAdminCuentas
+      tags:
+      - FS-USR-08
+      x-casos-de-uso:
+      - CU-24
+      x-spec: FS-USR-08
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /admin/cuentas/{usuario_id}:
+    get:
+      summary: Detalle de una cuenta
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-USR-08.'
+      operationId: getAdminCuentasUsuario_id
+      tags:
+      - FS-USR-08
+      x-casos-de-uso:
+      - CU-24
+      x-spec: FS-USR-08
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /admin/cuentas/{usuario_id}/sanciones:
+    post:
+      summary: Suspender o inhabilitar una cuenta
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-USR-08.'
+      operationId: postAdminCuentasUsuario_idSanciones
+      tags:
+      - FS-USR-08
+      x-casos-de-uso:
+      - CU-24
+      x-spec: FS-USR-08
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /admin/cuentas/{usuario_id}/reactivacion:
+    post:
+      summary: Reactivar una cuenta
+      description: 'Quién: Administrador de la plataforma. Detalle en FS-USR-08.'
+      operationId: postAdminCuentasUsuario_idReactivacion
+      tags:
+      - FS-USR-08
+      x-casos-de-uso:
+      - CU-24
+      x-spec: FS-USR-08
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    sesion:
+      type: apiKey
+      in: cookie
+      name: unilink_sesion
+      description: Cookie HttpOnly, Secure y SameSite (RNF-SEG-03). Las escrituras exigen además la cabecera X-CSRF-Token.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: Evita duplicar una creación reenviada (RNF-CON-03).
+      schema:
+        type: string
+        format: uuid
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: Versión (ETag) que el usuario editó; si cambió, 409 (RNF-CON-02).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      - message
+      - correlation_id
+      properties:
+        error:
+          type: string
+          description: Código estable, por ejemplo CUPO_COMPLETO.
+        message:
+          type: string
+          description: Texto MSG-NN del spec, listo para mostrar.
+        correlation_id:
+          type: string
+          description: Identificador de la petición (RNF-OBS-01).
+  responses:
+    Validacion:
+      description: Datos inválidos.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutenticado:
+      description: Sin sesión o sesión vencida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Prohibido:
+      description: El actor no tiene permiso según "Quién es quién" (RNF-SEG-04).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoEncontrado:
+      description: No existe o el usuario no puede verlo.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflicto:
+      description: Estado cambiado, versión desactualizada o regla de negocio incumplida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    LimiteDeUso:
+      description: Límite de uso superado (RNF-SEG-07).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Segundos para reintentar.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

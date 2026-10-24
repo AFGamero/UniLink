@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sobre.v1.json",
+  "title": "Sobre común de los eventos de dominio",
+  "description": "Estructura de todo evento de dominio de UniLink. El módulo productor lo guarda en su tabla de salida en la misma transacción de la operación, y el despachador lo entrega a los consumidores (ADR-004). Los consumidores descartan los repetidos por evento_id.",
+  "type": "object",
+  "required": [
+    "evento_id",
+    "tipo",
+    "version",
+    "ocurrido_en",
+    "modulo",
+    "actor_id",
+    "datos"
+  ],
+  "properties": {
+    "evento_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único; permite descartar duplicados."
+    },
+    "tipo": {
+      "type": "string",
+      "pattern": "^[a-z_]+\\.[a-z_]+$",
+      "description": "Por ejemplo, conexion.aceptada."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "ocurrido_en": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Momento real de la operación que lo origina."
+    },
+    "modulo": {
+      "type": "string",
+      "enum": [
+        "usuarios",
+        "red",
+        "contenido",
+        "comunicacion",
+        "colaboracion",
+        "plataforma"
+      ]
+    },
+    "actor_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid",
+      "description": "Usuario que provocó el evento; null si lo provocó el Sistema."
+    },
+    "correlacion_id": {
+      "type": "string",
+      "description": "Identificador de la petición de origen (RNF-OBS-01)."
+    },
+    "datos": {
+      "type": "object",
+      "description": "Contenido del evento; se valida con <tipo>.v<version>.json."
+    }
+  },
+  "additionalProperties": false
+}
