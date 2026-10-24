@@ -10,10 +10,10 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-PRY-01 — Espacios de proyectos](../../specs/proyectos/FS-PRY-01-espacios-proyectos.md) | Por asignar | Borrador |
-| [FS-PRY-02 — Roles en proyectos](../../specs/proyectos/FS-PRY-02-roles-proyectos.md) | Por asignar | Borrador |
+| [FS-COL-05 — Espacios de proyectos](../../modulos/colaboracion/specs/FS-COL-05-espacios-proyectos.md) | Por asignar | Borrador |
+| [FS-COL-06 — Roles en proyectos](../../modulos/colaboracion/specs/FS-COL-06-roles-proyectos.md) | Por asignar | Borrador |
 
-**Orden sugerido:** diseñar primero la matriz de permisos (FS-PRY-02), porque todas las acciones de FS-PRY-01 la consultan. Después: crear y explorar proyectos, membresía, tablero de tareas y, al final, el portafolio en el perfil y la extensión del onboarding.
+**Orden sugerido:** diseñar primero la matriz de permisos (FS-COL-06), porque todas las acciones de FS-COL-05 la consultan. Después: crear y explorar proyectos, membresía, tablero de tareas y, al final, el portafolio en el perfil y la extensión del onboarding.
 
 ## Tareas técnicas
 
@@ -28,7 +28,7 @@
 
 | Riesgo | Mitigación |
 |---|---|
-| El tablero de tareas crece hasta parecer una herramienta de gestión completa. | Limitarse a lo definido en FS-PRY-01 (tres columnas, responsable, fecha límite). Todo lo demás va a preguntas abiertas. |
+| El tablero de tareas crece hasta parecer una herramienta de gestión completa. | Limitarse a lo definido en FS-COL-05 (tres columnas, responsable, fecha límite). Todo lo demás va a preguntas abiertas. |
 | Errores de permisos que dejan editar a quien no debe. | Pruebas automatizadas de cada fila de la matriz de permisos, incluidas peticiones directas al servidor. |
 | Sprint 8 es grande. | Si se aprieta, pasar las invitaciones (RF-07), el portafolio (RF-09) y la extensión del onboarding (RF-10) a una iteración posterior al MVP; son de prioridad media. |
 

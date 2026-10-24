@@ -4,7 +4,7 @@
 |---|---|
 | **Versión** | 0.1 — Borrador |
 | **Estado** | Pendiente de revisión por el equipo y por la oficina jurídica de la universidad |
-| **Specs relacionados** | [FS-CTA-01](./specs/cuenta/FS-CTA-01-registro.md) (aceptación al registrarse), [FS-CNT-01](./specs/contenido/FS-CNT-01-publicaciones-feed.md) (filtro de contenido), [FS-ADM-02](./specs/administracion/FS-ADM-02-gestion-cuentas.md) (sanciones), [FS-ADM-03](./specs/administracion/FS-ADM-03-moderacion-contenido.md) (moderación) |
+| **Specs relacionados** | [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md) (aceptación al registrarse), [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) (filtro de contenido), [FS-USR-08](./modulos/usuarios/specs/FS-USR-08-gestion-cuentas.md) (sanciones), [FS-CNT-02](./modulos/contenido/specs/FS-CNT-02-moderacion-contenido.md) (moderación) |
 | **Última actualización** | 2026-10-06 |
 
 > **Nota para el equipo:** este documento es una propuesta. Antes de publicarlo debe revisarlo la oficina jurídica de la Universidad del Magdalena, en especial las secciones de datos personales, acoso y sanciones, para alinearlas con el reglamento estudiantil, el estatuto docente y los protocolos institucionales vigentes. Las decisiones pendientes están en [Preguntas abiertas](#preguntas-abiertas), al final del documento.
@@ -167,11 +167,11 @@ Si estas normas cambian, te avisaremos en UniLink antes de que los cambios empie
 
 | Dónde | Qué usa de este documento |
 |---|---|
-| [FS-CTA-01](./specs/cuenta/FS-CTA-01-registro.md), RN-09 | El usuario acepta estas normas al registrarse. |
-| [FS-ADM-03](./specs/administracion/FS-ADM-03-moderacion-contenido.md), sección 6 | La lista "Norma incumplida" del administrador son los códigos N-01 a N-11. |
-| [FS-ADM-03](./specs/administracion/FS-ADM-03-moderacion-contenido.md), RN-03 | Los motivos de reporte de los usuarios se agrupan así: Spam (N-08), Acoso o lenguaje ofensivo (N-01, N-02), Información falsa (N-03, N-04), Contenido inapropiado (N-05, N-06, N-07, N-09, N-11), Otro. |
-| [FS-ADM-02](./specs/administracion/FS-ADM-02-gestion-cuentas.md) | La tabla de consecuencias orienta la duración de las suspensiones (7 y 30 días). |
-| [FS-CNT-01](./specs/contenido/FS-CNT-01-publicaciones-feed.md), RN-03 | La lista de palabras prohibidas debe apoyar las normas N-01, N-02 y N-07. |
+| [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md), RN-09 | El usuario acepta estas normas al registrarse. |
+| [FS-CNT-02](./modulos/contenido/specs/FS-CNT-02-moderacion-contenido.md), sección 6 | La lista "Norma incumplida" del administrador son los códigos N-01 a N-11. |
+| [FS-CNT-02](./modulos/contenido/specs/FS-CNT-02-moderacion-contenido.md), RN-03 | Los motivos de reporte de los usuarios se agrupan así: Spam (N-08), Acoso o lenguaje ofensivo (N-01, N-02), Información falsa (N-03, N-04), Contenido inapropiado (N-05, N-06, N-07, N-09, N-11), Otro. |
+| [FS-USR-08](./modulos/usuarios/specs/FS-USR-08-gestion-cuentas.md) | La tabla de consecuencias orienta la duración de las suspensiones (7 y 30 días). |
+| [FS-CNT-01](./modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md), RN-03 | La lista de palabras prohibidas debe apoyar las normas N-01, N-02 y N-07. |
 
 ### Preguntas abiertas
 

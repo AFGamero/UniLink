@@ -10,10 +10,10 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-EVT-01 — Publicación y listado de eventos](../../specs/eventos/FS-EVT-01-publicacion-listado-eventos.md) | Por asignar | Borrador |
-| [FS-EVT-02 — Confirmación de asistencia (RSVP)](../../specs/eventos/FS-EVT-02-confirmacion-asistencia.md) | Por asignar | Borrador |
+| [FS-COL-03 — Publicación y listado de eventos](../../modulos/colaboracion/specs/FS-COL-03-publicacion-listado-eventos.md) | Por asignar | Borrador |
+| [FS-COL-04 — Confirmación de asistencia (RSVP)](../../modulos/colaboracion/specs/FS-COL-04-confirmacion-asistencia.md) | Por asignar | Borrador |
 
-**Orden sugerido:** primero FS-EVT-01 (publicar, listar y detalle), después FS-EVT-02. El reporte de eventos reutiliza el mecanismo del Sprint 5 y debería ser rápido.
+**Orden sugerido:** primero FS-COL-03 (publicar, listar y detalle), después FS-COL-04. El reporte de eventos reutiliza el mecanismo del Sprint 5 y debería ser rápido.
 
 ## Tareas técnicas
 
@@ -21,7 +21,7 @@
 - [ ] Programar las tareas: pasar eventos a "Finalizado" y enviar recordatorios 24 horas antes.
 - [ ] Controlar el cupo de forma segura cuando varias personas confirman al mismo tiempo.
 - [ ] Generar archivos `.ics` y enlaces de Google Calendar.
-- [ ] Registrar el tipo "evento" en el mecanismo de reportes de FS-ADM-03.
+- [ ] Registrar el tipo "evento" en el mecanismo de reportes de FS-CNT-02.
 - [ ] Definir imágenes de portada por defecto para cada categoría de eventos.
 
 ## Riesgos

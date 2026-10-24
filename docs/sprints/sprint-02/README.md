@@ -10,18 +10,18 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-PRF-01 — Perfil profesional](../../specs/perfil/FS-PRF-01-perfil-profesional.md) | Por asignar | Borrador |
-| [FS-PRF-02 — Búsqueda de perfiles](../../specs/perfil/FS-PRF-02-busqueda-perfiles.md) | Por asignar | Borrador |
-| [FS-CTA-05 — Configuración de cuenta y privacidad](../../specs/cuenta/FS-CTA-05-configuracion-cuenta.md) | Por asignar | Borrador |
-| [FS-PRF-03 — Hoja de vida en PDF](../../specs/perfil/FS-PRF-03-hoja-de-vida-pdf.md) | Por asignar | Borrador |
+| [FS-USR-06 — Perfil profesional](../../modulos/usuarios/specs/FS-USR-06-perfil-profesional.md) | Por asignar | Borrador |
+| [FS-RED-03 — Búsqueda de perfiles](../../modulos/red/specs/FS-RED-03-busqueda-perfiles.md) | Por asignar | Borrador |
+| [FS-USR-05 — Configuración de cuenta y privacidad](../../modulos/usuarios/specs/FS-USR-05-configuracion-cuenta.md) | Por asignar | Borrador |
+| [FS-USR-07 — Hoja de vida en PDF](../../modulos/usuarios/specs/FS-USR-07-hoja-de-vida-pdf.md) | Por asignar | Borrador |
 
-**Orden sugerido:** FS-PRF-01 primero, porque los otros tres dependen de los datos del perfil.
+**Orden sugerido:** FS-USR-06 primero, porque los otros tres dependen de los datos del perfil.
 
 ## Tareas técnicas
 
 - [ ] Configurar el almacenamiento de imágenes para las fotos de perfil.
 - [ ] Diseñar el modelo de etiquetas compartido (habilidades, intereses, "Puedo aportar", "Necesito") con normalización sin tildes ni mayúsculas.
-- [ ] Implementar la consulta de complementariedad (FS-PRF-01, RF-06) con pruebas de rendimiento.
+- [ ] Implementar la consulta de complementariedad (FS-USR-06, RF-06) con pruebas de rendimiento.
 - [ ] Cargar el catálogo de facultades y programas.
 - [ ] Elegir la librería de generación de PDF y validar que soporte tildes y "ñ".
 - [ ] Programar la tarea diaria que elimina las cuentas con 30 días de desactivación.
@@ -32,7 +32,7 @@
 |---|---|
 | La consulta de complementariedad es lenta con muchos usuarios. | Indexar las etiquetas normalizadas y limitar el cálculo a cuentas activas y visibles. |
 | Las etiquetas se llenan de duplicados o variantes. | Autocompletado obligatorio con etiquetas existentes; revisar a fin de sprint si se necesita fusión por administrador. |
-| La eliminación de cuentas tiene implicaciones legales no resueltas. | Llevar las preguntas abiertas de FS-CTA-05 a la planificación; si no se resuelven, implementar solo la desactivación y dejar la eliminación definitiva para el siguiente sprint. |
+| La eliminación de cuentas tiene implicaciones legales no resueltas. | Llevar las preguntas abiertas de FS-USR-05 a la planificación; si no se resuelven, implementar solo la desactivación y dejar la eliminación definitiva para el siguiente sprint. |
 
 ## Revisión
 

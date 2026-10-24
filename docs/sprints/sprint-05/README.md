@@ -10,11 +10,11 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-MSG-01 — Mensajería privada](../../specs/mensajeria/FS-MSG-01-mensajeria-privada.md) | Por asignar | Borrador |
-| [FS-ADM-03 — Moderación de contenido](../../specs/administracion/FS-ADM-03-moderacion-contenido.md) | Por asignar | Borrador |
-| [FS-ADM-02 — Gestión de cuentas de usuario](../../specs/administracion/FS-ADM-02-gestion-cuentas.md) | Por asignar | Borrador |
+| [FS-COM-01 — Mensajería privada](../../modulos/comunicacion/specs/FS-COM-01-mensajeria-privada.md) | Por asignar | Borrador |
+| [FS-CNT-02 — Moderación de contenido](../../modulos/contenido/specs/FS-CNT-02-moderacion-contenido.md) | Por asignar | Borrador |
+| [FS-USR-08 — Gestión de cuentas de usuario](../../modulos/usuarios/specs/FS-USR-08-gestion-cuentas.md) | Por asignar | Borrador |
 
-**Orden sugerido:** FS-MSG-01 y la parte de administración pueden avanzar en paralelo con personas distintas. En administración, primero FS-ADM-03 (reportes y cola) y después FS-ADM-02, porque el detalle de la cuenta muestra el historial de moderación.
+**Orden sugerido:** FS-COM-01 y la parte de administración pueden avanzar en paralelo con personas distintas. En administración, primero FS-CNT-02 (reportes y cola) y después FS-USR-08, porque el detalle de la cuenta muestra el historial de moderación.
 
 ## Tareas técnicas
 
@@ -29,7 +29,7 @@
 
 | Riesgo | Mitigación |
 |---|---|
-| Las [normas de la comunidad](../../normas-comunidad.md) siguen en borrador. | Conseguir la aprobación del equipo y de la oficina jurídica antes de la planificación; FS-ADM-03 no pasa a **Aprobado** sin ellas. |
+| Las [normas de la comunidad](../../normas-comunidad.md) siguen en borrador. | Conseguir la aprobación del equipo y de la oficina jurídica antes de la planificación; FS-CNT-02 no pasa a **Aprobado** sin ellas. |
 | El tiempo real es la parte técnica más compleja del MVP. | Hacer una prueba de concepto al inicio del sprint; si falla, usar consultas periódicas cada 5 segundos en la conversación abierta como plan B. |
 | Ocultar el contenido de cuentas suspendidas exige cambiar consultas de varios módulos. | Centralizar el filtro de "cuenta visible" en un único lugar del código. |
 

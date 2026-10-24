@@ -10,7 +10,7 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-XXX-NN](../../specs/modulo/FS-XXX-NN-nombre.md) | … | Aprobado |
+| FS-XXX-NN (enlace a `../../modulos/<modulo>/specs/FS-XXX-NN-nombre.md`) | … | Aprobado |
 
 ## Tareas técnicas
 

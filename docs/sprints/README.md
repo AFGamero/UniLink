@@ -6,14 +6,14 @@ El MVP se construye en **8 sprints de 2 semanas** (unas 16 semanas). El orden re
 
 | Sprint | Objetivo | Specs | Prioridad |
 |---|---|---|---|
-| [1](./sprint-01/README.md) | Un usuario puede registrarse, verificar su correo, iniciar sesión y recuperar su contraseña | FS-CTA-01, FS-CTA-02, FS-CTA-03, FS-CTA-04 | Alta |
-| [2](./sprint-02/README.md) | El usuario construye su perfil profesional y encuentra a otros | FS-CTA-05, FS-PRF-01, FS-PRF-02, FS-PRF-03 | Alta |
-| [3](./sprint-03/README.md) | El usuario arma su red desde el primer ingreso | FS-RED-01, FS-RED-02, FS-NOT-01 | Alta |
-| [4](./sprint-04/README.md) | El usuario publica y consume contenido en su feed | FS-CNT-01, FS-ADM-01 | Media |
-| [5](./sprint-05/README.md) | Los usuarios conversan en privado y el administrador modera la plataforma | FS-MSG-01, FS-ADM-02, FS-ADM-03 | Alta |
-| [6](./sprint-06/README.md) | Los responsables publican oportunidades y los usuarios se postulan | FS-OPO-01, FS-OPO-02 | Alta |
-| [7](./sprint-07/README.md) | La comunidad publica eventos y confirma asistencia | FS-EVT-01, FS-EVT-02 | Alta |
-| [8](./sprint-08/README.md) | Los usuarios colaboran en espacios de proyectos con permisos | FS-PRY-01, FS-PRY-02 | Media |
+| [1](./sprint-01/README.md) | Un usuario puede registrarse, verificar su correo, iniciar sesión y recuperar su contraseña | FS-USR-01, FS-USR-02, FS-USR-03, FS-USR-04 | Alta |
+| [2](./sprint-02/README.md) | El usuario construye su perfil profesional y encuentra a otros | FS-USR-05, FS-USR-06, FS-RED-03, FS-USR-07 | Alta |
+| [3](./sprint-03/README.md) | El usuario arma su red desde el primer ingreso | FS-RED-01, FS-RED-02, FS-COM-02 | Alta |
+| [4](./sprint-04/README.md) | El usuario publica y consume contenido en su feed | FS-CNT-01, FS-PLT-01 | Media |
+| [5](./sprint-05/README.md) | Los usuarios conversan en privado y el administrador modera la plataforma | FS-COM-01, FS-USR-08, FS-CNT-02 | Alta |
+| [6](./sprint-06/README.md) | Los responsables publican oportunidades y los usuarios se postulan | FS-COL-01, FS-COL-02 | Alta |
+| [7](./sprint-07/README.md) | La comunidad publica eventos y confirma asistencia | FS-COL-03, FS-COL-04 | Alta |
+| [8](./sprint-08/README.md) | Los usuarios colaboran en espacios de proyectos con permisos | FS-COL-05, FS-COL-06 | Media |
 
 **Antes del Sprint 1 (Sprint 0, sin specs funcionales):** definir el stack, la arquitectura, el modelo de datos base, los repositorios, la integración continua y el entorno de despliegue.
 
@@ -27,9 +27,9 @@ El equipo decidió dejar el **módulo de servicios** para una segunda fase: ampl
 
 ## Dependencias clave
 
-- **Categorías:** FS-CTA-04 (Sprint 1) necesita categorías, pero su administración llega en FS-ADM-01 (Sprint 4). En el Sprint 1 se cargan categorías iniciales como datos semilla.
-- **Notificaciones:** desde el Sprint 1 se envían correos; el centro de notificaciones dentro de la plataforma (FS-NOT-01) llega en el Sprint 3. Los sprints 1 y 2 no generan notificaciones internas.
-- **Mensajería:** FS-OPO-01 (Sprint 6) reutiliza el chat de FS-MSG-01 (Sprint 5) para las postulaciones aceptadas; en la fase 2, FS-SRV-02 hará lo mismo con las solicitudes de servicio.
+- **Categorías:** FS-USR-04 (Sprint 1) necesita categorías, pero su administración llega en FS-PLT-01 (Sprint 4). En el Sprint 1 se cargan categorías iniciales como datos semilla.
+- **Notificaciones:** desde el Sprint 1 se envían correos; el centro de notificaciones dentro de la plataforma (FS-COM-02) llega en el Sprint 3. Los sprints 1 y 2 no generan notificaciones internas.
+- **Mensajería:** FS-COL-01 (Sprint 6) reutiliza el chat de FS-COM-01 (Sprint 5) para las postulaciones aceptadas; en la fase 2, FS-SRV-02 hará lo mismo con las solicitudes de servicio.
 
 ## Ceremonias
 
@@ -58,7 +58,7 @@ El equipo decidió dejar el **módulo de servicios** para una segunda fase: ampl
 - [ ] El código fue revisado por al menos otro integrante (pull request aprobado).
 - [ ] Está desplegado en el entorno de pruebas.
 - [ ] Se mostró en la revisión del sprint.
-- [ ] El estado del spec se actualizó a **Implementado** en [`specs/README.md`](../specs/README.md).
+- [ ] El estado del spec se actualizó a **Implementado** en [`specs/README.md`](../modulos/README.md).
 
 ## Crear un sprint nuevo
 

@@ -34,10 +34,10 @@ Los specs se organizan por **módulo** (no por sprint) para que un spec no cambi
 
 ## Enlaces rápidos
 
-- [Casos de uso](./requisitos/CasosDeUso.md)
-- [Historias de usuario](./requisitos/HistoriasDeUsuario.md)
+- [Casos de uso](./modulos/README.md)
+- [Historias de usuario](./modulos/README.md)
 - [Requisitos no funcionales](./requisitos/RequisitosNoFuncionales.md)
-- [Índice de specs](./specs/README.md)
+- [Índice de specs](./modulos/README.md)
 - [Roadmap de sprints](./sprints/README.md)
 - [Normas de la comunidad](./normas-comunidad.md)
 - [Preguntas abiertas](./preguntas-abiertas.md)

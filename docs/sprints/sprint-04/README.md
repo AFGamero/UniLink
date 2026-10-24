@@ -10,15 +10,15 @@
 
 | Spec | Responsable | Estado |
 |---|---|---|
-| [FS-ADM-01 — Gestión de categorías](../../specs/administracion/FS-ADM-01-gestion-categorias.md) | Por asignar | Borrador |
-| [FS-CNT-01 — Publicaciones y feed](../../specs/contenido/FS-CNT-01-publicaciones-feed.md) | Por asignar | Borrador |
+| [FS-PLT-01 — Gestión de categorías](../../modulos/plataforma/specs/FS-PLT-01-gestion-categorias.md) | Por asignar | Borrador |
+| [FS-CNT-01 — Publicaciones y feed](../../modulos/contenido/specs/FS-CNT-01-publicaciones-feed.md) | Por asignar | Borrador |
 
-**Orden sugerido:** FS-ADM-01 es pequeño y crea la base del panel de administración; puede hacerse en paralelo con FS-CNT-01, que es el más grande del sprint. Dentro de FS-CNT-01: primero crear y ver publicaciones, después el feed con sus reglas de respaldo, y al final las interacciones.
+**Orden sugerido:** FS-PLT-01 es pequeño y crea la base del panel de administración; puede hacerse en paralelo con FS-CNT-01, que es el más grande del sprint. Dentro de FS-CNT-01: primero crear y ver publicaciones, después el feed con sus reglas de respaldo, y al final las interacciones.
 
 ## Tareas técnicas
 
 - [ ] Crear el rol de administrador de la plataforma y el control de acceso al panel.
-- [ ] Implementar el registro de acciones de administración (lo reutilizarán FS-ADM-02 y FS-ADM-03).
+- [ ] Implementar el registro de acciones de administración (lo reutilizarán FS-USR-08 y FS-CNT-02).
 - [ ] Reutilizar el almacenamiento de archivos del Sprint 2 para imágenes y PDF de las publicaciones.
 - [ ] Implementar la lista configurable de palabras prohibidas.
 - [ ] Optimizar la consulta del feed (conexiones + categorías de interés + respaldo), con índices por fecha y categoría.
