@@ -7,7 +7,7 @@
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-06](../casos-de-uso.md#cu-06--enviar-solicitud-de-conexión), [CU-07](../casos-de-uso.md#cu-07--responder-solicitud-de-conexión) |
 | **Historias** | [HU-06](../historias.md#hu-06), [HU-07](../historias.md#hu-07) |
-| **Última actualización** | 2026-10-24 |
+| **Última actualización** | 2026-10-27 |
 
 ## 1. Objetivo
 
@@ -20,7 +20,7 @@ Permitir que los miembros de la comunidad formen conexiones profesionales de mut
 | Solicitante | Envía (con mensaje opcional) y cancela solicitudes; elimina conexiones. | El botón según la relación, sus solicitudes enviadas y la fecha de espera tras un rechazo. | Enviar más de 30 por día fuera del onboarding; enviar a cuentas no activas o a sí mismo; saber el motivo de un rechazo. |
 | Destinatario | Acepta o rechaza; elimina conexiones. | Las solicitudes recibidas con el mensaje y el motivo de complementariedad. | Ver quién canceló una solicitud. |
 | Conexión | Ve el perfil completo del otro. | El botón "Conectado". | — |
-| Sistema | Vence las solicitudes a los 90 días; conecta de inmediato ante solicitudes cruzadas. | — | — |
+| Sistema | Conecta de inmediato ante solicitudes cruzadas. | — | — |
 
 ## 3. Alcance
 
@@ -50,7 +50,7 @@ Permitir que los miembros de la comunidad formen conexiones profesionales de mut
 | RN-05 | Un usuario puede enviar como máximo 30 solicitudes por día, para evitar spam. Las enviadas desde el onboarding no cuentan en este límite. |
 | RN-06 | Al rechazar, el solicitante no recibe notificación ni motivo. Para él, el botón vuelve a "Conectar", pero no puede enviar otra solicitud a esa persona durante 30 días. |
 | RN-07 | Cancelar una solicitud pendiente o eliminar una conexión no notifica a la otra persona. Tras eliminar una conexión, cualquiera de los dos puede enviar una solicitud nueva sin espera. |
-| RN-08 | Las solicitudes pendientes vencen a los 90 días sin respuesta. Al vencer, el solicitante puede volver a enviarla. |
+| RN-08 | Las solicitudes pendientes **no vencen**: siguen pendientes hasta que el destinatario responda o el solicitante la cancele (reunión del 2026-10-19, RD-16). |
 | RN-09 | No se pueden enviar solicitudes a cuentas que no estén activas ni a uno mismo. |
 | RN-10 | Al aceptar, se notifica al solicitante (FS-COM-02) y, si lo tiene activado, por correo. Al recibir una solicitud, se notifica al destinatario de la misma forma. Las notificaciones salen de los eventos `conexion.solicitada` y `conexion.aceptada`. |
 | RN-11 | Responder o cancelar una solicitud que ya no está pendiente no tiene efecto: se muestra MSG-09 con el estado actual. |
@@ -85,7 +85,6 @@ stateDiagram-v2
     state "Aceptada" as e2
     state "Rechazada" as e3
     state "Cancelada" as e4
-    state "Vencida" as e5
     state "Relación" as e6
     state "---" as e7
     state "Sin relación" as e8
@@ -97,22 +96,19 @@ stateDiagram-v2
     e1 --> e2
     e1 --> e3
     e1 --> e4
-    e1 --> e5
     e2 --> [*]
     e3 --> [*]
     e4 --> [*]
-    e5 --> [*]
 ```
 
 **Estados de la solicitud:**
 
 | Estado | Entra cuando | Sale hacia |
 |---|---|---|
-| Pendiente | Se envía | **Aceptada**, **Rechazada**, **Cancelada** o **Vencida** (90 días) |
+| Pendiente | Se envía | **Aceptada**, **Rechazada** o **Cancelada**; no vence (RN-08) |
 | Aceptada | El destinatario acepta, o RN-02 | Estado final; se crea la conexión |
 | Rechazada | El destinatario rechaza | Estado final; aplica la espera de RN-06 |
 | Cancelada | El solicitante la cancela | Estado final |
-| Vencida | Pasan 90 días sin respuesta | Estado final |
 
 **Botón según la relación, visto por el usuario actual:**
 
@@ -138,7 +134,6 @@ stateDiagram-v2
 | Desde el onboarding | No cuentan en el límite diario. | RN-05 |
 | Rechazada hace menos de 30 días | "Conectar" deshabilitado con la fecha (MSG-05). | RN-06 |
 | Tras eliminar una conexión | Cualquiera puede volver a enviar sin espera. | RN-07 |
-| Vencida | El solicitante puede volver a enviarla. | RN-08 |
 
 ## 10. ¿Qué pasaría si…?
 
@@ -151,7 +146,8 @@ stateDiagram-v2
 | Falla la notificación o el correo | La solicitud o la conexión se guardan igual; el aviso se reintenta. | RNF-CON-04 |
 | Llega al límite de 30 en dos pestañas a la vez | El conteo es atómico: nunca pasa de 30. | RN-05, RNF-CON-01 |
 | Privacidad: el solicitante deduce el rechazo por la espera | Se acepta por ahora. | P-26 |
-| Acoso por solicitudes repetidas | Solo existe la espera de 30 días; el bloqueo de usuarios está en pregunta. | P-27 |
+| Acoso por solicitudes repetidas | Existe la espera de 30 días. Se decidió permitir bloquear y reportar usuarios (RD-17); sus efectos se especificarán aparte. | P-27, RD-17 |
+| Una solicitud lleva meses sin respuesta | Sigue pendiente; el solicitante puede cancelarla cuando quiera. | RN-08 |
 
 ## 11. Mensajes al usuario
 
@@ -239,6 +235,11 @@ Escenario: Notificación que falla
   Entonces quedamos conectados
   Y Luis recibe la notificación cuando el envío se recupera
 
+Escenario: Solicitud sin respuesta
+  Dado que envié una solicitud a Luis hace 120 días y no ha respondido
+  Entonces la solicitud sigue pendiente
+  Y Luis todavía puede aceptarla
+
 Escenario: Límite diario en dos pestañas
   Dado que hoy envié 29 solicitudes
   Cuando envío dos más a la vez desde dos pestañas
@@ -250,6 +251,7 @@ Escenario: Límite diario en dos pestañas
 **Expone:**
 
 - API: `POST /api/v1/red/solicitudes`, `POST /api/v1/red/solicitudes/{id}/aceptacion`, `POST /api/v1/red/solicitudes/{id}/rechazo`, `DELETE /api/v1/red/solicitudes/{id}`, `GET /api/v1/red/solicitudes`, `GET /api/v1/red/conexiones`, `DELETE /api/v1/red/conexiones/{usuario_id}` ([contrato](../../../../contracts/api/red.yaml)).
+- `GET /api/v1/red/solicitudes?tipo=enviadas` devuelve solo las pendientes, porque el solicitante no ve los rechazos (RN-06). Esquemas completos en el contrato.
 - Interfaz pública: si dos usuarios están conectados; número de conexiones ([interfaz](../../../../contracts/modulos/red.md)).
 - Eventos: `conexion.solicitada`, `conexion.aceptada`, `conexion.eliminada` ([catálogo](../../../../contracts/eventos/README.md)).
 
@@ -262,7 +264,7 @@ RNF-SEG-07 (límite diario), RNF-CON-01, RNF-CON-04.
 ## 15. Preguntas abiertas
 
 - P-26 — ¿aceptable que el rechazo se deduzca por la espera?
-- P-27 — ¿bloquear usuarios en el MVP?
+- P-27 — resuelta (sí, RD-17); falta especificar los efectos del bloqueo.
 - P-51 — solicitudes de cuentas que dejan de estar activas.
 
 ## 16. Lista de revisión
@@ -282,3 +284,4 @@ RNF-SEG-07 (límite diario), RNF-CON-01, RNF-CON-04.
 |---|---|---|
 | 2026-10-06 | Gamero | Creación |
 | 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |
+| 2026-10-27 | Gamero | Reunión del 2026-10-19: las solicitudes no vencen (RN-08; se quita el estado Vencida); bloqueo de usuarios decidido (RD-17); contrato con esquemas. |

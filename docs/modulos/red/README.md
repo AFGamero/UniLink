@@ -25,7 +25,7 @@ Las **relaciones** entre las personas y el **descubrimiento**: solicitudes y con
 | Conexión | Ve el perfil completo del otro y puede escribirle (Comunicación). |
 | Observador | Busca y ve perfiles según su privacidad. |
 | Usuario | Recibe sugerencias en el onboarding y en "Personas que podrían interesarte". |
-| Sistema | Vence solicitudes a los 90 días; recalcula sugerencias cuando cambian los perfiles. |
+| Sistema | Recalcula sugerencias cuando cambian los perfiles. |
 
 | Acción | Solicitante | Destinatario | Observador | Administrador de la plataforma |
 |---|---|---|---|---|
@@ -49,11 +49,9 @@ stateDiagram-v2
     P --> Aceptada: el destinatario acepta o hay solicitud cruzada
     P --> Rechazada: el destinatario rechaza
     P --> Cancelada: el solicitante cancela
-    P --> Vencida: 90 días sin respuesta
     Aceptada --> [*]
     Rechazada --> [*]
     Cancelada --> [*]
-    Vencida --> [*]
 ```
 
 ## Expone
@@ -73,4 +71,4 @@ stateDiagram-v2
 
 ## Preguntas abiertas del módulo
 
-P-17, P-26, P-27, P-28, P-45, P-50, P-51.
+P-26, P-27, P-28, P-45, P-50, P-51, P-67.

@@ -1,6 +1,6 @@
 # API REST
 
-Un archivo OpenAPI 3.0.3 por módulo. Cada operación indica quién puede usarla (`description`), sus casos de uso (`x-casos-de-uso`) y su spec (`x-spec`).
+Un archivo OpenAPI 3.1.0 por módulo (migrados desde 3.0.3 el 2026-10-27, ADR-010). Cada operación indica quién puede usarla (`description`), sus casos de uso (`x-casos-de-uso`) y su spec (`x-spec`).
 
 | Archivo | Módulo | Prefijo |
 |---|---|---|

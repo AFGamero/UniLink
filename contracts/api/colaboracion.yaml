@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: UniLink — API del módulo Colaboración
   version: 0.1.0

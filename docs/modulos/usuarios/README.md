@@ -49,7 +49,7 @@ La **persona** dentro de UniLink: su cuenta, su sesión, su configuración y pri
 | Credenciales y sesiones | Hash de la contraseña, sesiones, intentos fallidos | Componente interno: ningún otro módulo lo ve. |
 | Configuración | Privacidad del perfil, preferencias de correo por tipo | La privacidad la aplica Red (y quien muestre datos del usuario). |
 | Categorías de interés | Categorías elegidas por tipo de contenido | Las categorías son de Plataforma; aquí solo la elección. |
-| Perfil | Nombre, unidad académica, foto, titular, biografía, etiquetas, trayectoria, indicador de onboarding | El indicador lo marca Red por la interfaz pública. |
+| Perfil | Nombre, unidad académica, foto, titular, biografía, etiquetas del catálogo, trayectoria, estado de monitor académico, indicador de onboarding | El indicador lo marca Red por la interfaz pública. El estado de monitor lo escribe solo la sincronización institucional (ADR-014). |
 | Sanción | Tipo, duración, motivo, administrador | Su registro va también a la auditoría (evento). |
 
 ### Unidad académica
@@ -119,4 +119,4 @@ Cada cambio de estado publica `cuenta.estado_cambiado`. Lo que hace cada módulo
 
 ## Preguntas abiertas del módulo
 
-P-03, P-04, P-05, P-06, P-11, P-12, P-21, P-22, P-23, P-24, P-25, P-33, P-34, P-46, P-48, P-51, P-54, P-55.
+P-03, P-04, P-05, P-06, P-11, P-12, P-21, P-22, P-23, P-24, P-33, P-34, P-48, P-51, P-54, P-55, P-65, P-66.

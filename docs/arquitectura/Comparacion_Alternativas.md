@@ -17,7 +17,7 @@ Este documento compara tres formas de construir UniLink y justifica la elegida a
 |---|---|---|
 | Equipo | Pequeño, de estudiantes, con rotación entre semestres | Cada pieza de infraestructura extra es una carga que alguien debe operar. |
 | Plazo | Sprint 0 más 8 sprints de 2 semanas | La entrega del MVP pesa más que escalar por partes. |
-| Carga | 5.000 usuarios el primer año, 500 simultáneos, 25.000 sin rediseño | Una sola aplicación bien hecha la soporta. |
+| Carga | 5.000 usuarios el primer año, ~1.000 simultáneos (ajustado el 2026-10-19; antes 500), 25.000 sin rediseño | Una sola aplicación bien hecha la soporta. |
 | Disponibilidad | 99,5 % mensual (RNF-DIS-01) | Menos componentes en red significa menos puntos de falla. |
 | Consistencia | Cupos que no se pueden superar (RNF-CON-01) | Las transacciones locales lo resuelven sin coordinación distribuida. |
 | Presupuesto | Universitario; posible alojamiento en la infraestructura de la universidad (P-02) | Pocos servidores, despliegue sencillo. |

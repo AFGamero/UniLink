@@ -16,6 +16,7 @@ Conforme a ISO/IEC/IEEE 29148:2018.
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 2026-10-24 | Equipo UniLink | Creación a partir de los casos de uso, las historias, los specs y los requisitos no funcionales existentes, al reorganizar la documentación por módulos. |
+| 0.1.1 | 2026-10-27 | Gamero | Supuesto de usuarios simultáneos (~1.000) según la reunión del 2026-10-19; RNF-REN-01 y EC-01 ajustados. |
 
 ## Tabla de contenido
 
@@ -228,13 +229,13 @@ Resumen de lo que puede hacer cada actor. Cada spec detalla la suya en "Quién e
 
 ### 2.7 Supuestos y dependencias
 
-Las cifras de rendimiento y capacidad parten de estos supuestos (P-01). Si cambian, hay que revisar las secciones 3.3.3 y 3.3.4.
+Las cifras de rendimiento y capacidad parten de estos supuestos. El de usuarios simultáneos se decidió en la reunión del 2026-10-19 (P-01); los demás siguen pendientes de validar. Si cambian, hay que revisar las secciones 3.3.3 y 3.3.4.
 
 | Supuesto | Valor |
 |---|---|
 | Usuarios registrados el primer año | 5.000 |
 | Usuarios registrados que la arquitectura debe soportar sin rediseño | 25.000 |
-| Usuarios conectados al mismo tiempo en hora pico | 500 |
+| Usuarios conectados al mismo tiempo en hora pico | ~1.000, con holgura el primer año; los picos se dan en las convocatorias de monitores (Reunión 2026-10-19, P-01) |
 | Publicaciones nuevas por día | 300 |
 | Mensajes privados por día | 5.000 |
 | Horario de mayor uso | Lunes a viernes, 7:00 a. m. a 10:00 p. m. (hora de Colombia) |
@@ -376,7 +377,7 @@ Los tiempos se miden en el percentil 95 (p95): el 95 % de las peticiones debe cu
 
 | ID | Requisito | Cómo se verifica | Prioridad |
 |---|---|---|---|
-| RNF-REN-01 | Las consultas de la API responden en menos de 500 ms (p95) y las operaciones de escritura en menos de 1 segundo (p95). | Prueba de carga con 500 usuarios simultáneos. | Alta |
+| RNF-REN-01 | Las consultas de la API responden en menos de 500 ms (p95) y las operaciones de escritura en menos de 1 segundo (p95). | Prueba de carga con 1.000 usuarios simultáneos. | Alta |
 | RNF-REN-02 | El feed, la búsqueda de perfiles y la exploración de oportunidades y proyectos responden en menos de 1 segundo (p95). | Prueba de carga con datos de volumen realista (25.000 usuarios, 100.000 publicaciones). | Alta |
 | RNF-REN-03 | En un celular de gama media con conexión 4G, la primera pantalla útil aparece en menos de 3 segundos (métrica Largest Contentful Paint). | Medición con Lighthouse en modo móvil, con puntaje de rendimiento de al menos 80. | Media |
 | RNF-REN-04 | Las imágenes se sirven comprimidas y redimensionadas según el tamaño en que se muestran. | Revisión con Lighthouse: sin advertencias de imágenes de gran tamaño. | Media |
@@ -494,7 +495,7 @@ Estos valores ya están definidos en los specs funcionales. Se reúnen aquí par
 | Enlace de recuperación de contraseña | Vence en 1 hora | [FS-USR-03](../modulos/usuarios/specs/FS-USR-03-recuperar-contrasena.md) |
 | Eliminación de cuenta | Definitiva a los 30 días | [FS-USR-05](../modulos/usuarios/specs/FS-USR-05-configuracion-cuenta.md) |
 | Generación de hoja de vida | Menos de 10 segundos | [FS-USR-07](../modulos/usuarios/specs/FS-USR-07-hoja-de-vida-pdf.md) |
-| Solicitudes de conexión | Máximo 30 por día; vencen a los 90 días | [FS-RED-01](../modulos/red/specs/FS-RED-01-solicitudes-conexion.md) |
+| Solicitudes de conexión | Máximo 30 por día; no vencen (reunión del 2026-10-19) | [FS-RED-01](../modulos/red/specs/FS-RED-01-solicitudes-conexion.md) |
 | Indicador de notificaciones | Se actualiza en menos de 60 segundos | [FS-COM-02](../modulos/comunicacion/specs/FS-COM-02-centro-notificaciones.md) |
 | Conservación de notificaciones | 90 días | [FS-COM-02](../modulos/comunicacion/specs/FS-COM-02-centro-notificaciones.md) |
 | Entrega de mensajes | Menos de 2 segundos; máximo 60 mensajes por minuto | [FS-COM-01](../modulos/comunicacion/specs/FS-COM-01-mensajeria-privada.md) |
@@ -519,7 +520,7 @@ Cada escenario convierte un atributo de calidad en una situación verificable. S
 
 | ID | Atributo | Fuente | Estímulo | Entorno | Artefacto | Respuesta | Medida | Concreta |
 |---|---|---|---|---|---|---|---|---|
-| EC-01 | Rendimiento | 500 usuarios | Abren el feed al mismo tiempo | Hora pico, datos de volumen realista (25.000 usuarios, 100.000 publicaciones) | Módulo Contenido | Devuelve las primeras 10 publicaciones | p95 < 1 s | RNF-REN-01, RNF-REN-02 |
+| EC-01 | Rendimiento | 1.000 usuarios | Abren el feed al mismo tiempo | Hora pico, datos de volumen realista (25.000 usuarios, 100.000 publicaciones) | Módulo Contenido | Devuelve las primeras 10 publicaciones | p95 < 1 s | RNF-REN-01, RNF-REN-02 |
 | EC-02 | Disponibilidad | Servicio de correo | Deja de responder durante una hora | Operación normal | Usuarios, Comunicación | El registro, las notificaciones internas y el resto de la plataforma siguen funcionando; los correos quedan pendientes y se reintentan | 0 errores visibles por la caída; 100 % de los correos pendientes enviados al volver el servicio | RNF-DIS-05, RNF-REN-05 |
 | EC-03 | Seguridad | Usuario Editor de un proyecto | Llama directamente a la API para cambiar el rol de otro miembro | Producción | Colaboración | La petición se rechaza con 403 y el intento queda en los registros | 100 % de las acciones de la matriz probadas por la API | RNF-SEG-04, RNF-SEG-05 |
 | EC-04 | Consistencia | Dos usuarios | Confirman a la vez el último cupo de un evento | Hora pico | Colaboración | Solo uno obtiene el cupo; el otro ve "Cupo completo" | Nunca hay más confirmados que cupo, en 1.000 intentos concurrentes | RNF-CON-01 |

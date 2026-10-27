@@ -1,12 +1,14 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: UniLink — API del módulo Usuarios
-  version: 0.1.0
+  version: 0.2.0
   description: 'Cuenta, sesión, configuración, preferencias, perfil, hoja de vida y gestión de cuentas.
 
 
-    Esqueleto acordado antes de programar (ADR-006): rutas, quién puede usarlas, caso de uso y spec de origen. Los esquemas
-    de las peticiones y respuestas se completan cuando el spec pasa a Aprobado. Convenciones en contracts/api/README.md.'
+    Versión 0.2.0 (2026-10-27): perfil, etiquetas, foto, preferencias, privacidad, correos de actividad y sesiones tienen
+    esquemas (x-esquemas: completos). Registro, sesión, recuperación, cambio de correo y contraseña, correo de respaldo y
+    eliminación esperan a ADR-013 y ADR-015; la hoja de vida y la administración de cuentas, a su turno en el roadmap. Convenciones
+    en contracts/api/README.md.'
 servers:
 - url: /api/v1/usuarios
 security:
@@ -189,6 +191,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preferencias'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -197,6 +203,7 @@ paths:
           $ref: '#/components/responses/Prohibido'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: completos
     put:
       summary: Cambiar las categorías de interés
       description: 'Quién: Dueño del perfil. Detalle en FS-USR-04.'
@@ -209,6 +216,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preferencias'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -219,6 +230,13 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdicionPreferencias'
+      x-esquemas: completos
   /configuracion:
     get:
       summary: Configuración de la cuenta
@@ -232,6 +250,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuracion'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -240,6 +262,7 @@ paths:
           $ref: '#/components/responses/Prohibido'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: completos
   /configuracion/correo:
     put:
       summary: Cambiar el correo (queda pendiente hasta verificarlo)
@@ -263,6 +286,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-013 (cuentas precreadas y Campus Virtual)'
   /configuracion/contrasena:
     put:
       summary: Cambiar la contraseña
@@ -286,6 +310,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-013 (la contraseña propia solo aplicará a cuentas externas)'
   /configuracion/correo-respaldo:
     put:
       summary: Registrar o cambiar el correo de respaldo
@@ -309,6 +334,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-013 (recuperación de contraseña)'
     delete:
       summary: Quitar el correo de respaldo
       description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
@@ -331,6 +357,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-013 (recuperación de contraseña)'
   /configuracion/privacidad:
     put:
       summary: Cambiar la privacidad del perfil
@@ -344,6 +371,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CambioPrivacidad'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -354,6 +385,13 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CambioPrivacidad'
+      x-esquemas: completos
   /configuracion/correos:
     put:
       summary: Elegir qué correos de actividad recibir
@@ -367,6 +405,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferenciasCorreo'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -377,6 +419,13 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenciasCorreo'
+      x-esquemas: completos
   /configuracion/sesiones:
     delete:
       summary: Cerrar la sesión en los demás dispositivos
@@ -400,6 +449,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: completos (sin cuerpo)
   /configuracion/eliminacion:
     post:
       summary: Pedir la eliminación de la cuenta
@@ -423,6 +473,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-015 (borrado lógico)'
     delete:
       summary: Cancelar la eliminación
       description: 'Quién: Dueño del perfil. Detalle en FS-USR-05.'
@@ -445,6 +496,7 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: 'pendientes: ADR-015 (borrado lógico)'
   /perfil:
     get:
       summary: Perfil propio para editarlo
@@ -458,6 +510,15 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Perfil'
+          headers: &id001
+            ETag:
+              description: Versión del recurso; se envía en If-Match al editar (RNF-CON-02).
+              schema:
+                type: string
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -466,6 +527,7 @@ paths:
           $ref: '#/components/responses/Prohibido'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      x-esquemas: completos
     put:
       summary: Guardar el perfil
       description: 'Quién: Dueño del perfil. Detalle en FS-USR-06.'
@@ -478,6 +540,11 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Perfil'
+          headers: *id001
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -490,6 +557,13 @@ paths:
           $ref: '#/components/responses/LimiteDeUso'
       parameters:
       - $ref: '#/components/parameters/IfMatch'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdicionPerfil'
+      x-esquemas: completos
   /perfil/foto:
     put:
       summary: Subir la foto de perfil
@@ -503,6 +577,10 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Foto'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -513,6 +591,23 @@ paths:
           $ref: '#/components/responses/Conflicto'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - foto
+              properties:
+                foto:
+                  type: string
+                  contentMediaType: application/octet-stream
+                  description: JPG, PNG o WebP de máximo 5 MB, validada por su contenido (RN-09, RNF-SEG-06).
+            encoding:
+              foto:
+                contentType: image/jpeg, image/png, image/webp
+      x-esquemas: completos
   /etiquetas:
     get:
       summary: Sugerir etiquetas existentes mientras se escribe
@@ -526,6 +621,12 @@ paths:
       responses:
         '200':
           description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Etiqueta'
         '400':
           $ref: '#/components/responses/Validacion'
         '401':
@@ -534,6 +635,24 @@ paths:
           $ref: '#/components/responses/Prohibido'
         '429':
           $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: texto
+        in: query
+        required: true
+        description: 'Se compara normalizado: sin mayúsculas, tildes ni espacios repetidos (RN-04).'
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 60
+      - name: limite
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 10
+      x-esquemas: completos
   /perfil/hoja-de-vida:
     post:
       summary: Generar la hoja de vida en PDF
@@ -716,6 +835,409 @@ components:
         correlation_id:
           type: string
           description: Identificador de la petición (RNF-OBS-01).
+    Pagina:
+      type: object
+      required:
+      - pagina
+      - tamano
+      - total
+      properties:
+        pagina:
+          type: integer
+          minimum: 1
+        tamano:
+          type: integer
+          minimum: 1
+        total:
+          type: integer
+          minimum: 0
+          description: Total de elementos que cumplen el filtro.
+    Etiqueta:
+      type: object
+      required:
+      - id
+      - nombre
+      description: Etiqueta del catálogo predefinido (FS-USR-06 RN-03).
+      properties:
+        id: &id002
+          type: string
+          format: uuid
+        nombre:
+          type: string
+    UnidadAcademica:
+      type: object
+      required:
+      - tipo
+      - id
+      - nombre
+      description: Programa (estudiante), departamento con su facultad (profesor) o dependencia (personal administrativo).
+        FS-USR-01 RN-10.
+      properties:
+        tipo:
+          type: string
+          enum:
+          - programa
+          - departamento
+          - dependencia
+        id:
+          type: string
+        nombre:
+          type: string
+        facultad_id:
+          type:
+          - string
+          - 'null'
+        facultad_nombre:
+          type:
+          - string
+          - 'null'
+    TipoUsuario:
+      type: string
+      enum:
+      - Estudiante
+      - Profesor
+      - Personal administrativo
+    Monitor:
+      type:
+      - object
+      - 'null'
+      description: Estado de monitor académico (FS-USR-06 RN-13). Solo lo escribe la sincronización institucional (ADR-014);
+        es null si no es monitor o si el observador no puede verlo (FS-RED-03 RN-04, P-67).
+      required:
+      - area
+      - especializacion
+      properties:
+        area:
+          type: string
+        especializacion:
+          type: string
+      readOnly: true
+    Perfil:
+      type: object
+      required:
+      - usuario_id
+      - nombre
+      - unidad_academica
+      - tipo_usuario
+      - tipo_verificado
+      - habilidades
+      - intereses
+      - puede_aportar
+      - necesita
+      - experiencia
+      - proyectos
+      - logros
+      - completitud
+      description: Perfil propio para editarlo (FS-USR-06).
+      properties:
+        usuario_id: *id002
+        nombre:
+          type: string
+        unidad_academica:
+          $ref: '#/components/schemas/UnidadAcademica'
+        tipo_usuario:
+          $ref: '#/components/schemas/TipoUsuario'
+        tipo_verificado:
+          type: boolean
+        foto_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        titular:
+          type:
+          - string
+          - 'null'
+          maxLength: 120
+        biografia:
+          type:
+          - string
+          - 'null'
+          maxLength: 1000
+        monitor:
+          $ref: '#/components/schemas/Monitor'
+        habilidades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Etiqueta'
+        intereses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Etiqueta'
+        puede_aportar:
+          type: array
+          items:
+            $ref: '#/components/schemas/Etiqueta'
+        necesita:
+          type: array
+          items:
+            $ref: '#/components/schemas/Etiqueta'
+        experiencia:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaExperiencia'
+        proyectos:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaProyecto'
+        logros:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaLogro'
+        retirado_por_moderacion:
+          type: boolean
+        completitud:
+          type: object
+          required:
+          - porcentaje
+          - faltantes
+          properties:
+            porcentaje:
+              type: integer
+              minimum: 0
+              maximum: 100
+            faltantes:
+              type: array
+              items:
+                type: string
+              description: Secciones que faltan para RN-08 (MSG-07).
+    EdicionPerfil:
+      type: object
+      additionalProperties: false
+      required:
+      - nombre
+      - unidad_academica_id
+      - habilidades
+      description: 'Reglas que el servidor valida además del esquema: la misma etiqueta no puede estar en puede_aportar y
+        necesita (RN-05, MSG-04); fecha_fin no anterior a fecha_inicio; textos sin palabras prohibidas (RN-10, MSG-11). Con
+        las cuentas precreadas (RD-01), nombre y unidad académica podrían pasar a ser de solo lectura: pendiente de P-66.'
+      properties:
+        nombre:
+          type: string
+          minLength: 2
+          maxLength: 120
+        unidad_academica_id:
+          type: string
+        titular:
+          type:
+          - string
+          - 'null'
+          maxLength: 120
+        biografia:
+          type:
+          - string
+          - 'null'
+          maxLength: 1000
+        habilidades:
+          type: array
+          minItems: 1
+          maxItems: 20
+          uniqueItems: true
+          items: *id002
+        intereses:
+          type: array
+          maxItems: 20
+          uniqueItems: true
+          items: *id002
+        puede_aportar:
+          type: array
+          maxItems: 10
+          uniqueItems: true
+          items: *id002
+        necesita:
+          type: array
+          maxItems: 10
+          uniqueItems: true
+          items: *id002
+        experiencia:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaExperiencia'
+        proyectos:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaProyecto'
+        logros:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntradaLogro'
+    EntradaExperiencia:
+      type: object
+      required:
+      - cargo
+      - organizacion
+      - fecha_inicio
+      properties:
+        cargo:
+          type: string
+        organizacion:
+          type: string
+        fecha_inicio: &id003
+          type: string
+          format: date
+        fecha_fin:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: null = actual.
+        descripcion:
+          type:
+          - string
+          - 'null'
+          maxLength: 500
+    EntradaProyecto:
+      type: object
+      required:
+      - nombre
+      properties:
+        nombre:
+          type: string
+        descripcion:
+          type:
+          - string
+          - 'null'
+          maxLength: 500
+        enlace:
+          type:
+          - string
+          - 'null'
+          format: uri
+    EntradaLogro:
+      type: object
+      required:
+      - titulo
+      - fecha
+      properties:
+        titulo:
+          type: string
+        fecha: *id003
+        descripcion:
+          type:
+          - string
+          - 'null'
+          maxLength: 300
+    Foto:
+      type: object
+      required:
+      - foto_url
+      properties:
+        foto_url:
+          type: string
+          format: uri
+    CategoriaInteres:
+      type: object
+      required:
+      - id
+      - nombre
+      - tipo_contenido
+      - activa
+      properties:
+        id: *id002
+        nombre:
+          type: string
+        tipo_contenido:
+          type: string
+          enum:
+          - Publicaciones
+          - Proyectos
+          - Eventos
+        activa:
+          type: boolean
+          description: false = desactivada, pero conservada en las preferencias (RN-03).
+    Preferencias:
+      type: object
+      required:
+      - categorias
+      description: Las categorías de interés son privadas (RN-05).
+      properties:
+        categorias:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoriaInteres'
+    EdicionPreferencias:
+      type: object
+      required:
+      - categoria_ids
+      additionalProperties: false
+      properties:
+        categoria_ids:
+          type: array
+          uniqueItems: true
+          items: *id002
+          description: Puede ser vacío (RN-02). Las desactivadas solo se conservan si ya estaban (RN-03).
+    Privacidad:
+      type: string
+      enum:
+      - Comunidad
+      - SoloConexiones
+      description: 'FS-USR-05 RN-06. Valor por defecto: Comunidad.'
+    CambioPrivacidad:
+      type: object
+      required:
+      - privacidad
+      additionalProperties: false
+      properties:
+        privacidad:
+          $ref: '#/components/schemas/Privacidad'
+    PreferenciasCorreo:
+      type: object
+      additionalProperties: false
+      required:
+      - solicitudes_conexion
+      - mensajes_sin_leer
+      - cambios_postulaciones
+      - nuevas_postulaciones
+      - eventos_asistire
+      - actividad_proyectos
+      description: Correos de actividad configurables (FS-USR-05, sección 6). Los de seguridad no aparecen porque no se pueden
+        desactivar (RN-07).
+      properties:
+        solicitudes_conexion:
+          type: boolean
+        mensajes_sin_leer:
+          type: boolean
+        cambios_postulaciones:
+          type: boolean
+        nuevas_postulaciones:
+          type: boolean
+        eventos_asistire:
+          type: boolean
+        actividad_proyectos:
+          type: boolean
+    Configuracion:
+      type: object
+      required:
+      - correo_institucional
+      - privacidad
+      - correos
+      properties:
+        correo_institucional:
+          type: string
+          format: email
+        correo_pendiente:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Correo nuevo sin verificar (MSG-02). Depende de ADR-013.
+        correo_respaldo:
+          type:
+          - object
+          - 'null'
+          required:
+          - correo
+          - verificado
+          properties:
+            correo:
+              type: string
+              format: email
+            verificado:
+              type: boolean
+        privacidad:
+          $ref: '#/components/schemas/Privacidad'
+        correos:
+          $ref: '#/components/schemas/PreferenciasCorreo'
   responses:
     Validacion:
       description: Datos inválidos.

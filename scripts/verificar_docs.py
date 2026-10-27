@@ -221,8 +221,8 @@ def verificar_contratos(problemas):
     for archivo in sorted(api.glob("*.yaml")) if api.exists() else []:
         try:
             documento = yaml.safe_load(archivo.read_text(encoding="utf-8"))
-            if documento.get("openapi") != "3.0.3":
-                problemas.append(f"contratos: {relativo(archivo)} → debe declarar openapi: 3.0.3")
+            if documento.get("openapi") != "3.1.0":
+                problemas.append(f"contratos: {relativo(archivo)} → debe declarar openapi: 3.1.0")
                 continue
             get_spec_version(documento)
             validate(documento)

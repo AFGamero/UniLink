@@ -9,14 +9,24 @@ _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 |---|---|---|
 | 1 | [Especificación de requisitos (SRS)](./srs/Especificacion_Requisitos.md) | Alcance, stakeholders, actores y matriz de permisos ("quién es quién"), restricciones, requisitos funcionales y no funcionales, escenarios de calidad, verificación, trazabilidad, riesgos y responsabilidades. |
 | 2 | [Comparación de alternativas](./arquitectura/Comparacion_Alternativas.md) | Monolito en capas, monolito modular y microservicios: tabla ponderada, decisión y trade-offs. |
-| 3 | [Registro de decisiones (ADR)](./arquitectura/Registro_Decisiones.md) | Estilo, módulos y dependencias, comunicación, persistencia, contratos, tiempo real, búsqueda, alojamiento, stack, tareas y archivos. |
+| 3 | [Registro de decisiones (ADR)](./arquitectura/Registro_Decisiones.md) | Estilo, módulos y dependencias, comunicación, persistencia, contratos, tiempo real, búsqueda, alojamiento, stack, tareas, archivos, autenticación institucional, API de admisiones, borrado lógico y cliente Android. |
 | 4 | [Vistas de arquitectura](./arquitectura/Vistas_Arquitectura.md) | Vista de módulos, vista de componentes y conectores (C&C) y vista de despliegue. |
 | 5 | [Módulos](./modulos/README.md) | Por cada módulo: README, casos de uso, historias de usuario y specs con el estudio de cada funcionalidad. |
 | 6 | [Contratos](../contracts/README.md) | API REST, interfaces públicas de los módulos y eventos de dominio. |
 | 7 | [Plan de implementación](./arquitectura/Plan_de_Implementacion.md) | Estructura interna de un módulo, fronteras, flujos clave, tareas programadas y pruebas. |
 | 8 | [Sprints](./sprints/README.md) | Roadmap, ceremonias, _Definition of Ready_ y _Definition of Done_. |
 
-Además: [preguntas abiertas](./preguntas-abiertas.md) (única fuente de las decisiones pendientes), [normas de la comunidad](./normas-comunidad.md) y [decisiones sobre la documentación](./decisiones/).
+Además: [preguntas abiertas](./preguntas-abiertas.md) (única fuente de las decisiones pendientes), [normas de la comunidad](./normas-comunidad.md), [seguridad de la API](./arquitectura/seguridad-endpoints.md) y [decisiones del equipo](./decisiones/) (incluida la [reunión del 2026-10-19](./decisiones/2026-10-19-reunion-preguntas-abiertas.md)).
+
+**Análisis integral (2026-10-27)**, dirigido al profesor tutor:
+
+| Documento | Contenido |
+|---|---|
+| [Informe integral](./informe_integral_unilink.md) | Especificación, requisitos y arquitectura en 19 capítulos, con diagramas, diccionario de datos e inventario de endpoints. |
+| [Arquitectura actual y objetivo](./arquitectura_unilink.md) | Consolidación de la arquitectura con las decisiones del 2026-10-19. |
+| [Catálogo de requisitos](./requisitos_unilink.md) | Índice de los 167 RF y los 63 RNF, propuestas y decisiones sin especificar. |
+| [Matriz de trazabilidad](./matriz_trazabilidad_unilink.md) | Requisito → componente → datos → endpoint → prueba → estado. |
+| [Riesgos y brechas](./riesgos_y_brechas_unilink.md) | 37 hallazgos y los cambios pendientes por spec. |
 
 ## Orden de lectura
 

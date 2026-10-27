@@ -7,7 +7,7 @@
 | **Responsable** | Por asignar |
 | **Casos de uso** | [CU-04](../casos-de-uso.md#cu-04--creareditar-perfil-profesional) |
 | **Historias** | [HU-04](../historias.md#hu-04) |
-| **Última actualización** | 2026-10-24 |
+| **Última actualización** | 2026-10-27 |
 
 ## 1. Objetivo
 
@@ -44,8 +44,8 @@ Permitir que cada usuario construya su identidad profesional en UniLink y declar
 |---|---|
 | RN-01 | Son obligatorios: nombre, unidad académica según el tipo de usuario ([FS-USR-01](./FS-USR-01-registro.md), RN-10) y al menos una habilidad. |
 | RN-02 | "Puedo aportar" y "Necesito" son listas opcionales de hasta 10 etiquetas cada una. |
-| RN-03 | Al escribir una etiqueta, el sistema sugiere las ya existentes en la plataforma para evitar duplicados ("Python" y "python" son la misma etiqueta). Si no existe, el usuario puede crearla. |
-| RN-04 | Las etiquetas se comparan normalizadas: sin mayúsculas, sin tildes y sin espacios repetidos. |
+| RN-03 | Las etiquetas son **predefinidas**: el usuario las elige de un catálogo y no puede crear nuevas (reunión del 2026-10-19, RD-13). Al escribir, el sistema sugiere las del catálogo ("python" encuentra "Python"). Quién mantiene el catálogo y cómo se carga el inicial queda en P-65. |
+| RN-04 | Las etiquetas se comparan normalizadas: sin mayúsculas, sin tildes y sin espacios repetidos. El cruce de complementariedad trata como la misma etiqueta a sus sinónimos registrados en el catálogo (reunión del 2026-10-19, RD-28; [ADR-008](../../../arquitectura/Registro_Decisiones.md#adr-008-búsqueda-de-texto)). |
 | RN-05 | Una etiqueta no puede estar a la vez en "Puedo aportar" y en "Necesito" del mismo usuario. |
 | RN-06 | La complementariedad entre perfiles la calcula Red con las etiquetas de "Puedo aportar" y "Necesito" ([FS-RED-02](../../red/specs/FS-RED-02-onboarding-sugerencias.md), RN-10). |
 | RN-07 | Qué parte del perfil ve cada observador lo decide Red, que cruza la privacidad del perfil con las conexiones ([FS-RED-03](../../red/specs/FS-RED-03-busqueda-perfiles.md), RN-04). |
@@ -54,6 +54,7 @@ Permitir que cada usuario construya su identidad profesional en UniLink y declar
 | RN-10 | El titular, la biografía, las entradas de trayectoria y las etiquetas pasan por la lista de palabras prohibidas de [FS-PLT-01](../../plataforma/specs/FS-PLT-01-gestion-categorias.md) antes de guardarse. |
 | RN-11 | El perfil puede ser reportado y retirado con el contrato `Reportable` de [FS-CNT-02](../../contenido/specs/FS-CNT-02-moderacion-contenido.md). Retirar un perfil oculta su titular, su biografía y su trayectoria hasta que el dueño los cambie; nombre, foto y unidad académica siguen visibles. |
 | RN-12 | El perfil muestra el tipo de usuario con la marca **Verificado** o **Declarado por el usuario** ([FS-USR-01](./FS-USR-01-registro.md), RN-11). |
+| RN-13 | **Monitor académico:** si la sincronización institucional marca al usuario como monitor ([ADR-014](../../../arquitectura/Registro_Decisiones.md#adr-014-integración-con-la-api-de-admisiones)), el perfil muestra la insignia "Monitor académico" con su área y especialización. El usuario no puede editar ese dato (reunión del 2026-10-19, RD-05). |
 
 ## 5. Requisitos funcionales
 
@@ -61,7 +62,7 @@ Permitir que cada usuario construya su identidad profesional en UniLink y declar
 |---|---|---|
 | RF-01 | El sistema debe mostrar un formulario de edición de perfil organizado por secciones (sección 6). | Alta |
 | RF-02 | El sistema debe validar los campos obligatorios y no guardar hasta completarlos (RN-01). | Alta |
-| RF-03 | El sistema debe ofrecer un campo de etiquetas con autocompletado para habilidades, intereses, "Puedo aportar" y "Necesito" (RN-03, RN-04). | Alta |
+| RF-03 | El sistema debe ofrecer un campo de etiquetas con autocompletado sobre el catálogo predefinido para habilidades, intereses, "Puedo aportar" y "Necesito" (RN-03, RN-04). | Alta |
 | RF-04 | El sistema debe mostrar el perfil público con una sección destacada "Puedo aportar / Necesito" debajo del titular. | Alta |
 | RF-05 | El sistema debe mostrar al dueño un indicador de completitud (RN-08) con las secciones que le faltan. | Media |
 | RF-06 | El sistema debe ofrecer por su interfaz pública los datos públicos, la privacidad y las etiquetas de un perfil, y la afinidad de un usuario con una lista de habilidades, para Red y Colaboración. | Alta |
@@ -71,13 +72,14 @@ Permitir que cada usuario construya su identidad profesional en UniLink y declar
 
 | Sección | Campo | Tipo | Obligatorio | Validación |
 |---|---|---|---|---|
-| Básico | Nombre | Texto | Sí | Viene del registro; 2 a 120 caracteres. |
-| Básico | Unidad académica | Lista | Sí | Viene del registro; se puede cambiar aquí (RN-01). |
+| Básico | Nombre | Texto | Sí | Viene del registro; 2 a 120 caracteres. Con las cuentas precreadas puede pasar a ser de solo lectura (P-66). |
+| Básico | Unidad académica | Lista | Sí | Viene del registro; se puede cambiar aquí (RN-01), salvo que P-66 decida lo contrario. |
+| Básico | Monitor académico | Solo lectura | — | Área y especialización; lo escribe la sincronización institucional (RN-13). |
 | Básico | Foto | Imagen | No | RN-09. |
 | Básico | Titular | Texto | No | Máximo 120 caracteres (por ejemplo, "Estudiante de Ing. de Sistemas · Desarrollo web"). |
 | Básico | Biografía | Texto largo | No | Máximo 1.000 caracteres. |
-| Etiquetas | Habilidades | Etiquetas | Sí (mínimo 1) | Máximo 20. |
-| Etiquetas | Intereses | Etiquetas | No | Máximo 20. |
+| Etiquetas | Habilidades | Etiquetas | Sí (mínimo 1) | Máximo 20, del catálogo (RN-03). |
+| Etiquetas | Intereses | Etiquetas | No | Máximo 20, del catálogo (RN-03). |
 | Etiquetas | Puedo aportar | Etiquetas | No | Máximo 10; RN-03 a RN-05. |
 | Etiquetas | Necesito | Etiquetas | No | Máximo 10; RN-03 a RN-05. |
 | Trayectoria | Experiencia | Lista de entradas | No | Cargo, organización, fecha de inicio, fecha de fin (o "actual") y descripción de hasta 500 caracteres. La fecha de fin no puede ser anterior a la de inicio. |
@@ -109,6 +111,7 @@ El estado solo afecta el indicador de completitud; no restringe ninguna funciona
 | Profesor | Unidad académica = facultad y departamento. | RN-01 |
 | Personal administrativo | Unidad académica = dependencia. | RN-01 |
 | Tipo declarado | El perfil muestra MSG-12. | RN-12 |
+| Monitor académico | El perfil muestra la insignia con el área y la especialización. | RN-13 |
 | Primera vez que guarda | Pasa al onboarding (FS-RED-02). | Sección 8 |
 | Perfil retirado por moderación | Titular, biografía y trayectoria ocultos hasta cambiarlos. | RN-11 |
 
@@ -117,7 +120,8 @@ El estado solo afecta el indicador de completitud; no restringe ninguna funciona
 | Situación | Comportamiento esperado | Regla o pregunta |
 |---|---|---|
 | Edita el perfil en dos pestañas | La segunda en guardar recibe MSG-09 y ve la versión actual. | RNF-CON-02 |
-| Dos usuarios crean la misma etiqueta nueva a la vez | Queda una sola etiqueta normalizada. | RN-04 |
+| Intenta agregar una etiqueta que no está en el catálogo | MSG-13; no se agrega. | RN-03, P-65 |
+| La sincronización cambia su estado de monitor mientras edita el perfil | Al guardar se conserva el estado que fijó la sincronización. | RN-13 |
 | Falla el almacenamiento de la foto | Se guarda el resto y se muestra MSG-10. | RNF-DIS-05 |
 | La biografía tiene una palabra prohibida | MSG-11 y no se guarda. | RN-10 |
 | La cuenta se suspende | El perfil deja de verse (FS-USR-08 RN-04). | Máquina de estados |
@@ -140,6 +144,7 @@ El estado solo afecta el indicador de completitud; no restringe ninguna funciona
 | MSG-10 | Foto no guardada | "Guardamos tu perfil, pero no pudimos subir la foto. Inténtalo de nuevo en unos minutos." |
 | MSG-11 | Palabras prohibidas | "Tu perfil contiene términos que no cumplen las normas de la comunidad. Revisa el texto e inténtalo de nuevo." |
 | MSG-12 | Tipo declarado | "Tipo declarado por el usuario" |
+| MSG-13 | Etiqueta fuera del catálogo | "Esa etiqueta no está en el catálogo. Elige una de las sugerencias." |
 
 ## 12. Resultado esperado
 
@@ -163,6 +168,17 @@ Escenario: Autocompletado sin duplicados
   Dado que ya existe la etiqueta "Diseño gráfico"
   Cuando escribo "diseno grafico" en "Puedo aportar"
   Entonces el sistema me sugiere "Diseño gráfico" en lugar de crear una etiqueta nueva
+
+Escenario: Etiqueta fuera del catálogo
+  Dado que "Diseño de interiores" no está en el catálogo de etiquetas
+  Cuando intento agregarla en "Puedo aportar"
+  Entonces veo el mensaje MSG-13 y la etiqueta no se agrega
+
+Escenario: Insignia de monitor académico
+  Dado que la sincronización institucional me marca como monitor de "Matemáticas" con especialización "Cálculo"
+  Cuando otro usuario ve mi perfil
+  Entonces ve la insignia "Monitor académico" con "Matemáticas · Cálculo"
+  Y yo no puedo editar ese dato
 
 Escenario: Misma etiqueta en ambas secciones
   Dado que tengo "Python" en "Puedo aportar"
@@ -208,7 +224,7 @@ Escenario: Perfil retirado
 
 **Expone:**
 
-- API: `GET` y `PUT /api/v1/usuarios/perfil`, `PUT /api/v1/usuarios/perfil/foto`, `GET /api/v1/usuarios/etiquetas?texto=` ([contrato](../../../../contracts/api/usuarios.yaml)). La vista del perfil de otro usuario es una ruta de Red.
+- API: `GET` y `PUT /api/v1/usuarios/perfil` (con `ETag` e `If-Match`; las etiquetas se envían por identificador del catálogo), `PUT /api/v1/usuarios/perfil/foto` (multipart), `GET /api/v1/usuarios/etiquetas?texto=` ([contrato](../../../../contracts/api/usuarios.yaml), esquemas completos). La vista del perfil de otro usuario es una ruta de Red.
 - Interfaz pública: datos públicos, privacidad y etiquetas de un perfil; afinidad con una lista de habilidades ([interfaz](../../../../contracts/modulos/usuarios.md)).
 - `Reportable` para el tipo de contenido "perfil".
 - Evento: `perfil.actualizado` ([catálogo](../../../../contracts/eventos/README.md)).
@@ -222,8 +238,8 @@ RNF-SEG-06 (foto), RNF-ACC-05, RNF-CON-02, RNF-PRI-01.
 ## 15. Preguntas abiertas
 
 - P-24 — ¿un solo catálogo de etiquetas?
-- P-25 — ¿fusionar o eliminar etiquetas desde administración?
-- P-46 — ¿reconocer etiquetas parecidas?
+- P-65 — ¿quién mantiene el catálogo de etiquetas y sus sinónimos?
+- P-66 — con cuentas precreadas, ¿nombre y unidad académica siguen siendo editables?
 
 ## 16. Lista de revisión
 
@@ -242,3 +258,4 @@ RNF-SEG-06 (foto), RNF-ACC-05, RNF-CON-02, RNF-PRI-01.
 |---|---|---|
 | 2026-10-06 | Gamero | Creación, con el modelo "Puedo aportar / Necesito" inspirado en Aluna Conecta |
 | 2026-10-24 | Equipo UniLink | Estudio de quién es quién, variaciones, casos límite y contratos; nueva plantilla. |
+| 2026-10-27 | Gamero | Decisiones de la reunión del 2026-10-19: etiquetas predefinidas (RN-03, MSG-13), sinónimos en el cruce (RN-04), insignia de monitor académico (RN-13); P-25 y P-46 resueltas; P-65 y P-66 nuevas; contrato con esquemas. |
