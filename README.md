@@ -26,26 +26,26 @@ Desarrollar una plataforma web de networking académico y profesional orientada 
 
 ## 🚀 Alcance del MVP
 
-El núcleo funcional previsto para el MVP contempla:
+El MVP (acotado el 2026-10-29) conecta a los estudiantes con cuatro líneas de oferta de la Universidad:
 
-- Registro e inicio de sesión.
-- Creación y edición del perfil profesional.
-- Búsqueda y visualización de perfiles.
-- Envío, aceptación y rechazo de solicitudes de conexión.
-- Publicaciones y su visualización.
-- Chat privado (1 a 1).
-- Espacio de proyectos.
-- Oportunidades de investigación, proyectos y voluntariado.
+| Línea | De dónde viene | Qué hace el estudiante |
+|---|---|---|
+| **Monitorías académicas** | Vicerrectoría Académica, por API | Busca un monitor por área y especialización y lo contacta |
+| **Semilleros de investigación** | Los profesores los publican | Solicita ingresar |
+| **Ayudantías académicas** | Vicerrectoría de Extensión y Proyección Social, por API | Consulta la convocatoria y se postula en el proceso de la Vicerrectoría |
+| **Actividades complementarias** | Bienestar Universitario las publica | Se inscribe mientras haya cupo |
 
-**Fuera de alcance inicial:** llamadas y videollamadas, chats grupales, integración con plataformas institucionales existentes (incluyendo Gedopract), y participación de empresas como usuarios.
+Se apoya en una base de cuenta precreada por la Universidad, perfil, notificaciones y administración.
 
-> El alcance detallado se está formalizando mediante historias de usuario y casos de uso priorizados.
+**Fuera del MVP:** red de conexiones, feed de publicaciones, mensajería, hoja de vida en PDF, usuarios externos y servicios entre estudiantes (fase 2). El detalle, con los 16 casos de uso, está en [Actores y alcance del MVP](docs/actores_y_alcance_mvp.md).
 
 ## 👥 Usuarios
 
-- **Estudiantes** — usuarios principales.
-- **Profesores** — miembros de la comunidad, con participación en networking, publicaciones y proyectos.
-- **Personal administrativo** — funciones de administración y moderación.
+- **Estudiantes:** usuarios principales.
+- **Monitores académicos:** estudiantes seleccionados por la Vicerrectoría Académica; sus datos oficiales llegan por API.
+- **Profesores:** publican semilleros de investigación.
+- **Personal de Bienestar Universitario:** publica actividades complementarias.
+- **Administrador de la plataforma:** personal de la Universidad que gestiona cuentas, catálogos y retiros.
 
 ## 🏗️ Enfoque de gestión y desarrollo
 
@@ -56,12 +56,12 @@ El núcleo funcional previsto para el MVP contempla:
 
 ## 🛠️ Stack tecnológico
 
-> Por definir / completar por el equipo técnico.
-
-- **Frontend:** PWA (Progressive Web App)
-- **Backend:** _por definir_
-- **Base de datos:** _por definir_
-- **Infraestructura / despliegue:** _por definir_
+- **Arquitectura:** monolito modular con arquitectura hexagonal en cada módulo ([ADR-002](docs/arquitectura/Registro_Decisiones.md#adr-002-estilo-arquitectónico), [ADR-017](docs/arquitectura/Registro_Decisiones.md#adr-017-arquitectura-interna-de-los-módulos-hexagonal-con-clean-architecture)).
+- **Frontend:** aplicación web adaptable con React, TypeScript y Vite ([ADR-018](docs/arquitectura/Registro_Decisiones.md#adr-018-bibliotecas-y-herramientas-del-frontend)).
+- **Backend:** Python con FastAPI ([ADR-010](docs/arquitectura/Registro_Decisiones.md#adr-010-lenguaje-y-framework)).
+- **Base de datos:** PostgreSQL ([ADR-005](docs/arquitectura/Registro_Decisiones.md#adr-005-persistencia)).
+- **Infraestructura / despliegue:** servidores de la Universidad ([ADR-009](docs/arquitectura/Registro_Decisiones.md#adr-009-alojamiento)).
+- **Contratos:** OpenAPI 3.1 y eventos de dominio en [`contracts/`](contracts/README.md).
 
 ## ✅ Atributos de calidad prioritarios
 
@@ -82,18 +82,28 @@ Equipo de 12 estudiantes de la Universidad del Magdalena, con perfiles Senior, S
 
 ## 📅 Estado del proyecto
 
-Proyecto en fase de **inicio / ingeniería de requisitos**, en el marco del CIDTI.
+Proyecto en fase de **especificación y arquitectura**, en el marco del CIDTI. La documentación está en borrador y todavía no hay código.
 
 - Inicio del proyecto: 14 de agosto de 2026.
-- Historias de usuario y casos de uso: hasta el 5 de septiembre de 2026.
-- Entrevistas a estudiantes (levantamiento de expectativas): hasta el 29 de agosto de 2026.
-- Mockups en Figma: por definir.
+- Reorganización de la documentación por módulos: 24 de octubre de 2026.
+- Stack y arquitectura decididos: 27 de octubre de 2026.
+- MVP acotado a cuatro líneas de oferta: 29 de octubre de 2026.
+- Siguiente paso: adaptar los specs al MVP acotado y arrancar el Sprint 0.
 - El MVP deberá estar disponible para su presentación al finalizar el semestre.
 
-## 📄 Documentación relacionada
+## 📄 Documentación
 
-- Acta de Constitución del Proyecto
-- Especificación de requisitos, historias de usuario y casos de uso _(en elaboración)_
+| Documento | Para qué |
+|---|---|
+| [Informe del proyecto](docs/informe_unilink.md) | Punto de entrada: resumen de cada tema con enlaces al detalle |
+| [Actores y alcance del MVP](docs/actores_y_alcance_mvp.md) | Qué entra al MVP, quién lo usa y los casos de uso |
+| [Especificación de requisitos (SRS)](docs/srs/Especificacion_Requisitos.md) | Requisitos no funcionales, escenarios de calidad, restricciones y riesgos |
+| [Módulos](docs/modulos/README.md) | Casos de uso y specs de cada funcionalidad |
+| [Registro de decisiones (ADR)](docs/arquitectura/Registro_Decisiones.md) | Decisiones de arquitectura |
+| [Preguntas abiertas](docs/preguntas-abiertas.md) | Lo que falta decidir |
+| [Índice completo](docs/README.md) | Toda la documentación |
+
+Para revisar enlaces y códigos de la documentación: `python scripts/verificar_docs.py --fase completa`.
 
 ## 📜 Licencia
 
