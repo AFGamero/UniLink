@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conexion.solicitada.v1.json",
+  "title": "conexion.solicitada (datos v1)",
+  "description": "Un usuario envió una solicitud de conexión. Productor: red.",
+  "type": "object",
+  "required": [
+    "solicitud_id",
+    "solicitante_id",
+    "destinatario_id",
+    "origen"
+  ],
+  "properties": {
+    "solicitud_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "solicitante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "destinatario_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "origen": {
+      "type": "string",
+      "enum": [
+        "MANUAL",
+        "ONBOARDING"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

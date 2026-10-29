@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.miembro_retirado.v1.json",
+  "title": "proyecto.miembro_retirado (datos v1)",
+  "description": "Un miembro dejó de pertenecer al proyecto. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "proyecto_id",
+    "miembro_id",
+    "retirado_por_id",
+    "causa",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "miembro_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "retirado_por_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "null si el miembro salió por su cuenta."
+    },
+    "causa": {
+      "type": "string",
+      "enum": [
+        "RETIRADO",
+        "SALIO",
+        "PROYECTO_RETIRADO"
+      ]
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mensaje.enviado.v1.json",
+  "title": "mensaje.enviado (datos v1)",
+  "description": "Se envió un mensaje privado. Nunca lleva el texto del mensaje. Productor: comunicacion.",
+  "type": "object",
+  "required": [
+    "conversacion_id",
+    "mensaje_id",
+    "remitente_id",
+    "destinatario_id"
+  ],
+  "properties": {
+    "conversacion_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "mensaje_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "remitente_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "destinatario_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  },
+  "additionalProperties": false
+}

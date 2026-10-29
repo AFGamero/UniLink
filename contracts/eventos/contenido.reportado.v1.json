@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contenido.reportado.v1.json",
+  "title": "contenido.reportado (datos v1)",
+  "description": "Un usuario reportó un elemento `Reportable`. Productor: contenido.",
+  "type": "object",
+  "required": [
+    "reporte_id",
+    "elemento_tipo",
+    "elemento_id",
+    "modulo_dueno",
+    "autor_id",
+    "denunciante_id",
+    "motivo",
+    "denunciantes_distintos",
+    "oculto_automaticamente"
+  ],
+  "properties": {
+    "reporte_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "elemento_tipo": {
+      "type": "string",
+      "enum": [
+        "PUBLICACION",
+        "COMENTARIO",
+        "PERFIL",
+        "OPORTUNIDAD",
+        "EVENTO",
+        "PROYECTO"
+      ]
+    },
+    "elemento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "modulo_dueno": {
+      "type": "string",
+      "enum": [
+        "usuarios",
+        "red",
+        "contenido",
+        "comunicacion",
+        "colaboracion",
+        "plataforma"
+      ]
+    },
+    "autor_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "denunciante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "motivo": {
+      "type": "string",
+      "enum": [
+        "SPAM",
+        "ACOSO",
+        "INFORMACION_FALSA",
+        "INAPROPIADO",
+        "OTRO"
+      ]
+    },
+    "denunciantes_distintos": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "oculto_automaticamente": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

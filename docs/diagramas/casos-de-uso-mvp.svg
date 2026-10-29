@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="1040" viewBox="0 0 1420 1040" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Diagrama de casos de uso del MVP de UniLink">
+<defs><marker id="gen" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#ffffff" stroke="#374151" stroke-width="1.2"/></marker></defs>
+<rect width="1420" height="1040" fill="#ffffff"/>
+<text x="710.0" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2937">UniLink — Diagrama de casos de uso del MVP</text>
+<text x="710.0" y="58" text-anchor="middle" font-size="13" fill="#6b7280">Monitorías académicas · Semilleros de investigación · Ayudantías académicas · Actividades complementarias</text>
+<rect x="360" y="68" width="810" height="942" fill="none" stroke="#1f2937" stroke-width="2" rx="6"/>
+<text x="374" y="92" font-size="15" font-weight="700" fill="#1f2937">«sistema» UniLink — MVP</text>
+<rect x="390" y="100" width="380" height="340" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="400" y="118" font-size="12" font-weight="700" fill="#6b7280">Base: cuenta, perfil y notificaciones</text>
+<ellipse cx="580" cy="148" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="144" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-01</text>
+<text x="580" y="160" text-anchor="middle" font-size="12" fill="#1f2937">Activar cuenta precreada</text>
+<ellipse cx="580" cy="200" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-02</text>
+<text x="580" y="212" text-anchor="middle" font-size="12" fill="#1f2937">Iniciar sesión</text>
+<ellipse cx="580" cy="252" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-17</text>
+<text x="580" y="264" text-anchor="middle" font-size="12" fill="#1f2937">Recuperar contraseña</text>
+<ellipse cx="580" cy="304" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-03</text>
+<text x="580" y="316" text-anchor="middle" font-size="12" fill="#1f2937">Administrar mi cuenta</text>
+<ellipse cx="580" cy="356" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="352" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-04</text>
+<text x="580" y="368" text-anchor="middle" font-size="12" fill="#1f2937">Editar mi perfil</text>
+<ellipse cx="580" cy="408" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="404" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-23</text>
+<text x="580" y="420" text-anchor="middle" font-size="12" fill="#1f2937">Consultar notificaciones</text>
+<rect x="390" y="458" width="380" height="132" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="400" y="476" font-size="12" font-weight="700" fill="#6b7280">Monitorías académicas</text>
+<ellipse cx="580" cy="504" rx="168" ry="23" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<text x="580" y="500" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-31  (nuevo)</text>
+<text x="580" y="516" text-anchor="middle" font-size="12" fill="#1f2937">Obtener la condición de monitor académico</text>
+<ellipse cx="580" cy="556" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="552" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-05</text>
+<text x="580" y="568" text-anchor="middle" font-size="12" fill="#1f2937">Buscar monitores y contactarlos</text>
+<rect x="390" y="608" width="380" height="82" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="400" y="626" font-size="12" font-weight="700" fill="#6b7280">Semilleros de investigación</text>
+<ellipse cx="580" cy="654" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="650" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-11</text>
+<text x="580" y="666" text-anchor="middle" font-size="12" fill="#1f2937">Gestionar semillero y solicitar ingreso</text>
+<rect x="390" y="708" width="380" height="82" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="400" y="726" font-size="12" font-weight="700" fill="#6b7280">Ayudantías académicas</text>
+<ellipse cx="580" cy="754" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="750" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-12</text>
+<text x="580" y="766" text-anchor="middle" font-size="12" fill="#1f2937">Consultar convocatorias de ayudantía</text>
+<rect x="390" y="808" width="380" height="182" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="400" y="826" font-size="12" font-weight="700" fill="#6b7280">Actividades complementarias</text>
+<ellipse cx="580" cy="854" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="850" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-20</text>
+<text x="580" y="866" text-anchor="middle" font-size="12" fill="#1f2937">Publicar actividad complementaria</text>
+<ellipse cx="580" cy="906" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="902" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-21</text>
+<text x="580" y="918" text-anchor="middle" font-size="12" fill="#1f2937">Explorar actividades complementarias</text>
+<ellipse cx="580" cy="958" rx="168" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="580" y="954" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-15</text>
+<text x="580" y="970" text-anchor="middle" font-size="12" fill="#1f2937">Inscribirse a una actividad</text>
+<rect x="820" y="100" width="330" height="200" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="5 4" rx="6"/>
+<text x="830" y="118" font-size="12" font-weight="700" fill="#6b7280">Administración</text>
+<ellipse cx="985" cy="148" rx="150" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="985" y="144" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-24</text>
+<text x="985" y="160" text-anchor="middle" font-size="12" fill="#1f2937">Administrar cuentas</text>
+<ellipse cx="985" cy="200" rx="150" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="985" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-25</text>
+<text x="985" y="212" text-anchor="middle" font-size="12" fill="#1f2937">Retirar semillero o actividad</text>
+<ellipse cx="985" cy="252" rx="150" ry="23" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+<text x="985" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">CU-26</text>
+<text x="985" y="264" text-anchor="middle" font-size="12" fill="#1f2937">Administrar catálogos</text>
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="150" cy="164" r="9" fill="#ffffff"/><line x1="150" y1="173" x2="150" y2="198"/><line x1="134" y1="182" x2="166" y2="182"/><line x1="150" y1="198" x2="138" y2="218"/><line x1="150" y1="198" x2="162" y2="218"/></g>
+<text x="150" y="236" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Visitante</text>
+<line x1="168" y1="182" x2="412" y2="148" stroke="#374151" stroke-width="1.3" />
+<line x1="168" y1="182" x2="412" y2="200" stroke="#374151" stroke-width="1.3" />
+<line x1="168" y1="182" x2="412" y2="252" stroke="#374151" stroke-width="1.3" />
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="150" cy="334" r="9" fill="#ffffff"/><line x1="150" y1="343" x2="150" y2="368"/><line x1="134" y1="352" x2="166" y2="352"/><line x1="150" y1="368" x2="138" y2="388"/><line x1="150" y1="368" x2="162" y2="388"/></g>
+<text x="150" y="406" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#1f2937">Miembro de la</text>
+<text x="150" y="421" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#1f2937">comunidad</text>
+<line x1="168" y1="352" x2="412" y2="304" stroke="#374151" stroke-width="1.3" />
+<line x1="168" y1="352" x2="412" y2="356" stroke="#374151" stroke-width="1.3" />
+<line x1="168" y1="352" x2="412" y2="408" stroke="#374151" stroke-width="1.3" />
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="270" cy="454" r="9" fill="#ffffff"/><line x1="270" y1="463" x2="270" y2="488"/><line x1="254" y1="472" x2="286" y2="472"/><line x1="270" y1="488" x2="258" y2="508"/><line x1="270" y1="488" x2="282" y2="508"/></g>
+<text x="270" y="526" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Profesor</text>
+<line x1="288" y1="472" x2="412" y2="556" stroke="#374151" stroke-width="1.3" />
+<line x1="288" y1="472" x2="412" y2="654" stroke="#374151" stroke-width="1.3" />
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="90" cy="584" r="9" fill="#ffffff"/><line x1="90" y1="593" x2="90" y2="618"/><line x1="74" y1="602" x2="106" y2="602"/><line x1="90" y1="618" x2="78" y2="638"/><line x1="90" y1="618" x2="102" y2="638"/></g>
+<text x="90" y="656" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Estudiante</text>
+<line x1="108" y1="602" x2="412" y2="504" stroke="#374151" stroke-width="1.3" />
+<line x1="108" y1="602" x2="412" y2="556" stroke="#374151" stroke-width="1.3" />
+<line x1="108" y1="602" x2="412" y2="654" stroke="#374151" stroke-width="1.3" />
+<line x1="108" y1="602" x2="412" y2="754" stroke="#374151" stroke-width="1.3" />
+<line x1="108" y1="602" x2="412" y2="906" stroke="#374151" stroke-width="1.3" />
+<line x1="108" y1="602" x2="412" y2="958" stroke="#374151" stroke-width="1.3" />
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="90" cy="754" r="9" fill="#ffffff"/><line x1="90" y1="763" x2="90" y2="788"/><line x1="74" y1="772" x2="106" y2="772"/><line x1="90" y1="788" x2="78" y2="808"/><line x1="90" y1="788" x2="102" y2="808"/></g>
+<text x="90" y="826" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Monitor</text>
+<text x="90" y="841" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">académico</text>
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="270" cy="874" r="9" fill="#ffffff"/><line x1="270" y1="883" x2="270" y2="908"/><line x1="254" y1="892" x2="286" y2="892"/><line x1="270" y1="908" x2="258" y2="928"/><line x1="270" y1="908" x2="282" y2="928"/></g>
+<text x="270" y="946" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Personal de</text>
+<text x="270" y="961" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Bienestar</text>
+<line x1="288" y1="892" x2="412" y2="854" stroke="#374151" stroke-width="1.3" />
+<line x1="90" y1="744" x2="90" y2="676" stroke="#374151" stroke-width="1.3" marker-end="url(#gen)"/>
+<line x1="72" y1="600" x2="30" y2="600" stroke="#374151" stroke-width="1.3" />
+<line x1="250" y1="480" x2="214" y2="480" stroke="#374151" stroke-width="1.3" />
+<line x1="214" y1="480" x2="214" y2="444" stroke="#374151" stroke-width="1.3" />
+<line x1="214" y1="444" x2="30" y2="444" stroke="#374151" stroke-width="1.3" />
+<line x1="250" y1="900" x2="214" y2="900" stroke="#374151" stroke-width="1.3" />
+<line x1="214" y1="900" x2="214" y2="990" stroke="#374151" stroke-width="1.3" />
+<line x1="214" y1="990" x2="30" y2="990" stroke="#374151" stroke-width="1.3" />
+<line x1="30" y1="990" x2="30" y2="360" stroke="#374151" stroke-width="1.3" />
+<line x1="30" y1="360" x2="128" y2="360" stroke="#374151" stroke-width="1.3" marker-end="url(#gen)"/>
+<g stroke="#1f2937" stroke-width="2" fill="none"><circle cx="1290" cy="174" r="9" fill="#ffffff"/><line x1="1290" y1="183" x2="1290" y2="208"/><line x1="1274" y1="192" x2="1306" y2="192"/><line x1="1290" y1="208" x2="1278" y2="228"/><line x1="1290" y1="208" x2="1302" y2="228"/></g>
+<text x="1290" y="246" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Administrador</text>
+<text x="1290" y="261" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">de la plataforma</text>
+<line x1="1272" y1="192" x2="1135" y2="148" stroke="#374151" stroke-width="1.3" />
+<line x1="1272" y1="192" x2="1135" y2="200" stroke="#374151" stroke-width="1.3" />
+<line x1="1272" y1="192" x2="1135" y2="252" stroke="#374151" stroke-width="1.3" />
+<rect x="1190" y="474.0" width="200" height="60" fill="#ffffff" stroke="#1f2937" stroke-width="1.5" rx="4"/>
+<text x="1290" y="492.0" text-anchor="middle" font-size="11" fill="#6b7280">«sistema externo»</text>
+<text x="1290" y="509.0" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">API Vicerrectoría</text>
+<text x="1290" y="524.0" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Académica</text>
+<line x1="1190" y1="504" x2="748" y2="504" stroke="#374151" stroke-width="1.3" />
+<rect x="1190" y="724.0" width="200" height="60" fill="#ffffff" stroke="#1f2937" stroke-width="1.5" rx="4"/>
+<text x="1290" y="742.0" text-anchor="middle" font-size="11" fill="#6b7280">«sistema externo»</text>
+<text x="1290" y="759.0" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">API Vicerrectoría de</text>
+<text x="1290" y="774.0" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Extensión y Proyección Social</text>
+<line x1="1190" y1="754" x2="748" y2="754" stroke="#374151" stroke-width="1.3" />
+<rect x="820" y="812" width="330" height="178" fill="#ffffff" stroke="#9ca3af" rx="6"/>
+<text x="832" y="832" font-size="12" font-weight="700" fill="#1f2937">Cómo leerlo</text>
+<text x="832" y="852" font-size="11" fill="#6b7280">Línea continua: el actor participa en el caso de uso.</text>
+<text x="832" y="869" font-size="11" fill="#6b7280">Flecha con triángulo: generalización (hereda los</text>
+<text x="832" y="886" font-size="11" fill="#6b7280">casos de uso del actor al que apunta).</text>
+<text x="832" y="903" font-size="11" fill="#6b7280">Miembro de la comunidad (cursiva) es abstracto: agrupa</text>
+<text x="832" y="920" font-size="11" fill="#6b7280">lo común a Estudiante, Profesor y Personal de Bienestar.</text>
+<text x="832" y="937" font-size="11" fill="#6b7280">El Monitor es un Estudiante: solo agrega datos extra</text>
+<text x="832" y="954" font-size="11" fill="#6b7280">a su perfil (CU-04); sus datos oficiales llegan por CU-31.</text>
+<text x="832" y="971" font-size="11" fill="#6b7280">Ayudantías y monitorías se postulan fuera de UniLink.</text>
+<text x="1400" y="1030" text-anchor="end" font-size="10" fill="#6b7280">Fuente: docs/actores_y_alcance_mvp.md §4.2 · 2026-10-29</text>
+</svg>

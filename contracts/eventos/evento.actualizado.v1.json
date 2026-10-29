@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evento.actualizado.v1.json",
+  "title": "evento.actualizado (datos v1)",
+  "description": "Cambió la fecha, el lugar o el enlace de un evento. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "evento_id",
+    "organizador_id",
+    "campos",
+    "asistentes_id",
+    "titulo"
+  ],
+  "properties": {
+    "evento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "organizador_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "campos": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "FECHA",
+          "LUGAR",
+          "ENLACE"
+        ]
+      }
+    },
+    "asistentes_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

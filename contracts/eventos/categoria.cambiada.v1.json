@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "categoria.cambiada.v1.json",
+  "title": "categoria.cambiada (datos v1)",
+  "description": "Se creó, renombró, desactivó, reactivó o reordenó una categoría. Productor: plataforma.",
+  "type": "object",
+  "required": [
+    "categoria_id",
+    "tipo_contenido",
+    "cambio",
+    "nombre_anterior",
+    "nombre_nuevo"
+  ],
+  "properties": {
+    "categoria_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "tipo_contenido": {
+      "type": "string",
+      "enum": [
+        "PUBLICACIONES",
+        "PROYECTOS",
+        "EVENTOS",
+        "OPORTUNIDADES"
+      ]
+    },
+    "cambio": {
+      "type": "string",
+      "enum": [
+        "CREADA",
+        "RENOMBRADA",
+        "DESACTIVADA",
+        "REACTIVADA",
+        "REORDENADA"
+      ]
+    },
+    "nombre_anterior": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nombre_nuevo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

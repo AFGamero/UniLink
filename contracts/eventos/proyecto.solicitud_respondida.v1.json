@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.solicitud_respondida.v1.json",
+  "title": "proyecto.solicitud_respondida (datos v1)",
+  "description": "Un administrador aprobó o rechazó una solicitud de unión. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "solicitud_id",
+    "proyecto_id",
+    "solicitante_id",
+    "aprobada",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "solicitud_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "solicitante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "aprobada": {
+      "type": "boolean"
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

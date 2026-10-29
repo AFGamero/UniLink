@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contenido.retirado.v1.json",
+  "title": "contenido.retirado (datos v1)",
+  "description": "Un administrador retiró un elemento por incumplir las normas. Productor: contenido.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "elemento_tipo",
+    "elemento_id",
+    "modulo_dueno",
+    "autor_id",
+    "administrador_id",
+    "norma",
+    "comentario",
+    "titulo"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "elemento_tipo": {
+      "type": "string",
+      "enum": [
+        "PUBLICACION",
+        "COMENTARIO",
+        "PERFIL",
+        "OPORTUNIDAD",
+        "EVENTO",
+        "PROYECTO"
+      ]
+    },
+    "elemento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "modulo_dueno": {
+      "type": "string",
+      "enum": [
+        "usuarios",
+        "red",
+        "contenido",
+        "comunicacion",
+        "colaboracion",
+        "plataforma"
+      ]
+    },
+    "autor_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "administrador_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "norma": {
+      "type": "string",
+      "pattern": "^N-[0-9]{2}$"
+    },
+    "comentario": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 500
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

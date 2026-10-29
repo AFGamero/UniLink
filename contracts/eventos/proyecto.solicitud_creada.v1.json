@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proyecto.solicitud_creada.v1.json",
+  "title": "proyecto.solicitud_creada (datos v1)",
+  "description": "Un usuario pidió unirse a un proyecto. Productor: colaboracion.",
+  "type": "object",
+  "required": [
+    "solicitud_id",
+    "proyecto_id",
+    "solicitante_id",
+    "administradores_id",
+    "nombre_proyecto"
+  ],
+  "properties": {
+    "solicitud_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "proyecto_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "solicitante_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "administradores_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "nombre_proyecto": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

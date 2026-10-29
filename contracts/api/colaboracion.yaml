@@ -1,0 +1,1467 @@
+openapi: 3.1.0
+info:
+  title: UniLink — API del módulo Colaboración
+  version: 0.1.0
+  description: 'Oportunidades, postulaciones, eventos, asistencia, proyectos, miembros y tareas.
+
+
+    Esqueleto acordado antes de programar (ADR-006): rutas, quién puede usarlas, caso de uso y spec de origen. Los esquemas
+    de las peticiones y respuestas se completan cuando el spec pasa a Aprobado. Convenciones en contracts/api/README.md.'
+servers:
+- url: /api/v1/colaboracion
+security:
+- sesion: []
+paths:
+  /oportunidades:
+    get:
+      summary: Explorar oportunidades
+      description: 'Quién: Usuario. Detalle en FS-COL-02.'
+      operationId: getOportunidades
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-12
+      x-spec: FS-COL-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    post:
+      summary: Publicar una oportunidad
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: postOportunidades
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+  /mis-oportunidades:
+    get:
+      summary: Mis oportunidades publicadas
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: getMisOportunidades
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /oportunidades/{oportunidad_id}:
+    get:
+      summary: Detalle de una oportunidad
+      description: 'Quién: Usuario. Detalle en FS-COL-02.'
+      operationId: getOportunidadesOportunidad_id
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-12
+      x-spec: FS-COL-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      summary: Editar una oportunidad
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: putOportunidadesOportunidad_id
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Eliminar una oportunidad sin postulaciones
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: deleteOportunidadesOportunidad_id
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /oportunidades/{oportunidad_id}/cierre:
+    post:
+      summary: Cerrar una oportunidad
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: postOportunidadesOportunidad_idCierre
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /oportunidades/{oportunidad_id}/cancelacion:
+    post:
+      summary: Cancelar una oportunidad
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: postOportunidadesOportunidad_idCancelacion
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /oportunidades/{oportunidad_id}/postulaciones:
+    get:
+      summary: Postulaciones recibidas
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: getOportunidadesOportunidad_idPostulaciones
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Postularse
+      description: 'Quién: Postulante. Detalle en FS-COL-02.'
+      operationId: postOportunidadesOportunidad_idPostulaciones
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-12
+      x-spec: FS-COL-02
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /oportunidades/{oportunidad_id}/postulaciones/decision:
+    post:
+      summary: Cambiar el estado de una o varias postulaciones
+      description: 'Quién: Responsable de oportunidad. Detalle en FS-COL-01.'
+      operationId: postOportunidadesOportunidad_idPostulacionesDecision
+      tags:
+      - FS-COL-01
+      x-casos-de-uso:
+      - CU-22
+      x-spec: FS-COL-01
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: oportunidad_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /postulaciones:
+    get:
+      summary: Mis postulaciones
+      description: 'Quién: Postulante. Detalle en FS-COL-02.'
+      operationId: getPostulaciones
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-14
+      x-spec: FS-COL-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+  /postulaciones/{postulacion_id}:
+    get:
+      summary: Historial de una postulación
+      description: 'Quién: Postulante. Detalle en FS-COL-02.'
+      operationId: getPostulacionesPostulacion_id
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-14
+      x-spec: FS-COL-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: postulacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /postulaciones/{postulacion_id}/retiro:
+    post:
+      summary: Retirar una postulación
+      description: 'Quién: Postulante. Detalle en FS-COL-02.'
+      operationId: postPostulacionesPostulacion_idRetiro
+      tags:
+      - FS-COL-02
+      x-casos-de-uso:
+      - CU-14
+      x-spec: FS-COL-02
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: postulacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos:
+    get:
+      summary: Explorar eventos
+      description: 'Quién: Usuario. Detalle en FS-COL-03.'
+      operationId: getEventos
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-21
+      x-spec: FS-COL-03
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    post:
+      summary: Publicar un evento
+      description: 'Quién: Organizador. Detalle en FS-COL-03.'
+      operationId: postEventos
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-20
+      x-spec: FS-COL-03
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+  /eventos/{evento_id}:
+    get:
+      summary: Detalle de un evento
+      description: 'Quién: Usuario. Detalle en FS-COL-03.'
+      operationId: getEventosEvento_id
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-21
+      x-spec: FS-COL-03
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      summary: Editar un evento
+      description: 'Quién: Organizador. Detalle en FS-COL-03.'
+      operationId: putEventosEvento_id
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-20
+      x-spec: FS-COL-03
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Eliminar un evento sin asistentes
+      description: 'Quién: Organizador. Detalle en FS-COL-03.'
+      operationId: deleteEventosEvento_id
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-20
+      x-spec: FS-COL-03
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos/{evento_id}/cancelacion:
+    post:
+      summary: Cancelar un evento
+      description: 'Quién: Organizador. Detalle en FS-COL-03.'
+      operationId: postEventosEvento_idCancelacion
+      tags:
+      - FS-COL-03
+      x-casos-de-uso:
+      - CU-20
+      x-spec: FS-COL-03
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos/{evento_id}/asistencia:
+    post:
+      summary: Confirmar asistencia
+      description: 'Quién: Asistente. Detalle en FS-COL-04.'
+      operationId: postEventosEvento_idAsistencia
+      tags:
+      - FS-COL-04
+      x-casos-de-uso:
+      - CU-15
+      x-spec: FS-COL-04
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Cancelar la asistencia
+      description: 'Quién: Asistente. Detalle en FS-COL-04.'
+      operationId: deleteEventosEvento_idAsistencia
+      tags:
+      - FS-COL-04
+      x-casos-de-uso:
+      - CU-15
+      x-spec: FS-COL-04
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos/{evento_id}/asistentes:
+    get:
+      summary: Lista de asistentes
+      description: 'Quién: Asistente u Organizador. Detalle en FS-COL-04.'
+      operationId: getEventosEvento_idAsistentes
+      tags:
+      - FS-COL-04
+      x-casos-de-uso:
+      - CU-15
+      x-spec: FS-COL-04
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos/{evento_id}/asistentes.csv:
+    get:
+      summary: Descargar la lista de asistentes
+      description: 'Quién: Organizador. Detalle en FS-COL-04.'
+      operationId: getEventosEvento_idAsistentesCsv
+      tags:
+      - FS-COL-04
+      x-casos-de-uso:
+      - CU-15
+      x-spec: FS-COL-04
+      responses:
+        '200':
+          description: Operación exitosa.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /eventos/{evento_id}/calendario.ics:
+    get:
+      summary: Archivo de calendario del evento
+      description: 'Quién: Asistente. Detalle en FS-COL-04.'
+      operationId: getEventosEvento_idCalendarioIcs
+      tags:
+      - FS-COL-04
+      x-casos-de-uso:
+      - CU-15
+      x-spec: FS-COL-04
+      responses:
+        '200':
+          description: Operación exitosa.
+          content:
+            text/calendar:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: evento_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos:
+    get:
+      summary: Explorar proyectos
+      description: 'Quién: Usuario. Detalle en FS-COL-05.'
+      operationId: getProyectos
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+    post:
+      summary: Crear un proyecto
+      description: 'Quién: Creador del proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectos
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+  /proyectos/{proyecto_id}:
+    get:
+      summary: Espacio de un proyecto
+      description: 'Quién: Usuario. Detalle en FS-COL-05.'
+      operationId: getProyectosProyecto_id
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      summary: Editar la información del proyecto
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-05.'
+      operationId: putProyectosProyecto_id
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Eliminar un proyecto sin otros miembros
+      description: 'Quién: Creador del proyecto. Detalle en FS-COL-05.'
+      operationId: deleteProyectosProyecto_id
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/reclutamiento:
+    post:
+      summary: Abrir o cerrar el reclutamiento
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idReclutamiento
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/finalizacion:
+    post:
+      summary: Finalizar el proyecto
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idFinalizacion
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/solicitudes:
+    post:
+      summary: Pedir unirse
+      description: 'Quién: Solicitante. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idSolicitudes
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/solicitudes/{solicitud_id}/decision:
+    post:
+      summary: Aprobar o rechazar una solicitud
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idSolicitudesSolicitud_idDecision
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: solicitud_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/invitaciones:
+    post:
+      summary: Invitar a una conexión
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idInvitaciones
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /invitaciones/{invitacion_id}/aceptacion:
+    post:
+      summary: Aceptar una invitación
+      description: 'Quién: Usuario. Detalle en FS-COL-05.'
+      operationId: postInvitacionesInvitacion_idAceptacion
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: invitacion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/salida:
+    post:
+      summary: Salir del proyecto
+      description: 'Quién: Miembro del proyecto. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idSalida
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/miembros:
+    get:
+      summary: Miembros y sus roles
+      description: 'Quién: Usuario. Detalle en FS-COL-06.'
+      operationId: getProyectosProyecto_idMiembros
+      tags:
+      - FS-COL-06
+      x-casos-de-uso:
+      - CU-16
+      x-spec: FS-COL-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/miembros/{usuario_id}/rol:
+    put:
+      summary: Cambiar el rol de un miembro
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-06.'
+      operationId: putProyectosProyecto_idMiembrosUsuario_idRol
+      tags:
+      - FS-COL-06
+      x-casos-de-uso:
+      - CU-16
+      x-spec: FS-COL-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/miembros/{usuario_id}:
+    delete:
+      summary: Retirar a un miembro
+      description: 'Quién: Administrador de proyecto. Detalle en FS-COL-06.'
+      operationId: deleteProyectosProyecto_idMiembrosUsuario_id
+      tags:
+      - FS-COL-06
+      x-casos-de-uso:
+      - CU-16
+      x-spec: FS-COL-06
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: usuario_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/permisos:
+    get:
+      summary: Qué puede hacer cada rol
+      description: 'Quién: Miembro del proyecto. Detalle en FS-COL-06.'
+      operationId: getProyectosProyecto_idPermisos
+      tags:
+      - FS-COL-06
+      x-casos-de-uso:
+      - CU-16
+      x-spec: FS-COL-06
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/tareas:
+    get:
+      summary: Tablero de tareas
+      description: 'Quién: Miembro del proyecto. Detalle en FS-COL-05.'
+      operationId: getProyectosProyecto_idTareas
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Crear una tarea
+      description: 'Quién: Editor. Detalle en FS-COL-05.'
+      operationId: postProyectosProyecto_idTareas
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '201':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/tareas/{tarea_id}:
+    put:
+      summary: Editar o mover una tarea
+      description: 'Quién: Miembro del proyecto. Detalle en FS-COL-05.'
+      operationId: putProyectosProyecto_idTareasTarea_id
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - $ref: '#/components/parameters/IfMatch'
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tarea_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Eliminar una tarea
+      description: 'Quién: Editor. Detalle en FS-COL-05.'
+      operationId: deleteProyectosProyecto_idTareasTarea_id
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '204':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '409':
+          $ref: '#/components/responses/Conflicto'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tarea_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /proyectos/{proyecto_id}/actividad:
+    get:
+      summary: Actividad del proyecto
+      description: 'Quién: Miembro del proyecto. Detalle en FS-COL-05.'
+      operationId: getProyectosProyecto_idActividad
+      tags:
+      - FS-COL-05
+      x-casos-de-uso:
+      - CU-11
+      x-spec: FS-COL-05
+      responses:
+        '200':
+          description: Operación exitosa.
+        '400':
+          $ref: '#/components/responses/Validacion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+        '403':
+          $ref: '#/components/responses/Prohibido'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteDeUso'
+      parameters:
+      - name: proyecto_id
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    sesion:
+      type: apiKey
+      in: cookie
+      name: unilink_sesion
+      description: Cookie HttpOnly, Secure y SameSite (RNF-SEG-03). Las escrituras exigen además la cabecera X-CSRF-Token.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: Evita duplicar una creación reenviada (RNF-CON-03).
+      schema:
+        type: string
+        format: uuid
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: Versión (ETag) que el usuario editó; si cambió, 409 (RNF-CON-02).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      - message
+      - correlation_id
+      properties:
+        error:
+          type: string
+          description: Código estable, por ejemplo CUPO_COMPLETO.
+        message:
+          type: string
+          description: Texto MSG-NN del spec, listo para mostrar.
+        correlation_id:
+          type: string
+          description: Identificador de la petición (RNF-OBS-01).
+  responses:
+    Validacion:
+      description: Datos inválidos.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutenticado:
+      description: Sin sesión o sesión vencida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Prohibido:
+      description: El actor no tiene permiso según "Quién es quién" (RNF-SEG-04).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoEncontrado:
+      description: No existe o el usuario no puede verlo.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflicto:
+      description: Estado cambiado, versión desactualizada o regla de negocio incumplida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    LimiteDeUso:
+      description: Límite de uso superado (RNF-SEG-07).
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Segundos para reintentar.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reporte.revisado.v1.json",
+  "title": "reporte.revisado (datos v1)",
+  "description": "Los reportes de un elemento se resolvieron. Productor: contenido.",
+  "type": "object",
+  "required": [
+    "elemento_tipo",
+    "elemento_id",
+    "denunciantes_id",
+    "decision"
+  ],
+  "properties": {
+    "elemento_tipo": {
+      "type": "string",
+      "enum": [
+        "PUBLICACION",
+        "COMENTARIO",
+        "PERFIL",
+        "OPORTUNIDAD",
+        "EVENTO",
+        "PROYECTO"
+      ]
+    },
+    "elemento_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "denunciantes_id": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "uniqueItems": true
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "RETIRADO",
+        "MANTENIDO"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
