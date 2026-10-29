@@ -10,7 +10,7 @@ La **persona** dentro de UniLink: su cuenta, su sesión, su configuración y pri
 
 | Documento | Contenido |
 |---|---|
-| [Casos de uso](./casos-de-uso.md) | CU-01, CU-02, CU-03, CU-04, CU-17, CU-18, CU-19, CU-24 |
+| [Casos de uso](./casos-de-uso.md) | CU-01, CU-02, CU-03, CU-04, CU-17, CU-18, CU-19, CU-24, CU-31 |
 | [Historias de usuario](./historias.md) | HU-01, HU-02, HU-03, HU-04, HU-13, HU-14, HU-17, HU-28 |
 | [FS-USR-01](./specs/FS-USR-01-registro.md) | Registro y verificación de cuenta |
 | [FS-USR-02](./specs/FS-USR-02-inicio-sesion.md) | Inicio y cierre de sesión |

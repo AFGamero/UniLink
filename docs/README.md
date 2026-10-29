@@ -18,11 +18,18 @@ _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
 Además: [preguntas abiertas](./preguntas-abiertas.md) (única fuente de las decisiones pendientes), [normas de la comunidad](./normas-comunidad.md), [seguridad de la API](./arquitectura/seguridad-endpoints.md) y [decisiones del equipo](./decisiones/) (incluida la [reunión del 2026-10-19](./decisiones/2026-10-19-reunion-preguntas-abiertas.md)).
 
-**Análisis integral (2026-10-27)**, dirigido al profesor tutor:
+**Para el profesor tutor (2026-10-29):**
 
 | Documento | Contenido |
 |---|---|
-| [Informe integral](./informe_integral_unilink.md) | Especificación, requisitos y arquitectura en 19 capítulos, con diagramas, diccionario de datos e inventario de endpoints. |
+| [**Informe del proyecto**](./informe_unilink.md) | Punto de entrada: resumen de cada tema en una página, con enlaces al detalle. |
+| [**Actores y alcance del MVP**](./actores_y_alcance_mvp.md) | Los seis actores, qué hace cada uno, qué entra al MVP y cuándo está terminado. |
+
+**Análisis integral (2026-10-27)**, anexo técnico del informe:
+
+| Documento | Contenido |
+|---|---|
+| [Informe integral detallado](./informe_integral_unilink.md) | Especificación, requisitos y arquitectura en 19 capítulos, con diagramas, diccionario de datos e inventario de endpoints. |
 | [Arquitectura actual y objetivo](./arquitectura_unilink.md) | Consolidación de la arquitectura con las decisiones del 2026-10-19. |
 | [Catálogo de requisitos](./requisitos_unilink.md) | Índice de los 167 RF y los 63 RNF, propuestas y decisiones sin especificar. |
 | [Matriz de trazabilidad](./matriz_trazabilidad_unilink.md) | Requisito → componente → datos → endpoint → prueba → estado. |

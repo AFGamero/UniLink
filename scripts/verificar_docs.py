@@ -3,9 +3,10 @@
 Comprobaciones:
   enlaces    todo enlace relativo de docs/ y contracts/ apunta a un archivo y un ancla que existen.
   codigos    no quedan códigos de spec antiguos fuera de la tabla de equivalencias y de docs/decisiones/.
-  cobertura  cada CU-01…30 y HU-01…31 aparece exactamente una vez en docs/modulos/.
+  cobertura  cada CU-01…31 y HU-01…31 aparece exactamente una vez en docs/modulos/.
 Con --fase completa, además:
-  actores    cada actor de "Quién es quién" de un spec existe en la tabla de actores del SRS (§2.4).
+  actores    cada actor de "Quién es quién" de un spec existe en la clasificación de actores
+             de docs/actores_y_alcance_mvp.md (§7).
   contratos  los JSON Schema de contracts/eventos/ y los OpenAPI de contracts/api/ son válidos.
 
 Uso: python scripts/verificar_docs.py [--fase reorganizacion|completa]
@@ -21,7 +22,7 @@ from urllib.parse import unquote
 
 RAIZ = Path(__file__).resolve().parent.parent
 CARPETAS = [RAIZ / "docs", RAIZ / "contracts"]
-TOTAL_CU = 30
+TOTAL_CU = 31
 TOTAL_HU = 31
 
 CODIGO_ANTIGUO = re.compile(r"FS-(?:CTA|PRF|ADM|NOT|MSG|OPO|EVT|PRY)-\d\d")
@@ -188,18 +189,20 @@ def normalizar_actor(nombre):
 
 
 def verificar_actores(problemas):
-    srs = RAIZ / "docs" / "srs" / "Especificacion_Requisitos.md"
-    if not srs.exists():
-        problemas.append("actores: no existe docs/srs/Especificacion_Requisitos.md")
+    fuente = RAIZ / "docs" / "actores_y_alcance_mvp.md"
+    if not fuente.exists():
+        problemas.append("actores: no existe docs/actores_y_alcance_mvp.md")
         return
-    actores = {normalizar_actor(n) for n in nombres_de_tabla(srs.read_text(encoding="utf-8"), "Actores del sistema")}
+    # Una fila puede agrupar varios nombres separados por comas ("Autor, Lector").
+    filas = nombres_de_tabla(fuente.read_text(encoding="utf-8"), "Evaluación de los actores")
+    actores = {normalizar_actor(n) for fila in filas for n in fila.split(",")}
     if not actores:
-        problemas.append("actores: el SRS no tiene tabla en la sección 'Actores del sistema'")
+        problemas.append("actores: docs/actores_y_alcance_mvp.md no tiene tabla en la sección 'Evaluación de los actores'")
         return
     for spec in sorted((RAIZ / "docs" / "modulos").glob("*/specs/*.md")):
         for nombre in nombres_de_tabla(spec.read_text(encoding="utf-8"), "Quién es quién"):
             if normalizar_actor(nombre) not in actores:
-                problemas.append(f"actores: {relativo(spec)} → '{nombre}' no está en el SRS §2.4")
+                problemas.append(f"actores: {relativo(spec)} → '{nombre}' no está en la clasificación de actores (§7)")
 
 
 def verificar_contratos(problemas):

@@ -3,6 +3,8 @@
 _Red Profesional Universitaria — Universidad del Magdalena_
 _Centro de Interés de Desarrollo Tecnológico e Innovación (CIDTI)_
 
+> **Anexo técnico.** Desde el 2026-10-29, el punto de entrada para el tutor es el [Informe del proyecto](./informe_unilink.md), que resume cada tema y enlaza aquí para el detalle. Los actores y el alcance del MVP vigentes están en [Actores y alcance del MVP](./actores_y_alcance_mvp.md), que reemplaza al [capítulo 5](#capítulo-5-actores-roles-y-permisos) de este informe.
+
 | Campo | Valor |
 |---|---|
 | **Documento** | Informe integral de especificaciones, requisitos y arquitectura |

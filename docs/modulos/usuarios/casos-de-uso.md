@@ -15,6 +15,7 @@ Casos de uso del módulo Usuarios (USR). Los actores se definen en el [mapa de m
 - [CU-18 — Seleccionar preferencias de contenido](#cu-18--seleccionar-preferencias-de-contenido)
 - [CU-19 — Generar hoja de vida en PDF](#cu-19--generar-hoja-de-vida-en-pdf)
 - [CU-24 — Administrar cuentas de usuario](#cu-24--administrar-cuentas-de-usuario)
+- [CU-31 — Obtener la condición de monitor académico](#cu-31--obtener-la-condición-de-monitor-académico)
 
 ---
 
@@ -238,5 +239,45 @@ Los campos **"Puedo aportar"** (por ejemplo, "asesoría en Python", "diseño gr�
 - 4a. El administrador intenta suspender su propia cuenta: el sistema bloquea la acción.
 
 **Postcondiciones:** El estado de la cuenta queda actualizado. Un usuario suspendido o inhabilitado no puede iniciar sesión ([CU-02](#cu-02--iniciar-sesión), flujo 3d).
+
+**Prioridad:** Alta
+
+---
+
+## CU-31 — Obtener la condición de monitor académico
+
+**Actor(es):** Estudiante (aspirante a monitor). Actores secundarios: API de la Vicerrectoría Académica y Sistema (tarea de sincronización).
+
+**Descripción:** Permite que un estudiante conozca en UniLink la convocatoria de monitorías de la Vicerrectoría Académica y llegue a su proceso de postulación. Cuando la Vicerrectoría publica el resultado, UniLink marca como monitores a los estudiantes seleccionados. La convocatoria **se recibe** por API, **se resuelve fuera de UniLink** y UniLink **recibe el resultado** (decisión del equipo del 2026-10-29).
+
+**Precondiciones:**
+
+- La Vicerrectoría Académica publicó una convocatoria de monitorías y UniLink la recibió por su API (simulada en el MVP, P-72).
+- El estudiante tiene una cuenta precreada en UniLink. Para consultar la convocatoria debe haberla activado e iniciado sesión.
+
+**Flujo principal:**
+
+1. El Sistema recibe de la API la convocatoria de monitorías (áreas, especializaciones, requisitos, fechas y enlace de postulación) y la muestra en la sección Monitorías como abierta.
+2. El estudiante consulta la convocatoria y su detalle.
+3. El estudiante selecciona "Postularme" y el sistema lo lleva al proceso de postulación de la Vicerrectoría, fuera de UniLink.
+4. La Vicerrectoría Académica evalúa a los aspirantes y resuelve la convocatoria fuera de UniLink.
+5. El Sistema recibe de la API el resultado: los estudiantes seleccionados, cada uno con su área y su especialización.
+6. El Sistema marca como monitor la cuenta precreada de cada seleccionado, con su área y su especialización, y registra el cambio en la auditoría.
+7. El Sistema notifica a cada seleccionado, dentro de la plataforma y por correo, que es monitor académico.
+8. El perfil del estudiante muestra la insignia "Monitor académico" con su área y su especialización, y el estudiante aparece en la búsqueda de monitores ([CU-05](../red/casos-de-uso.md#cu-05--buscar-y-visualizar-perfiles)).
+
+**Flujos alternativos / excepciones:**
+
+- 1a. La convocatoria llega a su fecha de cierre o la Vicerrectoría la retira: el sistema deja de mostrarla como abierta.
+- 4a. El estudiante no resulta seleccionado: UniLink no recibe ese dato y no cambia nada. El estudiante conoce la decisión por el proceso de la Vicerrectoría.
+- 5a. El resultado incluye a un estudiante que no ha activado su cuenta: el sistema lo marca igual. La notificación por correo llega a su correo institucional y, al activar la cuenta, ya entra como monitor.
+- 5b. El resultado incluye un correo que no corresponde a ninguna cuenta precreada: el sistema no crea la cuenta ni marca a nadie, y registra la inconsistencia para que la revise el Administrador.
+- 5c. La API no responde o envía datos incompletos: el sistema conserva los monitores vigentes, reintenta en la siguiente sincronización y muestra la falla al Administrador.
+- 6a. Un monitor deja de aparecer en el resultado vigente (por ejemplo, porque terminó su periodo): el sistema le retira la condición, la insignia desaparece, deja de aparecer en la búsqueda de monitores y se le notifica.
+- 6b. Cambian el área o la especialización de un monitor: el sistema actualiza los datos oficiales sin tocar los datos extra que él agregó.
+
+**Postcondiciones:** Los seleccionados quedan como monitores académicos. Sus datos oficiales (condición, área y especialización) son de solo lectura y solo los cambia la sincronización. El monitor puede agregar datos extra a su perfil ([CU-04](#cu-04--creareditar-perfil-profesional)). Cada alta, cambio o baja queda en la auditoría.
+
+**Reglas relacionadas:** [FS-USR-06 RN-13](./specs/FS-USR-06-perfil-profesional.md) (insignia de solo lectura), [FS-RED-03 RN-09](../red/specs/FS-RED-03-busqueda-perfiles.md) (filtro de monitores), [ADR-014](../../arquitectura/Registro_Decisiones.md#adr-014-integración-con-la-api-de-admisiones) (puerto con adaptador simulado y real), [Actores y alcance del MVP](../../actores_y_alcance_mvp.md#21-monitorías-académicas).
 
 **Prioridad:** Alta

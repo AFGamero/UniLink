@@ -1,5 +1,7 @@
 # Sprints — UniLink
 
+> **MVP acotado (2026-10-29).** El MVP se redujo a monitorías, semilleros, ayudantías y actividades complementarias. El plan de sprints propuesto para ese alcance está en [Actores y alcance del MVP, sección 6](../actores_y_alcance_mvp.md#6-plan-de-sprints-propuesto). El roadmap de abajo es el del producto completo y se reemplazará cuando el equipo confirme el nuevo plan.
+
 El MVP se construye en **8 sprints de 2 semanas** (unas 16 semanas). El orden respeta las dependencias entre módulos: primero el acceso, luego la identidad, la red y, sobre esa base, el contenido y los módulos de valor.
 
 ## Roadmap
@@ -54,7 +56,7 @@ El equipo decidió dejar el **módulo de servicios** para una segunda fase: ampl
 
 - [ ] Cumple todos los criterios de aceptación del spec.
 - [ ] Tiene pruebas automatizadas de sus reglas de negocio.
-- [ ] Cumple los [requisitos no funcionales](../srs/Especificacion_Requisitos.md#3314-cuándo-se-aplica-cada-requisito) que aplican a todos los sprints: control de acceso en el servidor, seguridad, rendimiento, usabilidad y accesibilidad.
+- [ ] Cumple los [requisitos no funcionales](../srs/Especificacion_Requisitos.md#3313-cuándo-se-aplica-cada-requisito) que aplican a todos los sprints: control de acceso en el servidor, seguridad, rendimiento, usabilidad y accesibilidad.
 - [ ] El código fue revisado por al menos otro integrante (pull request aprobado).
 - [ ] Está desplegado en el entorno de pruebas.
 - [ ] Se mostró en la revisión del sprint.

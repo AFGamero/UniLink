@@ -95,10 +95,4 @@ Los specs se renumeraron el 2026-10-24 al reorganizar la documentación por mód
 
 ## Actores
 
-| Actor | Descripción |
-|---|---|
-| **Visitante** | Persona no autenticada que puede registrarse en la plataforma. |
-| **Usuario autenticado** | Estudiante, profesor o personal administrativo con cuenta activa y verificada. Desde la fase 2, también egresados y personal tercerizado. |
-| **Responsable de oportunidad** | Usuario autenticado que publica una oportunidad (investigación, proyecto o voluntariado) y gestiona sus postulaciones. |
-| **Administrador de proyecto** | Usuario autenticado que creó un espacio de proyecto o recibió el rol de administrador en él. |
-| **Administrador de la plataforma** | Miembro del equipo de UniLink encargado de gestionar cuentas, moderar contenido, administrar categorías y validar credenciales. |
+Los actores del MVP (Visitante, Estudiante, Monitor académico, Profesor, Personal de Bienestar Universitario y Administrador de la plataforma), qué specs entran al MVP acotado y lo que hace cada actor están en [Actores y alcance del MVP](../actores_y_alcance_mvp.md). Los nombres que usan los specs en "Quién es quién" (Autor, Postulante, Organizador…) son papeles de esos actores y se definen en el [SRS §2.4](../srs/Especificacion_Requisitos.md#24-actores-del-sistema).

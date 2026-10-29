@@ -33,7 +33,8 @@ Una celda vacía significa que la pregunta no se trató. Las decisiones del 2026
 | [D. De producto](#d-de-producto) | Equipo de UniLink (Product Owner) | 33 | Sprint 1 |
 | [E. Para después del lanzamiento](#e-para-después-del-lanzamiento) | Equipo de UniLink | 5 | No bloquean el MVP |
 | [F. Surgidas en la reunión del 2026-10-19](#f-surgidas-en-la-reunión-del-2026-10-19) | Equipo de UniLink y la Universidad | 6 | Sprint 0 |
-| **Total** | | **67** | |
+| [G. Actores del MVP](#g-actores-del-mvp) | Equipo de UniLink, Dirección del CIDTI, TI y vicerrectorías | 5 | Sprint 1 |
+| **Total** | | **72** | |
 
 **Prioridad para la primera reunión:** P-01 a P-05, P-11, P-16 a P-18, P-19 a P-22 y P-52 a P-55. Sin ellas no pueden empezar el Sprint 0 ni el Sprint 1.
 
@@ -46,6 +47,7 @@ Una celda vacía significa que la pregunta no se trató. Las decisiones del 2026
 | Pendiente | 9 | P-16, P-18, P-19, P-56 a P-60, P-63 |
 | Por gestionar | 2 | P-12, P-61 |
 | No se trató | 24 | P-03 a P-06, P-10, P-13 a P-15, P-22, P-24, P-26, P-34, P-38, P-45, P-50 a P-52, P-54, P-55, P-62, P-64 a P-67 |
+| Nueva (2026-10-29) | 5 | P-68 a P-72 (P-69 y P-70 resueltas el mismo día) |
 
 ## A. Institucionales
 
@@ -83,7 +85,7 @@ Una celda vacía significa que la pregunta no se trató. Las decisiones del 2026
 | P-53 | ¿Qué lenguajes y frameworks domina el equipo? Bloquea el stack. | [ADR-010](./arquitectura/Registro_Decisiones.md#adr-010-lenguaje-y-framework) | Sprint 0 | A. Java con Spring Boot; B. TypeScript con NestJS; C. Python con Django o FastAPI. **Propuesta:** elegir el que más integrantes dominen; a igualdad, A por su soporte para monolitos modulares. | **Resuelta (2026-10-27):** FastAPI en el backend y React en el frontend; cada módulo con arquitectura hexagonal y Clean Architecture ([ADR-010](./arquitectura/Registro_Decisiones.md#adr-010-lenguaje-y-framework), [ADR-017](./arquitectura/Registro_Decisiones.md#adr-017-arquitectura-interna-de-los-módulos-hexagonal-con-clean-architecture)). |
 | P-62 | ¿Los límites por IP de inicio de sesión y registro son adecuados? En la universidad muchos usuarios comparten la misma IP pública. | [Seguridad de la API](./arquitectura/seguridad-endpoints.md#8-límites-de-peticiones) | Sprint 0 | Medir el tráfico real desde las salas de cómputo antes de fijarlos; mientras tanto, límites altos por IP y estrictos por cuenta. | |
 | P-63 | ¿El inicio de sesión usa la cuenta institucional (SSO) en lugar de una contraseña propia? | [Seguridad de la API](./arquitectura/seguridad-endpoints.md#4-sesión-e-inicio-de-sesión), [ADR-013](./arquitectura/Registro_Decisiones.md#adr-013-autenticación-institucional-y-cuentas-precreadas) | Sprint 0 | Definir el mecanismo con TI a partir de la decisión del 2026-10-19. | **Pendiente (Reunión 2026-10-19):** se decidió compartir solo la autenticación mediante el token del Campus Virtual; falta definir el mecanismo técnico y qué pasa con la contraseña propia. |
-| P-64 | ¿Se agrega una segunda verificación (código por correo o aplicación) para los administradores de la plataforma? | [Seguridad de la API](./arquitectura/seguridad-endpoints.md) | Sprint 4 | Sí para Administrador y Moderador, por su acceso a datos de toda la comunidad. | |
+| P-64 | ¿Se agrega una segunda verificación (código por correo o aplicación) para los administradores de la plataforma? | [Seguridad de la API](./arquitectura/seguridad-endpoints.md) | Sprint 4 | Sí para el Administrador (que en el MVP también modera), por su acceso a datos de toda la comunidad. | |
 
 ## D. De producto
 
@@ -185,6 +187,18 @@ Temas que quedaron abiertos en la reunión y no tenían pregunta. La confirmaci�
 | P-60 | ¿Qué dominio tendrá UniLink? | [Sprint 0](./sprints/sprint-00/README.md) | | **Pendiente (Reunión 2026-10-19).** |
 | P-61 | ¿Cómo se obtiene acceso a la API de admisiones (endpoint GET)? | [FS-USR-01](./modulos/usuarios/specs/FS-USR-01-registro.md) | | **Por gestionar (Reunión 2026-10-19):** gestionarlo con la Universidad. En el MVP la API se simula con correos ficticios. |
 
+## G. Actores del MVP
+
+Surgidas al definir los actores del MVP el 2026-10-29 ([Actores y alcance del MVP](./actores_y_alcance_mvp.md)). Ese día el equipo decidió separar a Estudiante, Profesor y Personal administrativo como actores, tratar al Monitor académico como actor, unir al Moderador con el Administrador y **acotar el MVP a cuatro líneas**: monitorías académicas (datos por API de la Vicerrectoría Académica), semilleros de investigación (profesores), ayudantías académicas (convocatorias por API de la Vicerrectoría de Extensión y Proyección Social, con postulación fuera de UniLink) y actividades complementarias (Bienestar Universitario).
+
+| ID | Pregunta | Origen | Propuesta | Decisión |
+|---|---|---|---|---|
+| P-68 | ¿Cómo se asigna el rol de Administrador sin que intervenga el equipo de desarrollo? | [Actores, A6](./actores_y_alcance_mvp.md#a6-administrador-de-la-plataforma); [FS-PLT-01](./modulos/plataforma/specs/FS-PLT-01-gestion-categorias.md) RN-01 | El primero, con un procedimiento acordado con TI; los siguientes, desde el panel por otro Administrador, con registro en la auditoría. | |
+| P-69 | ¿El Monitor académico tiene funciones propias además de la insignia y el filtro de búsqueda? | [Actores, A3](./actores_y_alcance_mvp.md#a3-monitor-académico) | | **Resuelta (2026-10-29):** los datos del monitor llegan por la API de la Vicerrectoría Académica y son de solo lectura; el monitor solo agrega datos extra a su perfil. No hay horario (la atención es flexible) ni inscripción a sesiones: el estudiante lo busca y lo contacta por correo. |
+| P-70 | ¿Estudiante, Profesor y Personal administrativo tienen permisos distintos? | [Actores, sección 3](./actores_y_alcance_mvp.md#3-actores-del-mvp); P-36; P-59 | | **Resuelta (2026-10-29):** cada línea la oferta su dueño. Los profesores publican semilleros y ayudantías, el personal de Bienestar publica actividades complementarias y los estudiantes participan. Reemplaza a P-36 ("cualquier usuario publica oportunidades") en el MVP. |
+| P-72 | ¿Cómo se obtiene acceso a la API de monitores de la Vicerrectoría Académica y a la de convocatorias de ayudantía de la Vicerrectoría de Extensión y Proyección Social (campos, frecuencia, autenticación)? | [Actores, sistemas externos](./actores_y_alcance_mvp.md#3-actores-del-mvp) | Simularlas en el MVP con el mismo patrón de ADR-014 (puerto con adaptador simulado y real) y gestionar el acceso real en paralelo, como P-61. | **Por gestionar** |
+| P-71 | ¿Cómo se identifica al personal de Bienestar Universitario que puede publicar actividades complementarias? | [Actores, A5](./actores_y_alcance_mvp.md#a5-personal-de-bienestar-universitario) | Por la dependencia que informa el directorio institucional; el Administrador puede corregirlo. | |
+
 ## Historial de cambios
 
 | Fecha | Autor | Cambio |
@@ -195,3 +209,4 @@ Temas que quedaron abiertos en la reunión y no tenían pregunta. La confirmaci�
 | 2026-10-27 | Gamero | P-53 resuelta: FastAPI y React con arquitectura hexagonal y Clean Architecture. |
 | 2026-10-27 | Gamero | P-17 resuelta: búsqueda en PostgreSQL (ADR-008). |
 | 2026-10-27 | Gamero | Corrección: P-26 vuelve a "no se trató" (la decisión "las solicitudes no vencen" corresponde a FS-RED-01 RN-08, no a P-26). P-65 a P-67 nuevas, surgidas al actualizar FS-USR-06 y FS-RED-03. |
+| 2026-10-29 | Gamero | Grupo G (P-68 a P-72), surgido al definir los actores y acotar el MVP a cuatro líneas; P-69 y P-70 resueltas. P-64: el Moderador se une al Administrador. |
